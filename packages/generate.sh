@@ -17,3 +17,17 @@ msg "Generating sources"
 msg "Checking out sources"
 ./checkouts/checkout-from-nix.sh
 ./checkouts/fetch-static.sh
+
+# Scala libraries
+if oneIsChanged sources/bigbluebutton/* bbb-common-message/*; then
+	msg "Building bbb-common-message"
+	bbb-common-message/generate.sh
+fi
+if oneIsChanged sources/bigbluebutton/* bbb-fsesl-client/*.nix; then
+	msg "Building bbb-fsesl-client"
+	bbb-fsesl-client/generate.sh
+fi
+if oneIsChanged sources/bigbluebutton/* bbb-common-message/*.nix bbb-common-web/*.nix; then
+	msg "Building bbb-common-web"
+	bbb-common-web/generate.sh
+fi

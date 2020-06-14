@@ -16,6 +16,9 @@ Since BigBlueButton devs seem unable to keep a consistent naming scheme, some pa
 
 | BigBlueButton directory | bbb4nix directory    | Attribute               |
 |-------------------------|----------------------|-------------------------|
+| `bbb-common-message`    | `bbb-common-message` | -                       |
+| `bbb-common-web`        | `bbb-common-web`     | -                       |
+| `bbb-fsesl-client`      | `bbb-fsesl-client`   | -                       |
 
 ## Maintainer info
 
