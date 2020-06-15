@@ -1,4 +1,4 @@
-# This file originates from SBTix
+# This file originates from SBTix but was modified to call all hooks
 { runCommand, fetchurl, lib, stdenv, jdk, jre, sbt, writeText, makeWrapper }:
 with stdenv.lib;
 
@@ -149,7 +149,11 @@ in rec {
               ${sbtOptions}
             '';
 
-            buildPhase = ''pwd && sbt compile'';
+            buildPhase = ''
+              runHook preBuild
+              pwd && sbt compile
+              runHook postBuild
+            '';
         } // args // {
             repo = null;
             buildInputs = [ makeWrapper jdk sbt ] ++ buildInputs;
@@ -160,20 +164,28 @@ in rec {
 
     buildSbtLibrary = args: buildSbtProject ({
         installPhase = ''
+          runHook preInstall
+
           sbt publishLocal
           mkdir -p $out/
           cp ./.ivy2/local/* $out/ -r
+
+          runHook postInstall
         '';
     } // args);
 
     buildSbtProgram = args: buildSbtProject ({
         installPhase = ''
+          runHook preInstall
+
           sbt stage
           mkdir -p $out/
           cp target/universal/stage/* $out/ -r
           for p in $(find $out/bin/* -executable); do
             wrapProgram "$p" --prefix PATH : ${jre}/bin
           done
+
+          runHook postInstall
         '';
     } // args);
 }

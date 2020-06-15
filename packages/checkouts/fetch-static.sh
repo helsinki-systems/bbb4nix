@@ -17,5 +17,4 @@ pullOrClone() {
 	fi
 }
 
-pullOrClone gradle2nix https://github.com/tadfisher/gradle2nix
 pullOrClone sbtix https://gitlab.com/teozkr/Sbtix.git/

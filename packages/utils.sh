@@ -40,9 +40,3 @@ sbtixFixLocal() {
 		-e 's|nix-local-preloaded/file:/[^/]*/[^/]*/[^/]*/[^/]*|nix-public|g' \
 		-e 's|file:/[^/]*/[^/]*/[^/]*/[^/]*|https://repo1.maven.org/maven2|g'
 }
-
-# Add gradle2nix into $PATH
-gradle2nixLoad() {
-	PATH="$(nix-build --no-out-link "$(dirname "${BASH_SOURCE[0]}")/checkouts/gradle2nix")/bin:${PATH}"
-	export PATH
-}
