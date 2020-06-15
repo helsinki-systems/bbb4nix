@@ -19,6 +19,8 @@ Since BigBlueButton devs seem unable to keep a consistent naming scheme, some pa
 | `bbb-common-message`    | `bbb-common-message` | -                       |
 | `bbb-common-web`        | `bbb-common-web`     | -                       |
 | `bbb-fsesl-client`      | `bbb-fsesl-client`   | -                       |
+| `akka-bbb-apps`         | `bbb-akka-apps`      | `bbbPackages.akkaApps`  |
+| `akka-bbb-fsesl`        | `bbb-akka-fsesl`     | `bbbPackages.akkaFsesl` |
 
 ## Maintainer info
 

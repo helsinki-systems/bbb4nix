@@ -31,3 +31,13 @@ if oneIsChanged sources/bigbluebutton/* bbb-common-message/*.nix bbb-common-web/
 	msg "Building bbb-common-web"
 	bbb-common-web/generate.sh
 fi
+
+# Scala programs
+if oneIsChanged sources/bigbluebutton/* bbb-common-message/* bbb-akka-apps/*; then
+	msg "Building bbb-akka-apps"
+	bbb-akka-apps/generate.sh
+fi
+if oneIsChanged sources/bigbluebutton/* bbb-common-message/* bbb-fsesl-client/* bbb-akka-fsesl/*; then
+	msg "Building bbb-akka-fsesl"
+	bbb-akka-fsesl/generate.sh
+fi
