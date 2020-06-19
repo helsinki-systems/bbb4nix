@@ -39,7 +39,7 @@ update() {
 	owner="${2}"
 	repo="${3}"
 	mkdir -pv "${dir}"
-	latestVersionOfRepo "${owner}/${repo}" > "${dir}/version"
+	latestVersionOfRepo "${owner}/${repo}" | tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi
@@ -57,7 +57,7 @@ updateByTag() {
 		| awk '{print $2}' \
 		| sort -n \
 		| tail -n1 \
-		| cut -d'/' -f3 > "${dir}/version"
+		| cut -d'/' -f3 | tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi
@@ -76,7 +76,7 @@ updateByTagWithoutV() {
 		| awk '{print $2}' \
 		| sort -n \
 		| tail -n1 \
-		| cut -d'/' -f3 > "${dir}/version"
+		| cut -d'/' -f3 | tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi

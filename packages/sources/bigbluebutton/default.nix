@@ -2,7 +2,7 @@
 
 stdenvNoCC.mkDerivation {
   pname = "bigbluebutton-source";
-  version = with builtins; replaceStrings [ "\n" ] [ "" ] (readFile ./version);
+  version = builtins.readFile ./version;
 
   src = callPackage ./raw-source.nix {};
 

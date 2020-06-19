@@ -2,7 +2,7 @@
 
 stdenvNoCC.mkDerivation {
   pname = "kurento-media-server-source";
-  version = with builtins; replaceStrings [ "\n" ] [ "" ] (readFile ./version);
+  version = builtins.readFile ./version;
 
   dontConfigure = true;
   dontBuild = true;
