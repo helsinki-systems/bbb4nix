@@ -3,6 +3,7 @@
   # Since helsinki is not open-source, we provide the needed modules (and module stubs) here.
   imports = [
     ./apparmor-confinement.nix
+    ./kurento-media-server.nix
     ./systemd-sandbox.nix
   ];
 }
