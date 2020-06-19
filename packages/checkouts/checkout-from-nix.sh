@@ -12,4 +12,7 @@ checkout() {
 	chmod -R +w "${1}"
 }
 
+checkout mavenix
+checkout kurento-module-creator
+
 checkout bigbluebutton

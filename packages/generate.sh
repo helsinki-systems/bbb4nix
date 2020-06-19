@@ -18,6 +18,12 @@ msg "Checking out sources"
 ./checkouts/checkout-from-nix.sh
 ./checkouts/fetch-static.sh
 
+# Kurento
+if oneIsChanged sources/kurento-module-creator/* kurento-module-creator/*; then
+	msg "Building kurento-module-creator"
+	kurento-module-creator/generate.sh
+fi
+
 # Scala libraries
 if oneIsChanged sources/bigbluebutton/* bbb-common-message/*; then
 	msg "Building bbb-common-message"
