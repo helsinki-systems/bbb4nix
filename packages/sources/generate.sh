@@ -82,6 +82,50 @@ updateByTagWithoutV() {
 	fi
 }
 
+# Fetch the current files from the bigbluebutton repo
+doBbbRepo() {
+	mkdir -pv bigbluebutton-repo
+	curl -Lo bigbluebutton-repo/packages https://ubuntu.bigbluebutton.org/xenial-22/dists/bigbluebutton-xenial/main/binary-amd64/Packages
+	neededPackages=(bbb-freeswitch-sounds bbb-freeswitch-core)
+	pkg=
+	ver=
+	filename=
+	sha256=
+	while IFS= read -r line; do
+		if [[ "${line}" =~ ^Package: ]]; then
+			# We have a full package
+			# shellcheck disable=SC2076
+			if [[ -n "${pkg:-}" && "${neededPackages[*]}" == *"${pkg}"* ]]; then
+				mkdir -pv "${pkg}"
+				{
+					echo '{ fetchurl }:'
+					echo
+					echo 'fetchurl {'
+					echo "  url = \"https://ubuntu.bigbluebutton.org/xenial-22/${filename}\";"
+					echo "  sha256 = \"${sha256}\";"
+					echo '}'
+				} > "${pkg}/raw-source.nix"
+				echo -n "${ver}" > "${pkg}/version"
+			fi
+			# Begin parsing the next package
+			pkg="$(echo "${line}" | cut -d' ' -f2-)"
+			continue
+		fi
+		if [[ "${line}" =~ ^Version: ]]; then
+			ver="$(echo -n "${line}" | cut -d' ' -f2- | cut -d':' -f2-)"
+			continue
+		fi
+		if [[ "${line}" =~ ^Filename: ]]; then
+			filename="$(echo "${line}" | cut -d' ' -f2-)"
+			continue
+		fi
+		if [[ "${line}" =~ ^SHA256: ]]; then
+			sha256="$(echo "${line}" | cut -d' ' -f2-)"
+			continue
+		fi
+	done < bigbluebutton-repo/packages
+}
+
 updateByTag mavenix nix-community mavenix
 
 updateByTagWithoutV kms-cmake-utils Kurento kms-cmake-utils
@@ -94,4 +138,5 @@ updateByTagWithoutV kms-elements Kurento kms-elements
 updateByTagWithoutV kms-filters Kurento kms-filters
 updateByTagWithoutV kurento-media-server Kurento kurento-media-server
 
-#update bigbluebutton bigbluebutton bigbluebutton
+doBbbRepo
+update bigbluebutton bigbluebutton bigbluebutton
