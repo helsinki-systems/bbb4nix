@@ -2,7 +2,7 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "libsrtp-kurento-source";
-  version = with builtins; replaceStrings [ "\n" ] [ "" ] (readFile ./version);
+  version = builtins.readFile ./version;
 
   dontConfigure = true;
   dontBuild = true;
