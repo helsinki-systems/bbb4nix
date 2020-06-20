@@ -1,4 +1,4 @@
-{ stdenvNoCC, callPackage, grails }:
+{ stdenvNoCC, callPackage, fetchurl }:
 
 stdenvNoCC.mkDerivation {
   pname = "bigbluebutton-source";
@@ -10,6 +10,20 @@ stdenvNoCC.mkDerivation {
     # AKKA
     ./bbb-akka-apps-no-logfile.patch # Only log to stdout
     ./bbb-akka-fsesl-no-logfile.patch # Only log to stdout
+    # web
+    ./bbb-web-no-logfile.patch # Only log to stdout
+    ./bbb-web-grails-upgrade.patch # Upgrade Grails, Gradle, and GORM
+    (fetchurl { # Use external soffice processes
+      url = "https://github.com/bigbluebutton/bigbluebutton/commit/d7ab880bccd43074b219096646932e1290e64663.patch";
+      name = "office-conversion-improvements.patch";
+      sha256 = "sha256-pVj11IKrZDTxQMIN30iTfEMjdm1jbPMXUspEYWSYbC4=";
+    })
+    ./bbb-web-flexible-soffice.patch # Make the previous patch usable
+    (fetchurl { # Load config from a system property
+      url = "https://patch-diff.githubusercontent.com/raw/bigbluebutton/bigbluebutton/pull/9842.patch";
+      name = "9842.patch";
+      sha256 = "sha256-EFEHAvZ/ZzoIJ+68w+jLdsV/MsCAEEfDO8ThCcN/TZo=";
+    })
   ];
 
   installPhase = ''

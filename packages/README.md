@@ -22,6 +22,7 @@ Since BigBlueButton devs seem unable to keep a consistent naming scheme, some pa
 | `akka-bbb-apps`         | `bbb-akka-apps`         | `bbbPackages.akkaApps`  |
 | `akka-bbb-fsesl`        | `bbb-akka-fsesl`        | `bbbPackages.akkaFsesl` |
 | -                       | `bbb-freeswitch-sounds` | -                       |
+| `bigbluebutton-web`     | `bbb-web`               | `bbbPackages.web`       |
 
 ## Maintainer info
 
