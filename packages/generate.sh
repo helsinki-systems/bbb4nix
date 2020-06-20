@@ -47,3 +47,9 @@ if oneIsChanged sources/bigbluebutton/* bbb-common-message/* bbb-fsesl-client/* 
 	msg "Building bbb-akka-fsesl"
 	bbb-akka-fsesl/generate.sh
 fi
+
+# Java programs
+if oneIsChanged sources/bigbluebutton/* bbb-common-message/* bbb-common-web/* bbb-web/*; then
+	msg "Building bbb-web"
+	bbb-web/generate.sh
+fi

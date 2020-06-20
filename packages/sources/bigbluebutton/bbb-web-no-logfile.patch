@@ -1,0 +1,35 @@
+diff --git a/bigbluebutton-web/grails-app/conf/logback.xml b/bigbluebutton-web/grails-app/conf/logback.xml
+index ce358e59dc..359662f063 100755
+--- a/bigbluebutton-web/grails-app/conf/logback.xml
++++ b/bigbluebutton-web/grails-app/conf/logback.xml
+@@ -3,22 +3,7 @@
+ 	<appender name="STDOUT"
+ 		class="ch.qos.logback.core.ConsoleAppender">
+ 		<layout class="ch.qos.logback.classic.PatternLayout">
+-			<Pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} %-5level %logger{35} - %msg%n</Pattern>
+-		</layout>
+-	</appender>
+-
+-	<appender name="FILE"
+-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+-		<File>logs/bbb-web.log</File>
+-		<rollingPolicy
+-			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+-			<FileNamePattern>/var/log/bigbluebutton/bbb-web.%d{yyyy-MM-dd}.log
+-			</FileNamePattern>
+-			<!-- keep 14 days worth of history -->
+-			<MaxHistory>14</MaxHistory>
+-		</rollingPolicy>
+-		<layout class="ch.qos.logback.classic.PatternLayout">
+-			<Pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} %-5level %logger{35} - %msg%n</Pattern>
++			<Pattern>%-5level %logger{35} - %msg%n</Pattern>
+ 		</layout>
+ 	</appender>
+ 
+@@ -39,6 +24,5 @@
+ 	
+ 	<root level="ERROR">
+ 		<appender-ref ref="STDOUT" />
+-		<appender-ref ref="FILE" />
+ 	</root>
+ </configuration>
