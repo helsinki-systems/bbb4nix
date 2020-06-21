@@ -1,4 +1,4 @@
-{ callPackage, unzip, jre_headless }: let
+{ callPackage, unzip, jre_headless, turnStunServers ? "turn-stun-servers.xml" }: let
   buildGradle = callPackage ../x2nix/gradle-env.nix {};
   src = callPackage ../sources/bigbluebutton {};
 
@@ -16,6 +16,10 @@ in buildGradle {
   gradleFlags = [ "assemble" ];
 
   nativeBuildInputs = [ unzip ];
+
+  postPatch = ''
+    sed -i 's@TURN_STUN_SERVERS@${turnStunServers}g' grails-app/conf/spring/resources.xml
+  '';
 
   installPhase = ''
     runHook preInstall
