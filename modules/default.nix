@@ -6,7 +6,8 @@
     ./akka-fsesl.nix
     ./web.nix
     # Third-party components
-    ./soffice.nix
+    ./freeswitch.nix
     ./kurento-media-server.nix
+    ./soffice.nix
   ];
 }
