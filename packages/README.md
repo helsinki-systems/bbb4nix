@@ -14,15 +14,16 @@ The scripts mimic `make` by building only what changed, but instead of relying o
 
 Since BigBlueButton devs seem unable to keep a consistent naming scheme, some packages were renamed here for consistency:
 
-| BigBlueButton directory | bbb4nix directory       | Attribute               |
-|-------------------------|-------------------------|-------------------------|
-| `bbb-common-message`    | `bbb-common-message`    | -                       |
-| `bbb-common-web`        | `bbb-common-web`        | -                       |
-| `bbb-fsesl-client`      | `bbb-fsesl-client`      | -                       |
-| `akka-bbb-apps`         | `bbb-akka-apps`         | `bbbPackages.akkaApps`  |
-| `akka-bbb-fsesl`        | `bbb-akka-fsesl`        | `bbbPackages.akkaFsesl` |
-| -                       | `bbb-freeswitch-sounds` | -                       |
-| `bigbluebutton-web`     | `bbb-web`               | `bbbPackages.web`       |
+| BigBlueButton directory       | bbb4nix directory       | Attribute                 |
+|-------------------------------|-------------------------|---------------------------|
+| `bbb-common-message`          | `bbb-common-message`    | -                         |
+| `bbb-common-web`              | `bbb-common-web`        | -                         |
+| `bbb-fsesl-client`            | `bbb-fsesl-client`      | -                         |
+| `akka-bbb-apps`               | `bbb-akka-apps`         | `bbbPackages.akkaApps`    |
+| `akka-bbb-fsesl`              | `bbb-akka-fsesl`        | `bbbPackages.akkaFsesl`   |
+| -                             | `bbb-freeswitch-sounds` | -                         |
+| `bigbluebutton-web`           | `bbb-web`               | `bbbPackages.web`         |
+| `bigbluebutton-config/slides` | `bbb-blank-slides`      | `bbbPackages.blankSlides` |
 
 ## Maintainer info
 
