@@ -16,6 +16,7 @@ stdenvNoCC.mkDerivation {
     # web
     ./bbb-web-no-logfile.patch # Only log to stdout
     ./bbb-web-grails-upgrade.patch # Upgrade Grails, Gradle, and GORM
+    ./bbb-web-flexible-turn.patch # Read TURN/STUN servers from non-default locations
     (fetchurl { # Use external soffice processes
       url = "https://github.com/bigbluebutton/bigbluebutton/commit/d7ab880bccd43074b219096646932e1290e64663.patch";
       name = "office-conversion-improvements.patch";
