@@ -23,6 +23,7 @@ in {
         config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
       };
       kurento-media-server.enable = true;
+      freeswitch.enable = true;
     };
   };
 }

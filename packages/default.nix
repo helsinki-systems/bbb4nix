@@ -4,6 +4,7 @@
     akkaFsesl = callPackage ./bbb-akka-fsesl {};
     web = callPackage ./bbb-web {};
     blankSlides = callPackage ./bbb-blank-slides {};
+    freeswitchConfig = callPackage ./bbb-freeswitch-config {};
   };
 
   kurentoPackages = {
