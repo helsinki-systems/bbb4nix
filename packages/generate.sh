@@ -53,3 +53,9 @@ if oneIsChanged sources/bigbluebutton/* bbb-common-message/* bbb-common-web/* bb
 	msg "Building bbb-web"
 	bbb-web/generate.sh
 fi
+
+# Node "programs"
+if oneIsChanged sources/bbb-webrtc-sfu/* bbb-webrtc-sfu/*; then
+	msg "Building bbb-webrtc-sfu"
+	bbb-webrtc-sfu/generate.sh
+fi

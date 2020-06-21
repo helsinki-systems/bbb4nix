@@ -25,6 +25,7 @@ Since BigBlueButton devs seem unable to keep a consistent naming scheme, some pa
 | -                             | `bbb-freeswitch-config` | `bbbPackages.freeswitchConfig` |
 | `bigbluebutton-web`           | `bbb-web`               | `bbbPackages.web`              |
 | `bigbluebutton-config/slides` | `bbb-blank-slides`      | `bbbPackages.blankSlides`      |
+| -                             | `bbb-webrtc-sfu`        | `bbbPackages.webrtcSfu`        |
 
 ## Maintainer info
 
