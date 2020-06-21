@@ -1,0 +1,13 @@
+diff --git a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageDownscaler.java b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageDownscaler.java
+index fa5c95b12e..aeb2263882 100755
+--- a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageDownscaler.java
++++ b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageDownscaler.java
+@@ -8,7 +8,7 @@ public class PdfPageDownscaler {
+     public boolean downscale(File source,File dest) {
+         String COMMAND = "gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dFirstPage=1 -dLastPage=1 -sOutputFile="
+                 + dest.getAbsolutePath() + SPACE
+-                + "/etc/bigbluebutton/nopdfmark.ps" + SPACE
++                + "@out@/nopdfmark.ps" + SPACE
+                 + source.getAbsolutePath();
+ 
+         //System.out.println("DOWNSCALING " + COMMAND);

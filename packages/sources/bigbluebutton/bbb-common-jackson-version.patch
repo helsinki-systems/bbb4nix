@@ -1,0 +1,26 @@
+diff --git a/bbb-common-message/project/Dependencies.scala b/bbb-common-message/project/Dependencies.scala
+index 8a3894c7c8..95444ddf6d 100644
+--- a/bbb-common-message/project/Dependencies.scala
++++ b/bbb-common-message/project/Dependencies.scala
+@@ -15,7 +15,7 @@ object Dependencies {
+     // Libraries
+     val akkaVersion = "2.5.19"
+     val gson = "2.8.5"
+-    val jackson = "2.9.7"
++    val jackson = "2.11.0"
+     val sl4j = "1.7.25"
+     val red5 = "1.0.10-M9"
+     val pool = "2.8.0"
+diff --git a/bbb-common-web/project/Dependencies.scala b/bbb-common-web/project/Dependencies.scala
+index b575348add..1f797e0bcd 100644
+--- a/bbb-common-web/project/Dependencies.scala
++++ b/bbb-common-web/project/Dependencies.scala
+@@ -15,7 +15,7 @@ object Dependencies {
+     // Libraries
+     val akkaVersion = "2.5.19"
+     val gson = "2.8.5"
+-    val jackson = "2.9.7"
++    val jackson = "2.11.0"
+     val freemarker = "2.3.28"
+     val apacheHttp = "4.5.6"
+     val apacheHttpAsync = "4.1.4"

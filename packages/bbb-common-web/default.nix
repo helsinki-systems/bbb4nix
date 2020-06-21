@@ -4,10 +4,11 @@
 { callPackage }:
 let
   sbtix = callPackage ../x2nix/sbtix.nix {};
+  bbbSrc = callPackage ../sources/bigbluebutton {};
 in
   sbtix.buildSbtLibrary {
     name = "commonWeb";
-    src = (callPackage ../sources/bigbluebutton {}) + "/bbb-common-web";
+    src = "${bbbSrc}/bbb-common-web";
     sbtixBuildInputs = [
       (callPackage ../bbb-common-message {})
     ];
@@ -17,8 +18,13 @@ in
       (import ./manual-repo.nix)
     ];
 
+    postPatch = ''
+      sed -i 's:@out@:${placeholder "out"}:g' src/main/java/org/bigbluebutton/presentation/imp/PdfPageDownscaler.java
+    '';
+
     postInstall = ''
       sbt publish
       cp -r /build/.m2/repository $out
+      cp ${bbbSrc}/bigbluebutton-config/slides/nopdfmark.ps $out
     '';
   }

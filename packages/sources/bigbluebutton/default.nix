@@ -7,6 +7,9 @@ stdenvNoCC.mkDerivation {
   src = callPackage ./raw-source.nix {};
 
   patches = [
+    # Libraries
+    ./bbb-common-jackson-version.patch # Update Jackson to our Scala version
+    ./bbb-common-nopdfmark-path.patch # Remove path to pdfmark (WHY BOTHER LOADING IT FROM CLASSPATH???)
     # AKKA
     ./bbb-akka-apps-no-logfile.patch # Only log to stdout
     ./bbb-akka-fsesl-no-logfile.patch # Only log to stdout
