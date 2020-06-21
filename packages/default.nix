@@ -2,6 +2,8 @@
   bbbPackages = {
     akkaApps = callPackage ./bbb-akka-apps {};
     akkaFsesl = callPackage ./bbb-akka-fsesl {};
+    web = callPackage ./bbb-web {};
+    blankSlides = callPackage ./bbb-blank-slides {};
   };
 
   kurentoPackages = {
