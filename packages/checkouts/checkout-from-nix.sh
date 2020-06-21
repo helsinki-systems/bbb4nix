@@ -16,3 +16,4 @@ checkout mavenix
 checkout kurento-module-creator
 
 checkout bigbluebutton
+checkout bbb-webrtc-sfu

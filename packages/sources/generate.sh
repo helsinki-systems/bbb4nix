@@ -140,3 +140,4 @@ updateByTagWithoutV kurento-media-server Kurento kurento-media-server
 
 doBbbRepo
 update bigbluebutton bigbluebutton bigbluebutton
+update bbb-webrtc-sfu bigbluebutton bbb-webrtc-sfu
