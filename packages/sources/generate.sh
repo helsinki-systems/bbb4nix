@@ -55,9 +55,10 @@ updateByTag() {
 		| grep -v svn \
 		| grep -v '{}' \
 		| awk '{print $2}' \
+		| cut -d'/' -f3 \
 		| sort -n \
 		| tail -n1 \
-		| cut -d'/' -f3 | tr -d '\n' > "${dir}/version"
+		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi
@@ -74,9 +75,10 @@ updateByTagWithoutV() {
 		| grep -v '{}' \
 		| grep 'tags/[0-9]' \
 		| awk '{print $2}' \
+		| cut -d'/' -f3 \
 		| sort -n \
 		| tail -n1 \
-		| cut -d'/' -f3 | tr -d '\n' > "${dir}/version"
+		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi
