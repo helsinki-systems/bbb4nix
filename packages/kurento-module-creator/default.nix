@@ -1,22 +1,35 @@
-{ stdenvNoCC, callPackage, cmake, jdk }: let
-  mavenix = callPackage (callPackage ../sources/mavenix {}) {};
+{ stdenvNoCC, callPackage, cmake, jdk, maven, makeWrapper }: let
+  mvn2nix = import (callPackage ../sources/mvn2nix {}) {};
+  mavenRepository = mvn2nix.buildMavenRepository { dependencies = import ./dependencies.nix; };
+
   src = callPackage ../sources/kurento-module-creator {};
 
   cmakeVersion = "cmake-" + stdenvNoCC.lib.versions.majorMinor cmake.version;
-
-in mavenix.buildMaven {
+in stdenvNoCC.mkDerivation rec {
   pname = "kurento-module-creator";
   inherit (src) version;
 
   inherit src;
-  infoFile = ./mavenix.lock;
 
-  postInstall = ''
-    # Add a wrapper
+  buildInputs = [ jdk maven makeWrapper ];
+  buildPhase = ''
+    echo "Building with maven repository ${mavenRepository}"
+    mvn package --offline -Dmaven.repo.local=${mavenRepository}
+  '';
+
+  installPhase = ''
+    # create the bin directory
     mkdir -p $out/bin
-    echo '#!/bin/sh
-    ${jdk}/bin/java -jar $out/share/java/kurento-module-creator-jar-with-dependencies.jar "$@"' > $out/bin/kurento-module-creator
-    chmod +x $out/bin/kurento-module-creator
+
+    # copy out the JAR
+    # Maven already setup the classpath to use m2 repository layout
+    # with the prefix of lib/
+    cp target/${pname}-jar-with-dependencies.jar $out/${pname}.jar
+
+    # create a wrapper that will automatically set the classpath
+    # this should be the paths from the dependency derivation
+    makeWrapper ${jdk}/bin/java $out/bin/${pname} \
+          --add-flags "-jar $out/${pname}.jar"
 
     # Move the cmake module
     mkdir -p $out/share/${cmakeVersion}/Modules

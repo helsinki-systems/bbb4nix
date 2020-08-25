@@ -1,7 +1,7 @@
 { stdenvNoCC, callPackage }:
 
 stdenvNoCC.mkDerivation {
-  pname = "mavenix-source";
+  pname = "mvn2nix-source";
   version = builtins.readFile ./version;
 
   dontConfigure = true;
