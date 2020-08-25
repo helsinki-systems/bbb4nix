@@ -84,6 +84,18 @@ updateByTagWithoutV() {
 	fi
 }
 
+# For projects that don't do releases, but where HEAD (master) seems legit
+updateHEAD() {
+	dir="${1}"
+	owner="${2}"
+	repo="${3}"
+	mkdir -pv "${dir}"
+	git ls-remote "https://github.com/${owner}/${repo}" HEAD | awk '{print $1}' | tr -d '\n' > "${dir}/version"
+	if oneIsChanged "${dir}"/*; then
+		prepareRawSource "${dir}" "${owner}" "${repo}"
+	fi
+}
+
 # Fetch the current files from the bigbluebutton repo
 doBbbRepo() {
 	mkdir -pv bigbluebutton-repo
@@ -128,7 +140,7 @@ doBbbRepo() {
 	done < bigbluebutton-repo/packages
 }
 
-updateByTag mavenix nix-community mavenix
+updateHEAD mvn2nix fzakaria mvn2nix
 
 updateByTagWithoutV kms-cmake-utils Kurento kms-cmake-utils
 updateByTagWithoutV kmsjsoncpp Kurento jsoncpp
