@@ -58,7 +58,7 @@ updateByTag() {
 		| grep -v '{}' \
 		| awk '{print $2}' \
 		| cut -d'/' -f3 \
-		| sort -n \
+		| sort -V \
 		| tail -n1 \
 		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
@@ -78,7 +78,7 @@ updateByTagWithoutV() {
 		| grep 'tags/[0-9]' \
 		| awk '{print $2}' \
 		| cut -d'/' -f3 \
-		| sort -n \
+		| sort -V \
 		| tail -n1 \
 		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
