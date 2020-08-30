@@ -17,3 +17,4 @@ checkout kurento-module-creator
 
 checkout bigbluebutton
 checkout bbb-webrtc-sfu
+checkout bbb-greenlight

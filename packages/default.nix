@@ -6,6 +6,7 @@
     blankSlides = callPackage ./bbb-blank-slides {};
     freeswitchConfig = callPackage ./bbb-freeswitch-config {};
     webrtcSfu = callPackage ./bbb-webrtc-sfu {};
+    greenlight = callPackage ./bbb-greenlight {};
   };
 
   kurentoPackages = {
