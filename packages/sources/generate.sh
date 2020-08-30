@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p curl git
+#!nix-shell -i bash -p curl git jq
 
 # Generates all sources for each current GitHub version
 
@@ -9,9 +9,11 @@ cd "$(dirname "${0}")"
 
 # Returns the latest GitHub version of a project
 latestVersionOfRepo() {
-	curl --silent "https://api.github.com/repos/${1}/releases/latest" |
-		grep '"tag_name":' |
-		sed -E 's/.*"([^"]+)".*/\1/'
+	curl --silent "https://api.github.com/repos/${1}/releases" |
+		jq '.[]["tag_name"]' |
+		grep -Ev '(alpha|beta|rc)' |
+		tr -d '"' |
+		head -n1
 }
 
 # Generate the correct raw-source.nix for a repository
@@ -155,3 +157,4 @@ updateByTagWithoutV kurento-media-server Kurento kurento-media-server
 doBbbRepo
 update bigbluebutton bigbluebutton bigbluebutton
 update bbb-webrtc-sfu bigbluebutton bbb-webrtc-sfu
+update bbb-greenlight bigbluebutton greenlight
