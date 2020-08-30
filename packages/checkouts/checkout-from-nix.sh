@@ -18,3 +18,4 @@ checkout kurento-module-creator
 checkout bigbluebutton
 checkout bbb-webrtc-sfu
 checkout bbb-greenlight
+checkout bbb-etherpad-lite

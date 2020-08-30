@@ -1,0 +1,13 @@
+diff --git a/static/js/pluginfw/plugins.js b/static/js/pluginfw/plugins.js
+index ed9c66a3..4eb4af1e 100644
+--- a/static/js/pluginfw/plugins.js
++++ b/static/js/pluginfw/plugins.js
+@@ -61,7 +61,7 @@ exports.callInit = function () {
+ 
+   let p = Object.keys(exports.plugins).map(function (plugin_name) {
+     let plugin = exports.plugins[plugin_name];
+-    let ep_init = path.normalize(path.join(plugin.package.path, ".ep_initialized"));
++    let ep_init = path.normalize("/tmp/etherpad-lite-plugin-" + plugin.package.name + "-initialized");
+     return fsp_stat(ep_init).catch(async function() {
+       await fsp_writeFile(ep_init, "done");
+       await hooks.aCallAll("init_" + plugin_name, {});

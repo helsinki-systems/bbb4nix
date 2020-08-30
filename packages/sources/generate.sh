@@ -154,6 +154,8 @@ updateByTagWithoutV kms-elements Kurento kms-elements
 updateByTagWithoutV kms-filters Kurento kms-filters
 updateByTagWithoutV kurento-media-server Kurento kurento-media-server
 
+updateByTag bbb-etherpad-lite bigbluebutton etherpad-lite
+
 doBbbRepo
 update bigbluebutton bigbluebutton bigbluebutton
 update bbb-webrtc-sfu bigbluebutton bbb-webrtc-sfu

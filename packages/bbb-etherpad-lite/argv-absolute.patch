@@ -1,0 +1,39 @@
+diff --git a/node/handler/APIHandler.js b/node/handler/APIHandler.js
+index 3898daaf..8edcaa08 100644
+--- a/node/handler/APIHandler.js
++++ b/node/handler/APIHandler.js
+@@ -30,7 +30,7 @@ var apiHandlerLogger = log4js.getLogger('APIHandler');
+ 
+ //ensure we have an apikey
+ var apikey = null;
+-var apikeyFilename = absolutePaths.makeAbsolute(argv.apikey || "./APIKEY.txt");
++var apikeyFilename = argv.apikey || absolutePaths.makeAbsolute("./APIKEY.txt");
+ 
+ try {
+   apikey = fs.readFileSync(apikeyFilename,"utf8");
+diff --git a/node/utils/Settings.js b/node/utils/Settings.js
+index 28d165fe..62f6fb8f 100644
+--- a/node/utils/Settings.js
++++ b/node/utils/Settings.js
+@@ -574,10 +574,10 @@ function parseSettings(settingsFilename, isSettings) {
+ 
+ exports.reloadSettings = function reloadSettings() {
+   // Discover where the settings file lives
+-  var settingsFilename = absolutePaths.makeAbsolute(argv.settings || "settings.json");
++  var settingsFilename = argv.settings || absolutePaths.makeAbsolute("settings.json");
+ 
+   // Discover if a credential file exists
+-  var credentialsFilename = absolutePaths.makeAbsolute(argv.credentials || "credentials.json");
++  var credentialsFilename = argv.credentials || absolutePaths.makeAbsolute("credentials.json");
+ 
+   // try to parse the settings
+   var settings = parseSettings(settingsFilename, true);
+@@ -688,7 +688,7 @@ exports.reloadSettings = function reloadSettings() {
+   }
+ 
+   if (!exports.sessionKey) {
+-    var sessionkeyFilename = absolutePaths.makeAbsolute(argv.sessionkey || "./SESSIONKEY.txt");
++    var sessionkeyFilename = argv.sessionkey || absolutePaths.makeAbsolute("./SESSIONKEY.txt");
+     try {
+       exports.sessionKey = fs.readFileSync(sessionkeyFilename,"utf8");
+       console.info(`Session key loaded from: ${sessionkeyFilename}`);
