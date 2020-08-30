@@ -15,10 +15,7 @@ stdenvNoCC.mkDerivation {
     substituteInPlace CMakeLists.txt --replace 1.5 1.0
 
     # Add websocketpp
-    echo 'find_package(WEBSOCKETPP REQUIRED)' >> server/transport/websocket/CMakeLists.txt
-
-    # Remove built-in websocketpp (not compatible with newer OpenSSL, see bad73ecb26cf4b9791af17209fb2c54d5d25b4d9)
-    rm -r server/transport/websocket/websocketpp
+    sed -i 's:websocketpp 0.7.0:websocketpp:' server/transport/websocket/CMakeLists.txt
   '';
 
   installPhase = ''
