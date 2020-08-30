@@ -7,6 +7,7 @@
     freeswitchConfig = callPackage ./bbb-freeswitch-config {};
     webrtcSfu = callPackage ./bbb-webrtc-sfu {};
     greenlight = callPackage ./bbb-greenlight {};
+    etherpad-lite = callPackage ./bbb-etherpad-lite {};
   };
 
   kurentoPackages = {

@@ -59,3 +59,7 @@ if oneIsChanged sources/bbb-webrtc-sfu/* bbb-webrtc-sfu/*; then
 	msg "Building bbb-webrtc-sfu"
 	bbb-webrtc-sfu/generate.sh
 fi
+if oneIsChanged sources/bbb-etherpad-lite/* bbb-etherpad-lite/*; then
+	msg "Building bbb-etherpad-lite"
+	bbb-etherpad-lite/generate.sh
+fi

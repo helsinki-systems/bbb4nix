@@ -58,7 +58,7 @@ updateByTag() {
 		| grep -v '{}' \
 		| awk '{print $2}' \
 		| cut -d'/' -f3 \
-		| sort -n \
+		| sort -V \
 		| tail -n1 \
 		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
@@ -78,7 +78,7 @@ updateByTagWithoutV() {
 		| grep 'tags/[0-9]' \
 		| awk '{print $2}' \
 		| cut -d'/' -f3 \
-		| sort -n \
+		| sort -V \
 		| tail -n1 \
 		| tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
@@ -86,13 +86,13 @@ updateByTagWithoutV() {
 	fi
 }
 
-# For projects that don't do releases, but where HEAD (master) seems legit
-updateHEAD() {
+# For projects that don't do releases, but where we want to use a certain branch
+updateBranch() {
 	dir="${1}"
 	owner="${2}"
 	repo="${3}"
 	mkdir -pv "${dir}"
-	git ls-remote "https://github.com/${owner}/${repo}" HEAD | awk '{print $1}' | tr -d '\n' > "${dir}/version"
+	git ls-remote "https://github.com/${owner}/${repo}" "${4}" | awk '{print $1}' | tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
 		prepareRawSource "${dir}" "${owner}" "${repo}"
 	fi
@@ -142,7 +142,7 @@ doBbbRepo() {
 	done < bigbluebutton-repo/packages
 }
 
-updateHEAD mvn2nix fzakaria mvn2nix
+updateBranch mvn2nix fzakaria mvn2nix HEAD
 
 updateByTagWithoutV kms-cmake-utils Kurento kms-cmake-utils
 updateByTagWithoutV kmsjsoncpp Kurento jsoncpp
@@ -153,6 +153,8 @@ updateByTagWithoutV kms-core Kurento kms-core
 updateByTagWithoutV kms-elements Kurento kms-elements
 updateByTagWithoutV kms-filters Kurento kms-filters
 updateByTagWithoutV kurento-media-server Kurento kurento-media-server
+
+updateBranch bbb-etherpad-lite bigbluebutton etherpad-lite bigbluebutton
 
 doBbbRepo
 update bigbluebutton bigbluebutton bigbluebutton
