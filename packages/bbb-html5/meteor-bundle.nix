@@ -10,11 +10,6 @@ in stdenv.mkDerivation {
 
   configurePhase = ''
     export HOME=$PWD/../home
-    #rm package-lock.json
-    #find /build -type f | grep 'tools/cli/main.js$' | while read -r js; do
-    #  sed -i 's_require..kexec....*, newArgv.;_console.log("kexecing from springboard to:", executable, newArgv); require("kexec")(executable, newArgv);_g' "$js"
-    #done
-    #patchShebangs $HOME/.meteor
     meteor update --packages-only
   '';
 
