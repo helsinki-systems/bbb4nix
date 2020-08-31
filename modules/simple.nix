@@ -31,6 +31,7 @@ in {
       redis.enable = true;
       mongodb.enable = true;
       nginx.enable = true;
+      acme.enable = true;
     };
   };
 }

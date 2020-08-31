@@ -17,6 +17,7 @@
     ./redis.nix
     ./mongodb.nix
     ./nginx.nix
+    ./acme.nix
   ];
 
   systemd.targets.bigbluebutton = {

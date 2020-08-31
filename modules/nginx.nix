@@ -27,8 +27,6 @@ in {
     helsinki.nginx.extraCiphers = [ "AES256-GCM-SHA384" ]; # fore node.js 8.x
     services.nginx.recommendedProxySettings = true;
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
-      enableACME = mkDefault true;
-      forceSSL = mkDefault true;
       serverName = cfg.domain;
 
       locations."~ (/open/|/close/|/idle/|/send/|/fcs/)" = {
