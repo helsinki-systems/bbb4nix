@@ -1,6 +1,6 @@
 { stdenvNoCC, callPackage, cmake, jdk, maven, makeWrapper }: let
   mvn2nix = import (callPackage ../sources/mvn2nix {}) {};
-  mavenRepository = mvn2nix.buildMavenRepository { dependencies = import ./dependencies.nix; };
+  mavenRepository = mvn2nix.buildMavenRepositoryFromLockFile { file = ./dependencies.nix; };
 
   src = callPackage ../sources/kurento-module-creator {};
 
