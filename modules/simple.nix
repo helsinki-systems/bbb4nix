@@ -22,6 +22,7 @@ in {
         enable = true;
         config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
       };
+      etherpad-lite.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;
       webrtc-sfu.enable = true;
