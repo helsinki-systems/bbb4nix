@@ -32,6 +32,13 @@ in {
           kurento = {
             wsUrl = "wss://${config.services.bigbluebutton.simple.domain}/bbb-webrtc-sfu";
           };
+          app = {
+            enableNetworkInformation = true;
+          };
+          note = {
+            enabled = true;
+            url = "https://${config.services.bigbluebutton.simple.domain}/pad";
+          };
         };
       };
     };
@@ -48,17 +55,22 @@ in {
 
       preStart = ''
         # merge defaults and custom config
+        ETHERPAD_APIKEY=$(cat ${config.services.bigbluebutton.etherpad-lite.apiKeyFile})
+        echo '{ "private": { "etherpad": { "apikey": "'"$ETHERPAD_APIKEY"'" } } }' > /run/bbb-html5/etherpad.json
         ${pkgs.yq}/bin/yq . ${pkgs.bbbPackages.html5-unwrapped}/programs/server/assets/app/config/settings.yml > /run/bbb-html5/defaults.json
-        cat /run/bbb-html5/defaults.json ${configJson} | ${pkgs.jq}/bin/jq -s '.[0] * .[1]' > /run/bbb-html5/settings.json
+        ${pkgs.jq}/bin/jq -s '.[0] * .[1] * .[2]' /run/bbb-html5/defaults.json /run/bbb-html5/etherpad.json ${configJson} > /run/bbb-html5/settings.json
       '';
 
       serviceConfig = {
+        User = "bbb-html5";
+        SupplementaryGroups = "bbb-etherpad-lite";
+
         ExecStart = "${pkgs.bbbPackages.html5}/bin/bbb-html5";
 
         RuntimeDirectory = "bbb-html5";
 
-        User = "bbb-html5";
         PrivateNetwork = false;
+        PrivateUsers = false;
         MemoryDenyWriteExecute = false;
       };
     };
