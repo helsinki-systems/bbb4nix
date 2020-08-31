@@ -50,12 +50,6 @@ in {
         '';
       };
 
-      locations."/" = {
-        root = "${pkgs.bbbPackages.source}/bigbluebutton-config/web";
-        index = "index.html index.htm";
-        extraConfig = "expires 1m;";
-      };
-
       # bbb-html5.nginx
       locations."/html5client" = {
         proxyPass = "http://127.0.0.1:3000";
@@ -63,22 +57,6 @@ in {
       };
       locations."/_timesync" = {
         proxyPass = "http://127.0.0.1:3000";
-      };
-
-      # client.nginx
-      locations."~ ^/client/conf/config.xml$".extraConfig = let
-        clientConfig = pkgs.runCommand "bbb-client-config.xml" {} ''
-          sed -e 's/BBB_DOMAIN/${cfg.domain}/g' < ${./client-config.xml} > $out
-        '';
-      in ''
-        alias ${clientConfig};
-      '';
-      locations."/client/" = {
-        index = "index.html index.htm";
-        extraConfig = ''
-          alias ${pkgs.bbbPackages.source}/bigbluebutton-client/resources/prod/;
-          expires 1m;
-        '';
       };
 
       # notes.nginx
