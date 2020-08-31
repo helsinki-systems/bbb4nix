@@ -63,3 +63,13 @@ if oneIsChanged sources/bbb-etherpad-lite/* bbb-etherpad-lite/*; then
 	msg "Building bbb-etherpad-lite"
 	bbb-etherpad-lite/generate.sh
 fi
+if oneIsChanged bbb-html5/*; then
+	msg "Building bbb-html5"
+	bbb-html5/generate.sh
+fi
+
+# Ruby programs
+if oneIsChanged sources/bbb-greenlight/* bbb-greenlight/*; then
+	msg "Building bbb-greenlight"
+	bbb-greenlight/generate.sh
+fi

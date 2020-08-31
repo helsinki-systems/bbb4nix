@@ -8,6 +8,9 @@
     webrtcSfu = callPackage ./bbb-webrtc-sfu {};
     greenlight = callPackage ./bbb-greenlight {};
     etherpad-lite = callPackage ./bbb-etherpad-lite {};
+    html5 = callPackage ./bbb-html5/wrapper.nix {};
+    html5-unwrapped = callPackage ./bbb-html5 {};
+    recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
   };
 
   kurentoPackages = {
