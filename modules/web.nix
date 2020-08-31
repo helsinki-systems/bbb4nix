@@ -156,7 +156,7 @@ in {
 
         # AKKA config
         get() {
-          grep "^$1" /run/bbb-web/bigbluebutton.properties | tail -1
+          grep "^$1" /run/bbb-web/bigbluebutton.properties | cut -d= -f2- | tail -1
         }
 
         sed \
