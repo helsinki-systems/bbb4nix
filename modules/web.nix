@@ -123,7 +123,7 @@ in {
   config = mkIf cfg.enable {
     systemd.services.bbb-web = {
       description = "the BigBlueButton web component";
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "bigbluebutton.target" ];
 
       path = with pkgs; [
         poppler_utils # pdfinfo as in bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageCounter.java:43
