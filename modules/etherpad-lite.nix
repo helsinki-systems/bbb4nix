@@ -62,6 +62,9 @@ in {
         MemoryDenyWriteExecute = false;
       };
 
+      sandbox = 2;
+      apparmor.complainMode = true;
+
       wantedBy = [ "bigbluebutton.target" ];
     };
 
