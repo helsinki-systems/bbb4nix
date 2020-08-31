@@ -58,6 +58,7 @@ in {
         webUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.web.port}";
         webrtcSfuUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.webrtc-sfu.port}";
       };
+      acme.enable = true;
     };
   };
 }

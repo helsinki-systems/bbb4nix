@@ -32,8 +32,6 @@ in {
 
   config = mkIf cfg.enable {
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
-      enableACME = mkDefault true;
-      forceSSL = mkDefault true;
       serverName = cfg.domain;
 
       # bbb-html5.nginx
