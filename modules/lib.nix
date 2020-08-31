@@ -23,4 +23,19 @@ rec {
     description = "AKKA configuration";
     emptyValue.value = {};
   };
+
+  jsonType = with types; let
+    valueType = nullOr (oneOf [
+      bool
+      int
+      float
+      str
+      (lazyAttrsOf valueType)
+      (listOf valueType)
+    ]) // {
+      description = "JSON value";
+      emptyValue.value = { };
+    };
+  in valueType;
+
 }
