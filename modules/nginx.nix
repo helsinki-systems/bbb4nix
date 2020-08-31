@@ -118,7 +118,7 @@ in {
         return 301 /playback/presentation/0.81/playback.html?$query_string;
       '';
       locations."/playback/presentation" = {
-        root = "${pkgs.bbbPackages.source}/record-and-playback/presentation";
+        root = pkgs.bbbPackages.recordAndPlaybackPresentation;
         index = "index.html index.htm";
       };
       locations."/presentation" = {
