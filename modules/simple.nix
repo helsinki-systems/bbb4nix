@@ -22,11 +22,12 @@ in {
         enable = true;
         config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
       };
+      html5.enable = true;
       greenlight.enable = true;
       etherpad-lite.enable = true;
+      webrtc-sfu.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;
-      webrtc-sfu.enable = true;
     };
   };
 }
