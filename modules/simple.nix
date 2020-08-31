@@ -9,6 +9,13 @@ in {
       type = str;
       example = "bbb.example.com";
     };
+
+    ips = mkOption {
+      description = "List of IP addresses this BigBlueButton is served on";
+      type = listOf str;
+      default = [];
+      example = [ "1.1.1.1" "8.8.8.8" ];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -31,6 +38,7 @@ in {
       redis.enable = true;
       mongodb.enable = true;
       nginx.enable = true;
+      coturn.enable = true;
       acme.enable = true;
     };
   };
