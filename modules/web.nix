@@ -133,7 +133,18 @@ in {
       ];
 
       preStart = ''
-        cat ${pkg}/share/bbb-web/WEB-INF/classes/bigbluebutton.properties ${bbbProperties} /var/lib/secrets/bigbluebutton/bbb-web.properties > /run/bbb-web/bigbluebutton.properties
+        # for each line in our properties, check if it exists in the defaults and if it does, replace it. if it doesn't, just append it
+        cat ${pkg}/share/bbb-web/WEB-INF/classes/bigbluebutton.properties > /run/bbb-web/bigbluebutton.properties
+        cat ${bbbProperties} /var/lib/secrets/bigbluebutton/bbb-web.properties | while read -r l; do
+          name=$(cut -d = -f 1 <<< "$l")
+          value=$(cut -d = -f 2- <<< "$l")
+          existing=$(grep "^''${name}=" /run/bbb-web/bigbluebutton.properties)
+          if [[ "$existing" != "" ]]; then
+            sed -i "s|^$name=.*$|$l|" /run/bbb-web/bigbluebutton.properties
+          else
+            echo "$l" >> /run/bbb-web/bigbluebutton.properties
+          fi
+        done
 
         # TURN/STUN secrets
         cat ${turnStunServers} > /run/bbb-web/turn-stun-servers.xml
