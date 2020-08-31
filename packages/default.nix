@@ -10,7 +10,7 @@
     etherpad-lite = callPackage ./bbb-etherpad-lite {};
     html5 = callPackage ./bbb-html5/wrapper.nix {};
     html5-unwrapped = callPackage ./bbb-html5 {};
-    source = callPackage ./sources/bigbluebutton {};
+    recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
   };
 
   kurentoPackages = {
