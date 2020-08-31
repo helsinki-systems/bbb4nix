@@ -1,23 +1,10 @@
 { config, pkgs, lib, ... }: with lib;
 let
   cfg = config.services.kurento-media-server;
+  bbbLib = import ../lib.nix { inherit pkgs lib; };
 
   logConfig = "${toString cfg.defaultLogLevel}"
     + optionalString (cfg.logLevels != {}) ("," + (concatStringsSep "," (mapAttrsToList (k: v: "${k}:${toString v}") cfg.logLevels)));
-
-  jsonType = with types; let
-    valueType = nullOr (oneOf [
-      bool
-      int
-      float
-      str
-      (lazyAttrsOf valueType)
-      (listOf valueType)
-    ]) // {
-      description = "JSON value";
-      emptyValue.value = { };
-    };
-  in valueType;
 
   configDir = pkgs.symlinkJoin {
     name = "kurento-etc";
@@ -83,7 +70,7 @@ in {
     mediaServerConfig = mkOption {
       description = "kurento.conf.json mediaServer object contents";
       default = { };
-      type = jsonType;
+      type = bbbLib.jsonType;
       example = {
         resources = {
           garbageCollectorPeriod = 240;
@@ -101,7 +88,7 @@ in {
     jsonModuleConfigs = mkOption {
       description = "Kurento module configurations in JSON format";
       default = { };
-      type = attrsOf jsonType;
+      type = attrsOf bbbLib.jsonType;
       example = {
         SdpEndpoint = {
           numAudioMedias = 1;
