@@ -4,7 +4,8 @@ set -euo pipefail
 cd "$(dirname "${0}")"
 . ../utils.sh
 
-PATH="$(nix-build --no-out-link ../checkouts/mvn2nix)/bin:${PATH}"
+rm -rf ~/.m2
+PATH="$(nix-build --no-out-link ../checkouts/mvn2nix -A mvn2nix)/bin:${PATH}"
 export PATH
 
 # Generate lock
