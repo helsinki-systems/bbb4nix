@@ -30,6 +30,7 @@ in {
       freeswitch.enable = true;
       redis.enable = true;
       mongodb.enable = true;
+      nginx.enable = true;
     };
   };
 }
