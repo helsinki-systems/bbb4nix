@@ -11,4 +11,9 @@
     ./kurento-media-server.nix
     ./soffice.nix
   ];
+
+  systemd.targets.bigbluebutton = {
+    description = "Big Blue Button";
+    wantedBy = [ "multi-user.target" ];
+  };
 }

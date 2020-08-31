@@ -55,7 +55,7 @@ in {
 
     systemd.services.bbb-akka-fsesl = rec {
       description = "BigBlueButton FSESL";
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "bigbluebutton.target" ];
       wants = [ "freeswitch.service" ];
 
       path = with pkgs; [ gawk openjdk8 ];

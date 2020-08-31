@@ -20,7 +20,7 @@ in {
 
     systemd.services = listToAttrs (map (n: nameValuePair "bbb-soffice-${toString n}" {
       description = "BigBlueButton soffice service ${toString n}";
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "bigbluebutton.target" ];
 
       environment = {
         HOME = "/tmp";
