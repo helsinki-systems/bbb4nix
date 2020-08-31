@@ -26,6 +26,7 @@ in {
         enable = true;
         bbbEndpoint = "https://${cfg.domain}/";
       };
+      html5.enable = true;
       etherpad-lite.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;
