@@ -52,15 +52,28 @@ in {
         NODE_ENV = "production";
       };
 
+      requires = [ "redis-bigbluebutton.service" ];
+      after = [ "redis-bigbluebutton.service" ];
+
       serviceConfig = {
         User = "bbb-etherpad-lite";
+        Group = "bbb-etherpad-lite";
 
         ExecStart = "${cfg.package}/bin/etherpad-lite --sessionkey ${cfg.sessionKeyFile} --apikey ${cfg.apiKeyFile} --settings ${settingsFile}";
 
         PrivateNetwork = false;
-        PrivateUsers = false;
         MemoryDenyWriteExecute = false;
+        UMask = "0027";
+
+        ReadWritePaths = [ "/var/lib/bbb-etherpad-lite" ];
       };
+
+      sandbox = 2;
+      apparmor.extraConfig = ''
+        network inet stream,
+        network unix stream,
+        deny network inet dgram,
+      '';
 
       wantedBy = [ "bigbluebutton.target" ];
     };
