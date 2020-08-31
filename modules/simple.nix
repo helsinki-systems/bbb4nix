@@ -32,6 +32,10 @@ in {
       webrtc-sfu.enable = true;
       mongodb.enable = true;
       redis.enable = true;
+      nginx = {
+        enable = true;
+        domain = cfg.domain;
+      };
     };
   };
 }
