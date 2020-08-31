@@ -14,6 +14,7 @@
     ./freeswitch.nix
     ./kurento-media-server.nix
     ./soffice.nix
+    ./redis.nix
     ./mongodb.nix
   ];
 
