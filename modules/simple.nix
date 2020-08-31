@@ -26,6 +26,7 @@ in {
       kurento-media-server.enable = true;
       freeswitch.enable = true;
       webrtc-sfu.enable = true;
+      mongodb.enable = true;
     };
   };
 }
