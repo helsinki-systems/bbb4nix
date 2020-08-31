@@ -53,17 +53,27 @@ in {
       };
 
       serviceConfig = {
-        DynamicUser = true;
+        User = "bbb-etherpad-lite";
 
         ExecStart = "${cfg.package}/bin/etherpad-lite --sessionkey ${cfg.sessionKeyFile} --apikey ${cfg.apiKeyFile} --settings ${settingsFile}";
 
-        StateDirectory = [ "bbb-etherpad-lite" ];
-
         PrivateNetwork = false;
+        PrivateUsers = false;
         MemoryDenyWriteExecute = false;
       };
 
       wantedBy = [ "bigbluebutton.target" ];
     };
+
+
+    systemd.tmpfiles.rules = [
+      "d /var/lib/bbb-etherpad-lite 0750 bbb-etherpad-lite bbb-etherpad-lite -"
+    ];
+
+    users.users.bbb-etherpad-lite = {
+      description = "BigBlueButton Etherpad Lite user";
+      isSystemUser = true;
+    };
+    users.groups.bbb-etherpad-lite = {};
   };
 }
