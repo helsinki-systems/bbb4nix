@@ -133,6 +133,8 @@ in {
         PrivateUsers = false;
         RuntimeDirectory = "kurento";
         SystemCallFilter = "@system-service";
+
+        LimitNOFILE = "8192";
       };
 
       apparmor = {
