@@ -179,7 +179,7 @@ in {
         RuntimeDirectoryMode = "0700";
 
         User = "bbb-web";
-        SupplementaryGroups = "bbb-soffice";
+        SupplementaryGroups = [ "bbb-soffice" "bbb-turn" ];
 
         PrivateNetwork = false;
         UMask = "0007";
@@ -271,7 +271,7 @@ in {
     systemd.tmpfiles.rules = [
       "f /var/lib/secrets/bigbluebutton/bbb-web-akka.conf 0400 bbb-web nogroup -"
       "f /var/lib/secrets/bigbluebutton/bbb-web.properties 0400 bbb-web nogroup -"
-      "f /var/lib/secrets/bigbluebutton/bbb-web-turn 0400 bbb-web nogroup -"
+      "f /var/lib/secrets/bigbluebutton/bbb-web-turn 0440 bbb-web bbb-turn -"
       "d /var/lib/bigbluebutton 2755 bbb-web nginx -"
       "d /var/lib/bigbluebutton/unpublished 0755 bbb-web nogroup -"
       "d /var/lib/bigbluebutton/published 2750 bbb-web nginx -"
