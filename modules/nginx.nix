@@ -127,15 +127,15 @@ in {
       # presentation-slides.nginx
       locations."~^\\/bigbluebutton\\/presentation\\/(?<meeting_id_1>[A-Za-z0-9\\-]+)\\/(?<meeting_id_2>[A-Za-z0-9\\-]+)\\/(?<pres_id>[A-Za-z0-9\\-]+)\\/svg\\/(?<page_num>\\d+)$".extraConfig = ''
         default_type image/svg+xml;
-        alias /var/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/svgs/slide$page_num.svg;
+        alias /var/lib/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/svgs/slide$page_num.svg;
       '';
       locations."~^\\/bigbluebutton\\/presentation\\/(?<meeting_id_1>[A-Za-z0-9\\-]+)\\/(?<meeting_id_2>[A-Za-z0-9\\-]+)\\/(?<pres_id>[A-Za-z0-9\\-]+)\\/thumbnail\\/(?<page_num>\\d+)$".extraConfig = ''
         default_type image/png;
-        alias /var/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/thumbnails/thumb-$page_num.png;
+        alias /var/lib/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/thumbnails/thumb-$page_num.png;
       '';
       locations."~^\\/bigbluebutton\\/presentation\\/(?<meeting_id_1>[A-Za-z0-9\\-]+)\\/(?<meeting_id_2>[A-Za-z0-9\\-]+)\\/(?<pres_id>[A-Za-z0-9\\-]+)\\/textfiles\\/(?<page_num>\\d+)$".extraConfig = ''
         default_type text/plain;
-        alias /var/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/textfiles/slide-$page_num.txt;
+        alias /var/lib/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/textfiles/slide-$page_num.txt;
       '';
       # presentation.nginx
       locations."/playback/presentation/playback.html".extraConfig = ''
@@ -146,7 +146,7 @@ in {
         index = "index.html index.htm";
       };
       locations."/presentation" = {
-        root = "/var/bigbluebutton/published";
+        root = "/var/lib/bigbluebutton/published";
         index = "index.html index.htm";
       };
       # screenshare.nginx
@@ -285,9 +285,9 @@ in {
       '';
     };
 
-    #systemd.services.nginx.apparmor.extraConfig = ''
-    #  /var/bigbluebutton/** r,
-    #'';
+    systemd.services.nginx.apparmor.extraConfig = ''
+      /var/lib/bigbluebutton/** r,
+    '';
 
     # Group that is allowed to read recordings.
     # Will later be used for the record processes.
