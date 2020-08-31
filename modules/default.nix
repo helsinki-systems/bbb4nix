@@ -14,6 +14,7 @@
     ./kurento-media-server.nix
     ./soffice.nix
     ./mongodb.nix
+    ./redis.nix
   ];
 
   systemd.targets.bigbluebutton = {
