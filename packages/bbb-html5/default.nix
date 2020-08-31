@@ -12,14 +12,14 @@ in stdenv.mkDerivation { # this is *not* stdenvNoCC, because of fibers and stuff
     export HOME=$PWD/../home
     pushd programs/server
     meteor npm install
+    sed -i 's:YAML_FILE_PATH = .*;$:YAML_FILE_PATH = "/run/bbb-html5/settings.json";:' app/app.js
     popd
   '';
 
   installPhase = ''
-    mkdir -p $out/bin
     cp -R . $out
   '';
 
-  outputHash = "sha256-8pcVqDwrb8zxhSdHgMyk+Nl2JU0/4i3g9d6wpVQ1d4c=";
+  outputHash = "sha256-Xs9TLhbT6o2CI/9Cl1ohqRA7fq9VRqZfu4MIoEXg6oA=";
   outputHashMode = "recursive";
 }
