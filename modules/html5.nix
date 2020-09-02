@@ -55,6 +55,12 @@ in {
         '';
       };
 
+      environment = {
+        MONGO_URL = cfg.mongoUrl;
+        ROOT_URL = cfg.rootUrl;
+        PORT = cfg.port;
+      };
+
       serviceConfig = {
         User = "bbb-html5";
         SupplementaryGroups = "bbb-etherpad-lite";
