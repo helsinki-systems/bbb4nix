@@ -26,7 +26,20 @@ in {
         enable = true;
         bbbEndpoint = "https://${cfg.domain}/";
       };
-      html5.enable = true;
+      html5 = {
+        enable = true;
+        rootUrl = "https://${cfg.domain}/html5client";
+        config = {
+          public = {
+            kurento.wsUrl = "wss://${cfg.domain}/bbb-webrtc-sfu";
+            app.enableNetworkInformation = true;
+            note = {
+              enabled = true;
+              url = "https://${cfg.domain}/pad";
+            };
+          };
+        };
+      };
       etherpad-lite.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;

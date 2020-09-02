@@ -20,27 +20,12 @@ in {
     rootUrl = mkOption {
       description = "Root URL";
       type = str;
-      default = "https://${config.services.bigbluebutton.simple.domain}/html5client";
     };
 
     config = mkOption {
       type = bbbLib.jsonType;
       description = "Config overrides, are merged with defaults";
       example = {};
-      default = {
-        public = {
-          kurento = {
-            wsUrl = "wss://${config.services.bigbluebutton.simple.domain}/bbb-webrtc-sfu";
-          };
-          app = {
-            enableNetworkInformation = true;
-          };
-          note = {
-            enabled = true;
-            url = "https://${config.services.bigbluebutton.simple.domain}/pad";
-          };
-        };
-      };
     };
   };
 
@@ -61,6 +46,15 @@ in {
         ${pkgs.jq}/bin/jq -s '.[0] * .[1] * .[2]' /run/bbb-html5/defaults.json /run/bbb-html5/etherpad.json ${configJson} > /run/bbb-html5/settings.json
       '';
 
+      sandbox = 2;
+      apparmor = {
+        extraConfig = ''
+          network inet stream,
+          network unix stream,
+          /var/lib/bbb-etherpad-lite/APIKEY r,
+        '';
+      };
+
       serviceConfig = {
         User = "bbb-html5";
         SupplementaryGroups = "bbb-etherpad-lite";
@@ -70,7 +64,6 @@ in {
         RuntimeDirectory = "bbb-html5";
 
         PrivateNetwork = false;
-        PrivateUsers = false;
         MemoryDenyWriteExecute = false;
       };
     };
