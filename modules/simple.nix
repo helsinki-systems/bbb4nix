@@ -31,6 +31,7 @@ in {
       freeswitch.enable = true;
       webrtc-sfu.enable = true;
       mongodb.enable = true;
+      redis.enable = true;
     };
   };
 }
