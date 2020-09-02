@@ -2,7 +2,12 @@
 let
   cfg = config.services.bigbluebutton.nginx;
 in {
-  options.services.bigbluebutton.nginx = with types; {
+  options.services.bigbluebutton.nginx = with types; let
+    mkUrlOpt = name: mkOption {
+      description = "URL for BigBlueButton ${name} upstream";
+      type = str;
+    };
+  in {
     enable = mkEnableOption "the nginx webserver config for BigBlueButton";
 
     domain = mkOption {
@@ -15,6 +20,14 @@ in {
       type = str;
       default = "bigbluebutton";
     };
+
+    etherpadUrl = mkUrlOpt "etherpad";
+    freeswitchVertoUrl = mkUrlOpt "FreeSwitch Verto";
+    freeswitchWsUrl = mkUrlOpt "FreeSwitch WebSocket";
+    greenlightUrl = mkUrlOpt "greenlight";
+    html5Url = mkUrlOpt "html";
+    webUrl = mkUrlOpt "web";
+    webrtcSfuUrl = mkUrlOpt "webrtc sfu";
   };
 
   config = mkIf cfg.enable {
@@ -27,39 +40,18 @@ in {
       forceSSL = mkDefault true;
       serverName = cfg.domain;
 
-      locations."~ (/open/|/close/|/idle/|/send/|/fcs/)" = {
-        proxyPass = "http://127.0.0.1:5080";
-        extraConfig = ''
-          proxy_buffering off;
-          keepalive_requests 1000000000;
-        '';
-      };
-
-      locations."/deskshare" = {
-        proxyPass = "http://127.0.0.1:5080";
-        extraConfig = ''
-          proxy_redirect default;
-
-          proxy_buffer_size 4k;
-          proxy_buffers 4 32k;
-          proxy_busy_buffers_size 64k;
-          proxy_temp_file_write_size 64k;
-          include ${config.services.nginx.package}/conf/fastcgi.conf;
-        '';
-      };
-
       # bbb-html5.nginx
       locations."/html5client" = {
-        proxyPass = "http://127.0.0.1:3000";
+        proxyPass = cfg.html5Url;
         proxyWebsockets = true;
       };
       locations."/_timesync" = {
-        proxyPass = "http://127.0.0.1:3000";
+        proxyPass = cfg.html5Url;
       };
 
       # notes.nginx
       locations."~ \"^\\/pad\\/p\\/(\\w+)$\"" = {
-        proxyPass = "http://127.0.0.1:9001";
+        proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /pad/(.*) /$1 break;
           rewrite ^/pad$ /pad/ permanent;
@@ -72,7 +64,7 @@ in {
         '';
       };
       locations."/pad" = {
-        proxyPass = "http://127.0.0.1:9001/";
+        proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /pad/(.*) /$1 break;
           rewrite ^/pad$ /pad/ permanent;
@@ -82,7 +74,7 @@ in {
         '';
       };
       locations."/pad/socket.io" = {
-        proxyPass = "http://127.0.0.1:9001/";
+        proxyPass = cfg.etherpadUrl;
         proxyWebsockets = true;
         extraConfig = ''
           rewrite /pad/socket.io/(.*) /socket.io/$1 break;
@@ -91,7 +83,7 @@ in {
         '';
       };
       locations."/static" = {
-        proxyPass = "http://127.0.0.1:9001/";
+        proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /static/(.*) /static/$1 break;
           proxy_buffering off;
@@ -111,6 +103,7 @@ in {
         default_type text/plain;
         alias /var/lib/bigbluebutton/$meeting_id_2/$meeting_id_2/$pres_id/textfiles/slide-$page_num.txt;
       '';
+
       # presentation.nginx
       locations."/playback/presentation/playback.html".extraConfig = ''
         return 301 /playback/presentation/0.81/playback.html?$query_string;
@@ -123,21 +116,10 @@ in {
         root = "/var/lib/bigbluebutton/published";
         index = "index.html index.htm";
       };
-      # screenshare.nginx
-      locations."/screenshare" = {
-        proxyPass = "http://127.0.0.1:5080";
-        extraConfig = ''
-          proxy_redirect default;
-          proxy_buffer_size 4k;
-          proxy_buffers 4 32k;
-          proxy_busy_buffers_size 64k;
-          proxy_temp_file_write_size 64k;
-          include ${config.services.nginx.package}/conf/fastcgi.conf;
-        '';
-      };
+
       # sip.nginx
       locations."/ws" = {
-        proxyPass = "https://${cfg.domain}:7443";
+        proxyPass = cfg.freeswitchWsUrl;
         proxyWebsockets = true;
         extraConfig = ''
           proxy_read_timeout 6h;
@@ -146,9 +128,10 @@ in {
           send_timeout 6h;
         '';
       };
+
       # verto.nginx
       locations."/verto" = {
-        proxyPass = "http://127.0.0.1:8082";
+        proxyPass = cfg.freeswitchVertoUrl;
         proxyWebsockets = true;
         extraConfig = ''
           proxy_read_timeout 6h;
@@ -157,16 +140,17 @@ in {
           send_timeout 6h;
         '';
       };
+
       # web.nginx
       locations."/bigbluebutton" = {
-        proxyPass = "http://127.0.0.1:8090";
+        proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
           add_header P3P 'CP="No P3P policy available"';
         '';
       };
       locations."~ \"^\\/bigbluebutton\\/presentation\\/(?<prestoken>[a-zA-Z0-9_-]+)/upload$\"" = {
-        proxyPass = "http://127.0.0.1:8090";
+        proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
           add_header P3P 'CP="No P3P policy available"';
@@ -185,7 +169,7 @@ in {
         '';
       };
       locations."/bigbluebutton/presentation/checkPresentation" = {
-        proxyPass = "http://127.0.0.1:8090";
+        proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
 
@@ -201,7 +185,7 @@ in {
         '';
       };
       locations."/bigbluebutton/connection/checkAuthorization" = {
-        proxyPass = "http://127.0.0.1:8090";
+        proxyPass = cfg.webUrl;
         extraConfig = ''
           internal;
 
@@ -210,9 +194,10 @@ in {
           proxy_set_header X-Original-URI $request_uri;
         '';
       };
+
       # webrtc-sfu.nginx
       locations."/bbb-webrtc-sfu" = {
-        proxyPass = "http://127.0.0.1:3008";
+        proxyPass = cfg.webrtcSfuUrl;
         proxyWebsockets = true;
         extraConfig = ''
           proxy_read_timeout 6h;
@@ -224,11 +209,11 @@ in {
 
       # greenlight
       locations."/b" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port}";
+        proxyPass = cfg.greenlightUrl;
       };
 
       locations."/b/cable" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port}";
+        proxyPass = cfg.greenlightUrl;
         proxyWebsockets = true;
         extraConfig = ''
           proxy_read_timeout 6h;
@@ -246,7 +231,7 @@ in {
           return 307 /b/signin;
         }
         if ($request_method != GET) {
-          proxy_pass http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port};
+          proxy_pass ${cfg.greenlightUrl};
         }
       '';
       locations."= /b/".extraConfig = ''
@@ -254,7 +239,7 @@ in {
           return 307 /b/signin;
         }
         if ($request_method != GET) {
-          proxy_pass http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port};
+          proxy_pass ${cfg.greenlightUrl};
         }
       '';
     };
