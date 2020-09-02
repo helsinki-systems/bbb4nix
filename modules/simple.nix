@@ -22,6 +22,10 @@ in {
         enable = true;
         config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
       };
+      greenlight = {
+        enable = true;
+        bbbEndpoint = "https://${cfg.domain}/";
+      };
       etherpad-lite.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;

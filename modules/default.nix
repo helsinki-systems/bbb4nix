@@ -6,6 +6,7 @@
     ./akka-fsesl.nix
     ./web.nix
     ./webrtc-sfu.nix
+    ./greenlight.nix
     # patched
     ./etherpad-lite.nix
     # Third-party components
