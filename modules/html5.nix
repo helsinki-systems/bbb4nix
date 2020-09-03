@@ -58,7 +58,7 @@ in {
       environment = {
         MONGO_URL = cfg.mongoUrl;
         ROOT_URL = cfg.rootUrl;
-        PORT = cfg.port;
+        PORT = toString cfg.port;
       };
 
       serviceConfig = {
