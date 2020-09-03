@@ -150,9 +150,8 @@ in {
       };
     };
 
-    # Group is temporary until recording is done
     systemd.tmpfiles.rules = [
-      ''d /var/lib/freeswitch/meetings 2750 freeswitch nogroup 5d''
+      ''d /var/lib/freeswitch/meetings 2750 freeswitch bbb-record 5d''
     ];
 
     users.users.freeswitch = {

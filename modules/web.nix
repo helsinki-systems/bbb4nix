@@ -179,7 +179,7 @@ in {
         RuntimeDirectoryMode = "0700";
 
         User = "bbb-web";
-        SupplementaryGroups = [ "bbb-soffice" "bbb-turn" ];
+        SupplementaryGroups = [ "bbb-soffice" "bbb-turn" "bbb-record" ];
 
         PrivateNetwork = false;
         UMask = "0007";
@@ -205,7 +205,7 @@ in {
 
     services.bigbluebutton.web.config = {
       # Tool paths
-      imageMagickDir = "${pkgs.imagemagick}/bin";
+      imageMagickDir = "${pkgs.imagemagick_light}/bin";
       # /var/bigbluebutton -> /var/lib/bigbluebutton
       presentationDir = "/var/lib/bigbluebutton";
       recordStatusDir = "/var/lib/bigbluebutton/recording/status/recorded";
@@ -272,12 +272,12 @@ in {
       "f /var/lib/secrets/bigbluebutton/bbb-web-akka.conf 0400 bbb-web nogroup -"
       "f /var/lib/secrets/bigbluebutton/bbb-web.properties 0400 bbb-web nogroup -"
       "f /var/lib/secrets/bigbluebutton/bbb-web-turn 0440 bbb-web bbb-turn -"
-      "d /var/lib/bigbluebutton 2755 bbb-web nginx -"
-      "d /var/lib/bigbluebutton/unpublished 0755 bbb-web nogroup -"
-      "d /var/lib/bigbluebutton/published 2750 bbb-web nginx -"
-      "d /var/lib/bigbluebutton/recording 0700 bbb-web nogroup -"
-      "d /var/lib/bigbluebutton/recording/status 0700 bbb-web nogroup -"
-      "d /var/lib/bigbluebutton/recording/status/recorded 0700 bbb-web nogroup -"
+      "d /var/lib/bigbluebutton 2755 bbb-web bbb-record -"
+      "d /var/lib/bigbluebutton/unpublished 0755 bbb-web bbb-record -"
+      "d /var/lib/bigbluebutton/published 2750 bbb-web bbb-record -"
+      "d /var/lib/bigbluebutton/recording 0770 bbb-web bbb-record -"
+      "d /var/lib/bigbluebutton/recording/status 0770 bbb-web bbb-record -"
+      "d /var/lib/bigbluebutton/recording/status/recorded 0770 bbb-web bbb-record -"
     ];
 
     services.bigbluebutton.soffice.enable = true;

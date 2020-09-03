@@ -53,6 +53,7 @@ in {
         };
       };
       etherpad-lite.enable = true;
+      record-and-playback.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;
       webrtc-sfu = {
