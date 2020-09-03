@@ -16,6 +16,7 @@
     ./soffice.nix
     ./mongodb.nix
     ./redis.nix
+    ./nginx.nix
   ];
 
   systemd.targets.bigbluebutton = {

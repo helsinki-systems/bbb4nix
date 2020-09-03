@@ -46,6 +46,18 @@ in {
       webrtc-sfu.enable = true;
       mongodb.enable = true;
       redis.enable = true;
+      nginx = {
+        enable = true;
+        domain = cfg.domain;
+
+        etherpadUrl = "http://127.0.0.1:9001";
+        freeswitchVertoUrl = "http://127.0.0.1:8082";
+        freeswitchWsUrl = "https://${cfg.domain}:${toString config.services.bigbluebutton.freeswitch.wssPort}";
+        greenlightUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port}";
+        html5Url = "http://127.0.0.1:${toString config.services.bigbluebutton.html5.port}";
+        webUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.web.port}";
+        webrtcSfuUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.webrtc-sfu.port}";
+      };
     };
   };
 }
