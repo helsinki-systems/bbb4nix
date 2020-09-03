@@ -1,4 +1,4 @@
-{ callPackage }: {
+{ callPackage, libopusenc }: {
   bbbPackages = {
     akkaApps = callPackage ./bbb-akka-apps {};
     akkaFsesl = callPackage ./bbb-akka-fsesl {};
@@ -24,5 +24,13 @@
   freeswitchPackages = rec {
     sofia_sip = callPackage ./sofia-sip {};
     spandsp = callPackage ./spandsp {};
+    freeswitch = callPackage ./freeswitch {
+      inherit sofia_sip spandsp;
+      libopusenc = libopusenc.overrideAttrs (oA: {
+        postFixup = ''
+          sed -i 's_opus.h_opus/opus.h_g' $dev/include/opus/opusenc.h
+        '';
+      });
+    };
   };
 }
