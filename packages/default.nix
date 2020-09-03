@@ -20,4 +20,8 @@
     kms-filters = callPackage ./kms-filters {};
     gst_all_1 = callPackage ./kms-gst {};
   };
+
+  freeswitchPackages = rec {
+    spandsp = callPackage ./spandsp {};
+  };
 }
