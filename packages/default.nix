@@ -22,6 +22,7 @@
   };
 
   freeswitchPackages = rec {
+    sofia_sip = callPackage ./sofia-sip {};
     spandsp = callPackage ./spandsp {};
   };
 }
