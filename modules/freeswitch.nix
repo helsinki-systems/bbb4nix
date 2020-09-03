@@ -65,33 +65,7 @@ in {
       enable = true;
       enableReload = true; # Forces FreeSWITCH to use /etc/freeswitch
 
-      package = pkgs.freeswitch.overrideAttrs (oA: rec {
-        # Add modules without overwriting the default modules
-        # TODO Upstream
-        preConfigure = ''
-          ${oA.preConfigure}
-          {
-            echo
-            echo 'applications/mod_av'
-            echo 'formats/mod_opusfile'
-            echo 'applications/mod_av'
-          } >> modules.conf
-        '';
-        buildInputs = oA.buildInputs ++ (with pkgs; [ libopus ffmpeg opusfile libogg libopusenc ]);
-
-        # TOREM 20.09
-        postPatch = ''
-          ${oA.postPatch}
-
-          # Disable an advertisement for a conference nobody cares about
-          for f in src/include/cc.h libs/esl/src/include/cc.h; do
-            {
-              echo 'const char *cc = "";'
-              echo 'const char *cc_s = "";'
-            } > $f
-          done
-        '';
-      });
+      package = pkgs.freeswitchPackages.freeswitch;
     };
 
     # Overwrite NixOS configuration
