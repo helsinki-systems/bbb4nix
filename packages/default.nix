@@ -11,6 +11,8 @@
     html5 = callPackage ./bbb-html5/wrapper.nix {};
     html5-unwrapped = callPackage ./bbb-html5 {};
     recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
+    recordAndPlaybackScripts = callPackage ./bbb-record-and-playback-scripts {};
+    recordAndPlaybackScriptsRuby = (callPackage ./bbb-record-and-playback-scripts/env.nix {}).wrappedRuby;
     generateSecrets = callPackage ./bbb-generate-secrets {};
   };
 
