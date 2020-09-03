@@ -3,6 +3,7 @@
   # Since helsinki is not open-source, we provide the needed modules (and module stubs) here.
   imports = [
     ./apparmor-confinement.nix
+    ./coturn.nix
     ./cooler-postgresql.nix
     ./cooler-redis.nix
     ./kurento-media-server.nix
