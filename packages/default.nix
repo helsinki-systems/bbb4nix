@@ -11,6 +11,7 @@
     html5 = callPackage ./bbb-html5/wrapper.nix {};
     html5-unwrapped = callPackage ./bbb-html5 {};
     recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
+    generateSecrets = callPackage ./bbb-generate-secrets {};
   };
 
   kurentoPackages = {
