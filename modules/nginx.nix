@@ -31,10 +31,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    helsinki.nginx = {
-      enable = true;
-      extraCiphers = [ "AES256-GCM-SHA384" ]; # TODO: for node.js 8.x, drop once bbb-html5 is on something newer/supported
-    };
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
       enableACME = mkDefault true;
       forceSSL = mkDefault true;
@@ -251,9 +247,5 @@ in {
     # Group that is allowed to read recordings.
     # Will later be used for the record processes.
     users.groups.bbb-record = {};
-
-    helsinki.firewall.ports.udp = [
-      "24577-32768" # WebRTC video
-    ];
   };
 }
