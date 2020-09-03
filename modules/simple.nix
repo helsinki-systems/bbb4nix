@@ -1,4 +1,4 @@
-{ config, lib, ... }: with lib; let
+{ config, lib, pkgs, ... }: with lib; let
   cfg = config.services.bigbluebutton.simple;
 in {
   options.services.bigbluebutton.simple = with types; {
@@ -59,5 +59,9 @@ in {
         webrtcSfuUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.webrtc-sfu.port}";
       };
     };
+
+    environment.systemPackages = with pkgs; with bbbPackages; [
+      generateSecrets
+    ];
   };
 }
