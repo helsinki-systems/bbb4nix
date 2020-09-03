@@ -7,6 +7,7 @@
     ./web.nix
     ./webrtc-sfu.nix
     ./greenlight.nix
+    ./html5.nix
     # patched
     ./etherpad-lite.nix
     # Third-party components
