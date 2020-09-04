@@ -52,7 +52,11 @@ in {
 
         etherpadUrl = "http://127.0.0.1:9001";
         freeswitchVertoUrl = "http://127.0.0.1:8082";
-        freeswitchWsUrl = "https://${cfg.domain}:${toString config.services.bigbluebutton.freeswitch.wssPort}";
+        freeswitchWs = {
+          scheme = "https";
+          port = config.services.bigbluebutton.freeswitch.wssPort;
+          ips = cfg.ips;
+        };
         greenlightUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.greenlight.port}";
         html5Url = "http://127.0.0.1:${toString config.services.bigbluebutton.html5.port}";
         webUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.web.port}";
@@ -64,5 +68,7 @@ in {
     environment.systemPackages = with pkgs; with bbbPackages; [
       generateSecrets
     ];
+
+    networking.hosts = listToAttrs (map (ip: { name = ip; value = [ cfg.domain ]; }) cfg.ips);
   };
 }
