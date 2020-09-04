@@ -5,8 +5,20 @@ in {
   options.services.bigbluebutton.freeswitch = with types; {
     enable = mkEnableOption "FreeSWITCH and configure it for BigBlueButton";
 
-    publicIP = mkOption {
-      description = "Public IP of this machine. Set to null to use the autodiscovery provided by FreeSWITCH";
+    publicIPv4 = mkOption {
+      description = "Public IPv6 of this machine. Set to null to use the autodiscovery provided by FreeSWITCH";
+      type = nullOr str;
+      default = null;
+    };
+
+    publicIPv6 = mkOption {
+      description = "Public IPv4 of this machine. Set to null to use the autodiscovery provided by FreeSWITCH";
+      type = nullOr str;
+      default = null;
+    };
+
+    stunServer = mkOption {
+      description = "STUN Server used for various things";
       type = nullOr str;
       default = null;
     };
@@ -85,10 +97,16 @@ in {
         done
 
         # Public IP
-        ${if cfg.publicIP == null then ''
+        ${if cfg.publicIPv4 == null then ''
           xml ed -P -L -d '/include/X-PRE-PROCESS[starts-with(@data, "local_ip_v4=")]' vars.xml
         '' else ''
-          xml ed -P -L -u '/include/X-PRE-PROCESS[starts-with(@data, "local_ip_v4=")]/@data' -v 'local_ip_v4=${cfg.publicIP}' vars.xml
+          xml ed -P -L -u '/include/X-PRE-PROCESS[starts-with(@data, "local_ip_v4=")]/@data' -v 'local_ip_v4=${cfg.publicIPv4}' vars.xml
+        ''}
+        ${optionalString (cfg.publicIPv6 != null) ''
+          xml ed -P -L -s '//include' -t elem -n 'X-PRE-PROCESS cmd="set" data="local_ip_v6=${cfg.publicIPv6}"' vars.xml
+        ''}
+        ${optionalString (cfg.stunServer != null) ''
+          sed -i 's|stun.freeswitch.org|${cfg.stunServer}|g' vars.xml
         ''}
 
         # Muted/Unmuted sounds

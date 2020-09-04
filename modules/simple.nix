@@ -42,8 +42,16 @@ in {
       };
       etherpad-lite.enable = true;
       kurento-media-server.enable = true;
-      freeswitch.enable = true;
-      webrtc-sfu.enable = true;
+      freeswitch = {
+        enable = true;
+        stunServer = cfg.domain;
+        publicIPv4 = head (filter (x: !(hasInfix ":" x)) cfg.ips);
+        publicIPv6 = head (filter (hasInfix ":") cfg.ips);
+      };
+      webrtc-sfu = {
+        enable = true;
+        myIP = head cfg.ips;
+      };
       mongodb.enable = true;
       redis.enable = true;
       nginx = {
