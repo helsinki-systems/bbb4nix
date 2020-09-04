@@ -23,7 +23,22 @@ in {
 
     etherpadUrl = mkUrlOpt "etherpad";
     freeswitchVertoUrl = mkUrlOpt "FreeSwitch Verto";
-    freeswitchWsUrl = mkUrlOpt "FreeSwitch WebSocket";
+    freeswitchWs = {
+      scheme = mkOption {
+        type = str;
+        description = "FreeSwitch WebSocket scheme";
+        default = "https";
+      };
+      port = mkOption {
+        type = port;
+        description = "FreeSwitch WebSocket port";
+        default = 7443;
+      };
+      ips = mkOption {
+        type = listOf str;
+        description = "FreeSwitch WebSocket IPs. Read https://github.com/bigbluebutton/bigbluebutton/issues/9295 for why this is a thing.";
+      };
+    };
     greenlightUrl = mkUrlOpt "greenlight";
     html5Url = mkUrlOpt "html";
     webUrl = mkUrlOpt "web";
@@ -31,6 +46,17 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # https://github.com/bigbluebutton/bigbluebutton/issues/9295
+    services.nginx.appendHttpConfig = let
+      v4 = filter (x: !(hasInfix ":" x)) cfg.freeswitchWs.ips;
+      v6 = filter (hasInfix ":") cfg.freeswitchWs.ips;
+    in ''
+      map $remote_addr $freeswitch_addr {
+        "~:"    [${head v6}];
+        default ${head v4};
+      }
+    '';
+
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
       serverName = cfg.domain;
 
@@ -113,7 +139,7 @@ in {
 
       # sip.nginx
       locations."/ws" = {
-        proxyPass = cfg.freeswitchWsUrl;
+        proxyPass = "${cfg.freeswitchWs.scheme}://$freeswitch_addr:${toString cfg.freeswitchWs.port}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_read_timeout 6h;
