@@ -10,7 +10,7 @@ in {
       example = "bbb.example.com";
     };
 
-    IPs = mkOption {
+    ips = mkOption {
       description = "List of IP addresses this BigBlueButton is served on";
       type = listOf str;
       default = [];
@@ -57,7 +57,7 @@ in {
       freeswitch.enable = true;
       webrtc-sfu = {
         enable = true;
-        myIP = head cfg.IPs;
+        myIP = head cfg.ips;
       };
       mongodb.enable = true;
       redis.enable = true;
@@ -81,8 +81,8 @@ in {
 
     services.coturn = {
       realm = cfg.domain;
-      relay-ips = cfg.IPs;
-      extraParams = "${concatMapStringsSep " " (x: "--listening-ip ${x}") cfg.IPs} -v";
+      relay-ips = cfg.ips;
+      extraParams = "${concatMapStringsSep " " (x: "--listening-ip ${x}") cfg.ips} -v";
       cert = "/var/lib/acme/${cfg.domain}/fullchain.pem";
       pkey = "/var/lib/acme/${cfg.domain}/key.pem";
     };
