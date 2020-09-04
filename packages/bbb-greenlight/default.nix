@@ -1,8 +1,7 @@
-{ stdenv, lib, callPackage, bundlerEnv, ruby_2_5, fetchFromGitHub, makeWrapper, dockerignored, nodejs, yarn }:
+{ stdenv, lib, callPackage, bundlerEnv, ruby, makeWrapper, dockerignored, nodejs, yarn }:
 let
   src = callPackage ../sources/bbb-greenlight {};
   inherit (src) version;
-  ruby = ruby_2_5;
   rubyEnv = bundlerEnv rec {
     name = "bbb-greenlight-env-${version}";
     inherit ruby version;
