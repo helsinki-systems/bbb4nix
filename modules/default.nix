@@ -17,6 +17,7 @@
     ./mongodb.nix
     ./redis.nix
     ./nginx.nix
+    ./coturn.nix
     ./acme.nix
   ];
 

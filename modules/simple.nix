@@ -9,6 +9,13 @@ in {
       type = str;
       example = "bbb.example.com";
     };
+
+    ips = mkOption {
+      description = "List of IP addresses this BigBlueButton is served on";
+      type = listOf str;
+      default = [];
+      example = [ "1.1.1.1" "8.8.8.8" ];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,6 +28,11 @@ in {
       web = {
         enable = true;
         config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
+        stunServers = [ "stun:${cfg.domain}" ];
+        turnServers = [
+          { url = "turn:${cfg.domain}?transport=tcp"; }
+          { url = "turns:${cfg.domain}?transport=tcp"; }
+        ];
       };
       greenlight = {
         enable = true;
@@ -43,7 +55,10 @@ in {
       etherpad-lite.enable = true;
       kurento-media-server.enable = true;
       freeswitch.enable = true;
-      webrtc-sfu.enable = true;
+      webrtc-sfu = {
+        enable = true;
+        myIP = head cfg.ips;
+      };
       mongodb.enable = true;
       redis.enable = true;
       nginx = {
@@ -62,7 +77,18 @@ in {
         webUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.web.port}";
         webrtcSfuUrl = "http://127.0.0.1:${toString config.services.bigbluebutton.webrtc-sfu.port}";
       };
+      coturn = {
+        enable = true;
+      };
       acme.enable = true;
+    };
+
+    services.coturn = {
+      realm = cfg.domain;
+      relay-ips = cfg.ips;
+      extraParams = "${concatMapStringsSep " " (x: "--listening-ip ${x}") cfg.ips} -v";
+      cert = "/var/lib/acme/${cfg.domain}/fullchain.pem";
+      pkey = "/var/lib/acme/${cfg.domain}/key.pem";
     };
 
     environment.systemPackages = with pkgs; with bbbPackages; [
