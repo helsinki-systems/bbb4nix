@@ -1,4 +1,4 @@
-{ mkYarnPackage, callPackage, fetchurl }:
+{ mkYarnPackage, callPackage, fetchurl, phantomjs2 }:
 let
   src = callPackage ../sources/bbb-etherpad-lite {};
 
@@ -32,6 +32,11 @@ in mkYarnPackage {
     rm $out/libexec/ep_etherpad-lite/node_modules/ep_etherpad-lite/node_modules
     ln -s $out/libexec/ep_etherpad-lite/node_modules $out/libexec/ep_etherpad-lite/node_modules/ep_etherpad-lite/node_modules
     ln -s $out/libexec/ep_etherpad-lite/node_modules/html-pdf $out/libexec/ep_etherpad-lite/node_modules/ep_better_pdf_export/node_modules/
+
+    pushd $out
+    patch -p1 -i ${./phantomjs.patch}
+    substituteInPlace libexec/ep_etherpad-lite/node_modules/html-pdf/lib/pdf.js --subst-var-by PHANTOMJS ${phantomjs2}/bin/phantomjs
+    popd
 
     cp ${settingsJson} $out/libexec/ep_etherpad-lite/deps/ep_etherpad-lite/settings.json
   '';
