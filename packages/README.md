@@ -26,6 +26,8 @@ Since BigBlueButton devs seem unable to keep a consistent naming scheme, some pa
 | `bigbluebutton-web`           | `bbb-web`               | `bbbPackages.web`              |
 | `bigbluebutton-config/slides` | `bbb-blank-slides`      | `bbbPackages.blankSlides`      |
 | -                             | `bbb-webrtc-sfu`        | `bbbPackages.webrtcSfu`        |
+| `bigbluebutton-html5`         | `bbb-html5`             | `bbbPackages.html5`            |
+| -                             | `bbb-generate-secrets`  | `bbbPackages.generateSecrets`  |
 
 ## Maintainer info
 
