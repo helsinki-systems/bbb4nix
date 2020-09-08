@@ -21,6 +21,11 @@ in {
       default = "bigbluebutton";
     };
 
+    defaultPDF = mkOption {
+      description = "Path to pdf file served as default presentation";
+      type = package;
+    };
+
     etherpadUrl = mkUrlOpt "etherpad";
     freeswitchVertoUrl = mkUrlOpt "FreeSwitch Verto";
     freeswitchWs = {
@@ -59,6 +64,8 @@ in {
 
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
       serverName = cfg.domain;
+
+      locations."~ ^/default.pdf$".alias = cfg.defaultPDF;
 
       # bbb-html5.nginx
       locations."/html5client" = {
