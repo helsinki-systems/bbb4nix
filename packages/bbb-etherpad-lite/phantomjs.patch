@@ -1,0 +1,12 @@
+diff --git a/libexec/ep_etherpad-lite/node_modules/html-pdf/lib/pdf.js b/libexec/ep_etherpad-lite/node_modules/html-pdf/lib/pdf.js
+index 4ca1afd..bdf9e1b 100644
+--- a/libexec/ep_etherpad-lite/node_modules/html-pdf/lib/pdf.js
++++ b/libexec/ep_etherpad-lite/node_modules/html-pdf/lib/pdf.js
+@@ -26,6 +26,7 @@ module.exports = PDF
+ function PDF (html, options) {
+   this.html = html
+   this.options = options || {}
++  this.options.phantomPath = "@PHANTOMJS@"
+   if (this.options.script) {
+     this.script = path.normalize(this.options.script)
+   } else {
