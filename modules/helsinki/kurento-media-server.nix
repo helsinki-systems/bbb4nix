@@ -134,7 +134,7 @@ in {
         RuntimeDirectory = "kurento";
         SystemCallFilter = "@system-service";
 
-        LimitNOFILE = "8192";
+        LimitNOFILE = "16384";
       };
 
       apparmor = {
