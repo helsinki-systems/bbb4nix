@@ -27,7 +27,15 @@ in {
       };
       web = {
         enable = true;
-        config."bigbluebutton.web.serverURL" = "https://${cfg.domain}";
+        config = let
+          clientLocation = ''''${bigbluebutton.web.serverURL}/html5client'';
+        in {
+          "bigbluebutton.web.serverURL" = "https://${cfg.domain}";
+          "defaultClientUrl" = "${clientLocation}/BigBlueButton.html";
+          "defaultGuestWaitURL" = "${clientLocation}/guest-wait.html";
+          "defaultAvatarURL" = "${clientLocation}/avatar.png";
+          "defaultConfigURL" = "${clientLocation}/conf/config.xml";
+        };
         stunServers = [ "stun:${cfg.domain}" ];
         turnServers = [
           { url = "turn:${cfg.domain}?transport=tcp"; }
