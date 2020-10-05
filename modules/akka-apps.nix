@@ -95,6 +95,7 @@ in {
     systemd.services.bbb-akka-apps = rec {
       description = "BigBlueButton Apps";
       wantedBy = [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       wants = [ "freeswitch.service" ];
 
       path = with pkgs; [ gawk openjdk8 ];
