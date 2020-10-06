@@ -62,6 +62,7 @@ in {
     systemd.services.bbb-webrtc-sfu = {
       description = "BigBlueButton WebRTC SFU";
       wantedBy = [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       wants = [ "freeswitch.service" "kurento-media-server.service" ];
       requires = [ "kurento-media-server.service" ];
 

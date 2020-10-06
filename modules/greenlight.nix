@@ -114,6 +114,7 @@ in {
       requires = [ "postgresql.service" ];
       after = [ "postgresql.service" ];
       wantedBy = [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
     };
 
     systemd.tmpfiles.rules = [

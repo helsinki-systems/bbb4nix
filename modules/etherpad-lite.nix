@@ -76,6 +76,7 @@ in {
       '';
 
       wantedBy = [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
     };
 
 
