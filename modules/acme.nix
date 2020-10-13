@@ -7,7 +7,6 @@ in {
 
   config = mkIf cfg.enable {
     security.acme.certs."${config.services.bigbluebutton.simple.domain}" = {
-      allowKeysForGroup = true;
       group = "acme-bbb";
     };
 
