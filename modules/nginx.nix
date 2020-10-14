@@ -274,6 +274,7 @@ in {
     systemd.services.nginx.apparmor.extraConfig = ''
       /var/lib/bigbluebutton/** r,
     '';
+    systemd.services.nginx.serviceConfig.SupplementaryGroups = "acme-bbb";
 
     # Group that is allowed to read recordings.
     # Will later be used for the record processes.
