@@ -50,9 +50,14 @@ in {
       sandbox = 2;
       apparmor = {
         extraConfig = ''
-          network inet stream,
-          network unix stream,
           /var/lib/bbb-etherpad-lite/APIKEY r,
+
+          network inet dgram,
+          network inet stream,
+          network inet6 dgram,
+          network inet6 stream,
+          network unix stream,
+          deny network netlink raw,
         '';
       };
 

@@ -102,6 +102,7 @@ in {
       apparmor.packages = path;
       apparmor.extraConfig = ''
         ${secretEnv} r,
+        @{PROC}@{pid}/task/@{pid}/comm rw,
         deny /etc/passwd r,
 
         deny network netlink raw,
