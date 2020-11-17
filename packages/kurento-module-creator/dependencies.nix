@@ -640,11 +640,6 @@
       "sha256": "3b0fa210dcbf0c92545ac31740fc2dd8af61dc72fd452cfca3d68aeabb642003",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.pom"
     },
-    "junit:junit:pom:4.12": {
-      "layout": "junit/junit/4.12/junit-4.12.pom",
-      "sha256": "90f163f78e3ffb6f1c7ad97de9e7eba4eea25807141b85d6d12be67ca25449c4",
-      "url": "https://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12.pom"
-    },
     "org.apache.maven:maven-artifact:jar:2.0.9": {
       "layout": "org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.jar",
       "sha256": "0b16842a33350f5478c4c717bf664251c27459ec5c0b8d0ca4d0050545aba48b",
@@ -1175,6 +1170,11 @@
       "sha256": "d4ef608f90dc9599c0cc325ca2ccc2e1ceb439b3d2ff31ae22e30ac1a63a68f0",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1.pom"
     },
+    "junit:junit:pom:4.13.1": {
+      "layout": "junit/junit/4.13.1/junit-4.13.1.pom",
+      "sha256": "c68defdedaaaeae1432e12a5302bf2bfa05057d8b5acc65aaa3f3d9853ff40d6",
+      "url": "https://repo.maven.apache.org/maven2/junit/junit/4.13.1/junit-4.13.1.pom"
+    },
     "org.codehaus.plexus:plexus:pom:2.0.6": {
       "layout": "org/codehaus/plexus/plexus/2.0.6/plexus-2.0.6.pom",
       "sha256": "bea12e747708d25e73410ca1c731ebdfa102e8bdb6ec7d81bd4522583b234bcc",
@@ -1254,6 +1254,11 @@
       "layout": "org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.pom",
       "sha256": "14df735a04e945f31198b4e9cbfddd103d238108d4f35bf77441216f0c4a4b29",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.pom"
+    },
+    "junit:junit:jar:4.13.1": {
+      "layout": "junit/junit/4.13.1/junit-4.13.1.jar",
+      "sha256": "c30719db974d6452793fe191b3638a5777005485bae145924044530ffa5f6122",
+      "url": "https://repo.maven.apache.org/maven2/junit/junit/4.13.1/junit-4.13.1.jar"
     },
     "org.apache.maven:maven-plugin-api:pom:2.2.1": {
       "layout": "org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.pom",
@@ -1639,11 +1644,6 @@
       "layout": "org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.jar",
       "sha256": "f1e4b0af3079cc0db361eab9429a3cda7b118cd032211c7e61b3805a62bfde1f",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.jar"
-    },
-    "junit:junit:jar:4.12": {
-      "layout": "junit/junit/4.12/junit-4.12.jar",
-      "sha256": "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
-      "url": "https://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12.jar"
     },
     "org.codehaus.plexus:plexus-utils:pom:1.4.1": {
       "layout": "org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.pom",
