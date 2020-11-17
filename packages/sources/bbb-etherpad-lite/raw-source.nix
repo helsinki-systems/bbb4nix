@@ -1,6 +1,6 @@
 { fetchFromGitHub }: fetchFromGitHub {
   owner = "bigbluebutton";
   repo = "etherpad-lite";
-  rev = "96e7ea5e54e4752aabb12c5476745ce124c71f4c";
-  sha256 = "sha256-MLDV9qsX6Fn/od97AMcKJQZfTB10QaJeavdfzRm2RLE=";
+  rev = "a0e818cc0dd8c0a495fae6cbf5976744236daab8";
+  sha256 = "sha256-RtxFNqLX7BNkKhD6dtzLIPCcQbceY88tgUq4XSbNYvE=";
 }
