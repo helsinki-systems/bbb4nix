@@ -1,5 +1,5 @@
 { stdenv, callPackage, cmake, pkgconfig
-, boost, glib, glibmm, libsigcxx, libsoup, opencv }: let
+, boost, glib, glibmm, libsigcxx, libsoup, opencv3 }: let
   src = callPackage ../sources/kms-filters {};
   gst = callPackage ../kms-gst {};
 
@@ -33,7 +33,7 @@ in stdenv.mkDerivation {
     glibmm
     libsigcxx
     libsoup
-    opencv
+    opencv3
     gst.gstreamer
     gst.gst-plugins-base
     (callPackage ../kms-core {})
