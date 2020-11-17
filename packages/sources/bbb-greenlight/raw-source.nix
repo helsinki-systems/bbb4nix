@@ -1,6 +1,6 @@
 { fetchFromGitHub }: fetchFromGitHub {
   owner = "bigbluebutton";
   repo = "greenlight";
-  rev = "release-2.7.3";
-  sha256 = "sha256-KuwEhWasjhAgPRAJeuxJ0nA4hr6Xzk35Q7SpMmZ1Qgk=";
+  rev = "release-2.7.9";
+  sha256 = "sha256-w4fiDsZnNwWCBSDtviqqi2OFR1ijR5K97qzdj4ReE9A=";
 }
