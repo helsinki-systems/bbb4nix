@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "sofia-sip";
-  version = "1.13";
+  version = "1.13.2";
 
   src = fetchFromGitHub {
     owner = "freeswitch";
     repo = pname;
-    rev = "f6f29b483e9c31ce8d3e87419ec3deea8679312d"; # upstream does not seem to believe in tags
-    sha256 = "sha256-KD3sPrf9GjA357jomFL8LtZ3rp25v3Vy8QfSZNSozso=";
+    rev = "v${version}";
+    sha256 = "sha256-1r/lFeZxIO/MxynPrwb+ewvC8zB24vmiOVGGCiEYsgc=";
   };
 
   buildInputs = [ glib openssl ];
