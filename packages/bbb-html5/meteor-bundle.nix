@@ -25,5 +25,5 @@ in stdenv.mkDerivation {
   '';
 
   outputHashMode = "recursive";
-  outputHash = "sha256-uZnYH7fn9KRUizFJAtZ8UTNSMUfI5u5+jll5PdTzYek=";
+  outputHash = "sha256-7bcVI214I8ue0tJbiuNyDt90f35KVS0wwNhne+Euk9w=";
 }
