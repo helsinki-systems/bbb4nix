@@ -742,7 +742,7 @@ let
   args = {
     name = "bbb-webrtc-sfu";
     packageName = "bbb-webrtc-sfu";
-    version = "2.4.22";
+    version = "2.4.23";
     src = ./.;
     dependencies = [
       sources."argparse-1.0.10"
