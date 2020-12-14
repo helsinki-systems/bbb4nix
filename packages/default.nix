@@ -2,16 +2,16 @@
   bbbPackages = {
     akkaApps = callPackage ./bbb-akka-apps {};
     akkaFsesl = callPackage ./bbb-akka-fsesl {};
-    web = callPackage ./bbb-web {};
     blankSlides = callPackage ./bbb-blank-slides {};
-    freeswitchConfig = callPackage ./bbb-freeswitch-config {};
-    webrtcSfu = callPackage ./bbb-webrtc-sfu {};
-    greenlight = callPackage ./bbb-greenlight {};
     etherpad-lite = callPackage ./bbb-etherpad-lite {};
+    freeswitchConfig = callPackage ./bbb-freeswitch-config {};
+    generateSecrets = callPackage ./bbb-generate-secrets {};
+    greenlight = callPackage ./bbb-greenlight {};
     html5 = callPackage ./bbb-html5/wrapper.nix {};
     html5-unwrapped = callPackage ./bbb-html5 {};
     recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
-    generateSecrets = callPackage ./bbb-generate-secrets {};
+    web = callPackage ./bbb-web {};
+    webrtcSfu = callPackage ./bbb-webrtc-sfu {};
   };
 
   kurentoPackages = {
