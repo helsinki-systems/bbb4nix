@@ -20,7 +20,7 @@ in stdenv.mkDerivation { # this is *not* stdenvNoCC, because of fibers and stuff
     cp -R . $out
   '';
 
-  outputHash = "0yv6lhhb6f1rwvmchby0mamvsl43gyl6lx6xwdnw95j4p2n24lmd";
+  outputHash = "1qgf5xbimjik0hhm9ppkss9yinjhnfyjwaiicnxhg2ii7lb85ssl";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 }
