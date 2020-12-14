@@ -1,6 +1,6 @@
-commit 838ec2bf49be909e091abd2a48a2c187db361f0a
-Author: Tiago Jacobs <tiago.jacobs@gmail.com>
-Date:   Thu Jun 4 01:47:00 2020 -0300
+commit 02d369b618a8d3cfb49d9f705c092f31cb86e2de
+Author: ajs124 <git@ajs124.de>
+Date:   Mon Dec 14 20:08:33 2020 +0100
 
     Use external pool of soffice processes
 
@@ -86,7 +86,7 @@ index 1e56943d8f..96233285cb 100755
    }
  
 diff --git a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
-index c0ea549dd2..6be81d7e6b 100755
+index c0ea549dd2..72b49658e6 100755
 --- a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
 +++ b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
 @@ -18,15 +18,17 @@
@@ -137,7 +137,7 @@ index c0ea549dd2..6be81d7e6b 100755
    }
    /*
     * Convert the Office document to PDF. If successful, update
-@@ -114,8 +103,39 @@ public class OfficeToPdfConversionService {
+@@ -114,8 +103,45 @@ public class OfficeToPdfConversionService {
    }
    private boolean convertOfficeDocToPdf(UploadedPresentation pres,
        File pdfOutput) {
@@ -147,9 +147,15 @@ index c0ea549dd2..6be81d7e6b 100755
 +    int attempts = 0;
 +
 +    while(!success) {
++      final Map<String, Object> loadProperties = new HashMap<>();
++      loadProperties.put("Hidden", true);
++      loadProperties.put("ReadOnly", true);
++      loadProperties.put("UpdateDocMode", UpdateDocMode.NO_UPDATE);
++
 +      LocalConverter documentConverter = LocalConverter
 +              .builder()
 +              .officeManager(currentManager)
++              .loadProperties(loadProperties)
 +              .filterChain(new OfficeDocumentConversionFilter())
 +              .build();
 +
@@ -179,7 +185,7 @@ index c0ea549dd2..6be81d7e6b 100755
    }
    private void makePdfTheUploadedFileAndSetStepAsSuccess(UploadedPresentation pres, File pdf) {
      pres.setUploadedFile(pdf);
-@@ -128,16 +148,45 @@ public class OfficeToPdfConversionService {
+@@ -128,16 +154,39 @@ public class OfficeToPdfConversionService {
      this.skipOfficePrecheck = skipOfficePrecheck;
    }
    public void start() {
@@ -192,18 +198,12 @@ index c0ea549dd2..6be81d7e6b 100755
 +
 +      try {
 +        final File workingDir = new File("/var/tmp/soffice_0" +instanceNumber);
-+        final Map<String, Object> loadProperties = new HashMap<>();
-+        loadProperties.put("Hidden", true);
-+        loadProperties.put("ReadOnly", true);
-+        loadProperties.put("UpdateDocMode", UpdateDocMode.NO_UPDATE);
-+
 +        ExternalOfficeManager officeManager = ExternalOfficeManager
 +                .builder()
 +                .connectTimeout(2000L)
 +                .retryInterval(500L)
 +                .portNumber(8200 + instanceNumber)
 +                .connectOnStart(false) // If it's true and soffice is not available, exception is thrown here ( we don't want exception here - we want the manager alive trying to reconnect )
-+                .loadProperties(loadProperties)
 +                .workingDir(workingDir)
 +                .build();
 +

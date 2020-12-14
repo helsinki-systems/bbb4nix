@@ -1,5 +1,11 @@
+commit 19ee61296c16acaa2ae0057b9dee087d8c1c9524
+Author: ajs124 <git@ajs124.de>
+Date:   Mon Dec 14 20:08:50 2020 +0100
+
+    bbb-web: flexible soffice
+
 diff --git a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
-index 6be81d7e6b..5af0dfac8f 100755
+index 72b49658e6..99ab90d22b 100755
 --- a/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
 +++ b/bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/OfficeToPdfConversionService.java
 @@ -39,6 +39,10 @@ public class OfficeToPdfConversionService {
@@ -13,7 +19,7 @@ index 6be81d7e6b..5af0dfac8f 100755
    public OfficeToPdfConversionService() throws OfficeException {
      officeManagers = new ArrayList<>();
    }
-@@ -147,12 +151,26 @@ public class OfficeToPdfConversionService {
+@@ -153,17 +157,32 @@ public class OfficeToPdfConversionService {
    public void setSkipOfficePrecheck(boolean skipOfficePrecheck) {
      this.skipOfficePrecheck = skipOfficePrecheck;
    }
@@ -33,25 +39,23 @@ index 6be81d7e6b..5af0dfac8f 100755
    public void start() {
 -    for(int managerIndex = 0; managerIndex < 4; managerIndex ++) {
 +    log.info("Starting LibreOffice pool with " + sofficeManagers + " managers, starting from port " + sofficePortBase);
++
 +    for(int managerIndex = 0; managerIndex < sofficeManagers; managerIndex ++) {
        Integer instanceNumber = managerIndex + 1; // starts at 1
  
        try {
 -        final File workingDir = new File("/var/tmp/soffice_0" +instanceNumber);
 +        final File workingDir = new File(sofficeWorkingDirBase + String.format("%02d", instanceNumber));
-         final Map<String, Object> loadProperties = new HashMap<>();
-         loadProperties.put("Hidden", true);
-         loadProperties.put("ReadOnly", true);
-@@ -162,7 +180,7 @@ public class OfficeToPdfConversionService {
+         ExternalOfficeManager officeManager = ExternalOfficeManager
                  .builder()
                  .connectTimeout(2000L)
                  .retryInterval(500L)
 -                .portNumber(8200 + instanceNumber)
 +                .portNumber(sofficePortBase + managerIndex)
                  .connectOnStart(false) // If it's true and soffice is not available, exception is thrown here ( we don't want exception here - we want the manager alive trying to reconnect )
-                 .loadProperties(loadProperties)
                  .workingDir(workingDir)
-@@ -180,8 +198,12 @@ public class OfficeToPdfConversionService {
+                 .build();
+@@ -180,8 +199,12 @@ public class OfficeToPdfConversionService {
          log.error("Could not start Office Manager " + instanceNumber + ". Details: " + e.getMessage());
        }
  
