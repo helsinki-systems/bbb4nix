@@ -31,7 +31,7 @@ in {
     };
 
     systemd.services.mongodb = {
-      sandbox = 1;
+      sandbox = 2;
       apparmor.extraConfig = ''
         deny @{PROC}sys/kernel/osrelease r,
         deny @{PROC}version r,
@@ -50,6 +50,7 @@ in {
       '';
       serviceConfig = {
         PrivateNetwork = false;
+        PermissionsStartOnly = lib.mkForce false;
         RuntimeDirectory = "mongodb";
       };
     };

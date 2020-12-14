@@ -1,6 +1,6 @@
 { fetchFromGitHub }: fetchFromGitHub {
   owner = "bigbluebutton";
   repo = "bbb-webrtc-sfu";
-  rev = "v2.4.22";
-  sha256 = "sha256-RI5/hF9mqlAdt74ue0PBrlK+CuUr0+NL69iTJu10ZlI=";
+  rev = "v2.4.23";
+  sha256 = "sha256-NkgTWZtYwBSCA6qg2l4O7j5fHCnP17RW0nN2QRzWvR4=";
 }
