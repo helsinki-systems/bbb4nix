@@ -60,10 +60,6 @@ in {
       vmOverCommit = true;
     };
 
-    boot.kernel.sysctl = {
-      "net.core.somaxconn" = "512";
-    };
-
     systemd.services.redis-bigbluebutton.serviceConfig = {
       PrivateNetwork = false;
     };
