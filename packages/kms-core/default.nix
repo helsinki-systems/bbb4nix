@@ -1,9 +1,9 @@
-{ stdenv, callPackage, cmake, pkgconfig
+{ gcc9Stdenv, lib, callPackage, cmake, pkgconfig
 , boost, glib, glibmm, libsigcxx, libuuid, libvpx }: let
   src = callPackage ../sources/kms-core {};
   gst = callPackage ../kms-gst {};
 
-in stdenv.mkDerivation {
+in gcc9Stdenv.mkDerivation {
   pname = "kms-core";
   inherit (src) version;
 
@@ -57,7 +57,7 @@ in stdenv.mkDerivation {
     mv $out/lib/gstreamer-1.0/libkmscoreplugins.so $out/lib/gstreamer-1.0/libkmscore.so
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Core library of Kurento Media Server";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];
