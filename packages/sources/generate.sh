@@ -32,7 +32,7 @@ prepareRawSource() {
 	out="$(nix-build --no-out-link --expr "(import <nixpkgs> {}).pkgs.callPackage ./${1}/raw-source.nix {}" 2>&1 | tee /dev/stderr)"
 	set -e
 	got="$(echo "${out}" | grep got: | awk '{ print $2 }')"
-	sed -i "s:\"0*\":\"${got}\":g" "${1}/raw-source.nix"
+	sed -i "s_\"0*\"_\"${got}\"_g" "${1}/raw-source.nix"
 }
 
 # Updates a repository to the latest version and fixes the sources
