@@ -1,4 +1,5 @@
-{ stdenv, lib, callPackage, bundlerEnv, ruby, makeWrapper, dockerignored, nodejs, yarn }:
+{ stdenv, lib, callPackage, bundlerEnv, defaultGemConfig, ruby, makeWrapper, dockerignored, nodejs, yarn
+, pkgconfig, zlib, libxml2, libxslt }:
 let
   src = callPackage ../sources/bbb-greenlight {};
   inherit (src) version;
@@ -6,6 +7,15 @@ let
     name = "bbb-greenlight-env-${version}";
     inherit ruby version;
     gemdir = ./.;
+    gemConfig = defaultGemConfig // {
+      nokogiri = attrs: {
+        buildFlags = [
+          "--use-system-libraries"
+        ];
+
+        buildInputs = [ pkgconfig zlib libxml2 libxslt ];
+      };
+    };
   };
 in stdenv.mkDerivation {
   pname = "bbb-greenlight";
