@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake, pkgconfig, boost }: let
+{ stdenv, callPackage, cmake, pkg-config, boost }: let
   src = callPackage ../sources/kms-jsonrpc {};
 
 in stdenv.mkDerivation {
@@ -7,7 +7,7 @@ in stdenv.mkDerivation {
 
   inherit src;
 
-  nativeBuildInputs = [ cmake pkgconfig ];
+  nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [
     boost
     (callPackage ../kmsjsoncpp {})

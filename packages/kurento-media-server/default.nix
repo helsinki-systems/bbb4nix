@@ -1,4 +1,4 @@
-{ stdenv, callPackage, makeWrapper, cmake, pkgconfig
+{ stdenv, callPackage, makeWrapper, cmake, pkg-config
 , boost, glibmm, libsigcxx, libevent, openssl, websocketpp }: let
   src = callPackage ../sources/kurento-media-server {};
   gst = callPackage ../kms-gst {};
@@ -9,7 +9,7 @@ in stdenv.mkDerivation {
 
   inherit src;
 
-  nativeBuildInputs = [ cmake pkgconfig makeWrapper ];
+  nativeBuildInputs = [ cmake pkg-config makeWrapper ];
   buildInputs = [
     boost
     glibmm
