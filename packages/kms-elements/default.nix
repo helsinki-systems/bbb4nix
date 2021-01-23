@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake, pkgconfig
+{ stdenv, callPackage, cmake, pkg-config
 , boost, glib, glibmm, libuuid, libsoup, libnice, openssl }: let
   src = callPackage ../sources/kms-elements {};
   gst = callPackage ../kms-gst {};
@@ -26,7 +26,7 @@ in stdenv.mkDerivation {
     done
   '';
 
-  nativeBuildInputs = [ cmake pkgconfig (callPackage ../kurento-module-creator {}) ];
+  nativeBuildInputs = [ cmake pkg-config (callPackage ../kurento-module-creator {}) ];
   buildInputs = [
     boost
     glibmm

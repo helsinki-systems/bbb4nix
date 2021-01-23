@@ -1,4 +1,4 @@
-{ gcc9Stdenv, lib, callPackage, cmake, pkgconfig
+{ gcc9Stdenv, lib, callPackage, cmake, pkg-config
 , boost, glib, glibmm, libsigcxx, libuuid, libvpx }: let
   src = callPackage ../sources/kms-core {};
   gst = callPackage ../kms-gst {};
@@ -23,7 +23,7 @@ in gcc9Stdenv.mkDerivation {
     done
   '';
 
-  nativeBuildInputs = [ cmake pkgconfig ];
+  nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [
     boost
     libsigcxx
