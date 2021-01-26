@@ -8,7 +8,7 @@ cd "$(dirname "${0}")"
 
 # Generate nix expressions
 cd ../checkouts/bbb-webrtc-sfu
-node2nix -12 -l package-lock.json
+node2nix -l package-lock.json
 
 # Copy back expressions
 cp -vf node-packages.nix ../../bbb-webrtc-sfu/
