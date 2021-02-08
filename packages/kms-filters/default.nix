@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake, pkg-config
+{ stdenv, lib, callPackage, cmake, pkg-config
 , boost, glib, glibmm, libsigcxx, libsoup, opencv3 }: let
   src = callPackage ../sources/kms-filters {};
   gst = callPackage ../kms-gst {};
@@ -66,7 +66,7 @@ in stdenv.mkDerivation {
     done
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Filter elements for Kurento Media Server";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];

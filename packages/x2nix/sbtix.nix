@@ -1,6 +1,6 @@
 # This file originates from SBTix but was modified to call all hooks
 { runCommand, fetchurl, lib, stdenv, jdk, jre, sbt, writeText, makeWrapper }:
-with stdenv.lib;
+with lib;
 
 let sbtTemplate = repoDefs: versioning:
     let

@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake }: let
+{ stdenv, lib, callPackage, cmake }: let
   src = callPackage ../sources/libsrtp-kurento {};
 
 in stdenv.mkDerivation {
@@ -7,7 +7,7 @@ in stdenv.mkDerivation {
 
   inherit src;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Library for SRTP (Secure Realtime Transport Protocol) - Kurento fork";
     homepage = "https://github.com/kurento/libsrtp";
     license = with licenses; [ bsd3 ];
