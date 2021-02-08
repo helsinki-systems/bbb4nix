@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake, pkg-config, boost }: let
+{ stdenv, lib, callPackage, cmake, pkg-config, boost }: let
   src = callPackage ../sources/kms-jsonrpc {};
 
 in stdenv.mkDerivation {
@@ -16,7 +16,7 @@ in stdenv.mkDerivation {
     (callPackage ../kms-cmake-utils {})
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "JsonRPC protocol implementation";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];

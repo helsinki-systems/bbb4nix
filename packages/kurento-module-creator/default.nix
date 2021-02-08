@@ -1,10 +1,10 @@
-{ stdenvNoCC, callPackage, cmake, jdk, maven, makeWrapper }: let
+{ stdenvNoCC, lib, callPackage, cmake, jdk, maven, makeWrapper }: let
   mvn2nix = import (callPackage ../sources/mvn2nix {}) {};
   mavenRepository = mvn2nix.buildMavenRepositoryFromLockFile { file = ./dependencies.nix; };
 
   src = callPackage ../sources/kurento-module-creator {};
 
-  cmakeVersion = "cmake-" + stdenvNoCC.lib.versions.majorMinor cmake.version;
+  cmakeVersion = "cmake-" + lib.versions.majorMinor cmake.version;
 in stdenvNoCC.mkDerivation rec {
   pname = "kurento-module-creator";
   inherit (src) version;
@@ -36,7 +36,7 @@ in stdenvNoCC.mkDerivation rec {
     mv target/classes/FindKurentoModuleCreator.cmake $out/share/${cmakeVersion}/Modules
   '';
 
-  meta = with stdenvNoCC.lib; {
+  meta = with lib; {
     description = "Code auto-generation tool for Kurento Media Server modules";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];

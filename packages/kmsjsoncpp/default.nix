@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake }: let
+{ stdenv, lib, callPackage, cmake }: let
   src = callPackage ../sources/kmsjsoncpp {};
 
 in stdenv.mkDerivation {
@@ -9,7 +9,7 @@ in stdenv.mkDerivation {
 
   nativeBuildInputs = [ cmake ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A C++ library for interacting with JSON - Kurento fork";
     homepage = "https://github.com/Kurento/jsoncpp";
     license = with licenses; [ mit ];

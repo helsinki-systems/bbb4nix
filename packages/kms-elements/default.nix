@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake, pkg-config
+{ stdenv, lib, callPackage, cmake, pkg-config
 , boost, glib, glibmm, libuuid, libsoup, libnice, openssl }: let
   src = callPackage ../sources/kms-elements {};
   gst = callPackage ../kms-gst {};
@@ -66,7 +66,7 @@ in stdenv.mkDerivation {
     mv $out/lib/gstreamer-1.0/libkmselementsplugins.so $out/lib/gstreamer-1.0/libkmselements.so
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Media elements for Kurento Media Server";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];

@@ -1,4 +1,4 @@
-{ stdenv, callPackage, cmake }: let
+{ stdenv, lib, callPackage, cmake }: let
   src = callPackage ../sources/kms-cmake-utils {};
 
 in stdenv.mkDerivation {
@@ -9,7 +9,7 @@ in stdenv.mkDerivation {
 
   nativeBuildInputs = [ cmake ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "CMake common files used to build all Kurento C/C++ projects";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];

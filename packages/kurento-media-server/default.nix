@@ -30,7 +30,7 @@ in stdenv.mkDerivation {
     websocketpp
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Media Server responsible for media transmission, processing, loading and recording";
     homepage = "https://www.kurento.org";
     license = with licenses; [ asl20 ];
