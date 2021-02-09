@@ -1,5 +1,5 @@
 { stdenv, lib, callPackage, bundlerEnv, defaultGemConfig, ruby, makeWrapper, dockerignored, nodejs, yarn
-, pkgconfig, zlib, libxml2, libxslt }:
+, pkg-config, zlib, libxml2, libxslt }:
 let
   src = callPackage ../sources/bbb-greenlight {};
   inherit (src) version;
@@ -13,7 +13,7 @@ let
           "--use-system-libraries"
         ];
 
-        buildInputs = [ pkgconfig zlib libxml2 libxslt ];
+        buildInputs = [ pkg-config zlib libxml2 libxslt ];
       };
     };
   };
