@@ -1366,10 +1366,10 @@ env-paths@^1.0.0:
   resolved "https://registry.yarnpkg.com/env-paths/-/env-paths-1.0.0.tgz#4168133b42bb05c38a35b1ae4397c8298ab369e0"
   integrity sha1-QWgTO0K7BcOKNbGuQ5fIKYqzaeA=
 
-ep_better_pdf_export@^6.6.12:
-  version "6.6.12"
-  resolved "https://registry.yarnpkg.com/ep_better_pdf_export/-/ep_better_pdf_export-6.6.12.tgz#5e2395febc18c0ad1b95e8322716e647e97a676a"
-  integrity sha512-hbBDPT8uZK4dKrDYfApvYt5EJ8Db72lhtI0xOJxU6nDHn1dx+tuhRYk/dfildnNlJoGLInf6s5Kn+lmWfxSgGg==
+ep_better_pdf_export@^6.6.14:
+  version "6.6.14"
+  resolved "https://registry.yarnpkg.com/ep_better_pdf_export/-/ep_better_pdf_export-6.6.14.tgz#25224167f5a9d5b7687348477a821ba47d46efc5"
+  integrity sha512-B1tIFMT60t8eRFaEdDaNKYvXmFZZtB84eC4HJV16uU47LFL/0rd1IHouHqXubrWVoRq+0QP7Y3pBhNkNl8xbrQ==
   dependencies:
     html-pdf "2.2.0"
     request ">=2.67.0"
@@ -1933,9 +1933,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.3
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
 graceful-fs@^4.1.6, graceful-fs@^4.1.9:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
-  integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.5.tgz#bc18864a6c9fc7b303f2e2abdb9155ad178fbe29"
+  integrity sha512-kBBSQbz2K0Nyn+31j/w36fUfxkBW9/gfwRWdUY1ULReH3iokVJgddZAFcD1D0xlgTmFxJCbUkUclAlc6/IDJkw==
 
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
