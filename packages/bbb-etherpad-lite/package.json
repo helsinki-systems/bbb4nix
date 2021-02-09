@@ -37,7 +37,7 @@
     "clean-css": "3.4.19",
     "cookie-parser": "1.4.4",
     "ejs": "2.6.1",
-    "ep_better_pdf_export": "^6.6.12",
+    "ep_better_pdf_export": "^6.6.14",
     "ep_delete_after_delay_lite": "^0.0.5",
     "ep_redis_publisher": "git+https://git@github.com/pedrobmarin/ep_redis_publisher.git",
     "etherpad-require-kernel": "1.0.9",
