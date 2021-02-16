@@ -1,8 +1,12 @@
 # This file originates from SBTix but was modified to call all hooks
-{ runCommand, fetchurl, lib, stdenv, jdk, jre, sbt, writeText, makeWrapper }:
+{ runCommand, fetchurl, lib, stdenv, openjdk8_headless, jre8_headless, sbt, writeText, makeWrapper }:
 with lib;
 
-let sbtTemplate = repoDefs: versioning:
+let
+  jdk = openjdk8_headless;
+  jre = jre8_headless;
+  sbt' = sbt.override { inherit jre; };
+  sbtTemplate = repoDefs: versioning:
     let
         buildSbt = writeText "build.sbt" ''
           scalaVersion := "${versioning.scalaVersion}"
@@ -50,7 +54,7 @@ let sbtTemplate = repoDefs: versioning:
               ln -s ${buildProperties} ./project/build.properties
             '';
 
-            buildInputs = [ jdk sbt ];
+            buildInputs = [ jdk sbt' ];
 
             buildPhase = ''sbt update'';
 
@@ -156,7 +160,7 @@ in rec {
             '';
         } // args // {
             repo = null;
-            buildInputs = [ makeWrapper jdk sbt ] ++ buildInputs;
+            buildInputs = [ makeWrapper jdk sbt' ] ++ buildInputs;
         }) // {
             builtRepos = builtDependencies;
             fetchedRepos = fetchedDependencies;
