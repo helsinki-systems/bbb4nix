@@ -125,6 +125,7 @@ in {
       description = "the BigBlueButton web component";
       wantedBy = [ "bigbluebutton.target" ];
       partOf = [ "bigbluebutton.target" ];
+      stopIfChanged = false;
 
       path = with pkgs; [
         poppler_utils # pdfinfo as in bbb-common-web/src/main/java/org/bigbluebutton/presentation/imp/PdfPageCounter.java:43

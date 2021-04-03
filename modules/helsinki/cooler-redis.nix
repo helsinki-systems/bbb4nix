@@ -50,6 +50,7 @@ in {
       description = "Redis instance ${name}";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
+      stopIfChanged = false;
       sandbox = 1;
 
       serviceConfig = {

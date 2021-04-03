@@ -31,6 +31,7 @@ in {
     };
 
     systemd.services.mongodb = {
+      stopIfChanged = false;
       sandbox = 2;
       apparmor.extraConfig = ''
         deny @{PROC}sys/kernel/osrelease r,
