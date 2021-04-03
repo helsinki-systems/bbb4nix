@@ -125,6 +125,8 @@ in {
 
     users.users."greenlight".isSystemUser = true;
 
+    environment.systemPackages = [ pkgs.bbbPackages.greenlight-bundle ];
+
     helsinki.cooler-postgresql = {
       enable = true;
 
