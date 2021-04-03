@@ -48,6 +48,10 @@ in stdenv.mkDerivation {
     done
   '';
 
+  passthru = {
+    inherit rubyEnv nodejs;
+  };
+
   meta = with lib; {
     description = "A really simple end-user interface for your BigBlueButton server";
     homepage    = "https://github.com/bigbluebutton/greenlight/";
