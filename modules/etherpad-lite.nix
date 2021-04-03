@@ -54,6 +54,7 @@ in {
 
       requires = [ "redis-bigbluebutton.service" ];
       after = [ "redis-bigbluebutton.service" ];
+      stopIfChanged = false;
 
       serviceConfig = {
         User = "bbb-etherpad-lite";

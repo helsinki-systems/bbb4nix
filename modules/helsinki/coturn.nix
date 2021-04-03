@@ -318,6 +318,7 @@ in {
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
+      stopIfChanged = false;
 
       unitConfig = {
         Documentation = "man:coturn(1) man:turnadmin(1) man:turnserver(1)";

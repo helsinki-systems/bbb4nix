@@ -36,6 +36,7 @@ in {
       description = "the BigBlueButton html5 component";
       wantedBy = [ "bigbluebutton.target" ];
       partOf = [ "bigbluebutton.target" ];
+      stopIfChanged = false;
 
       path = with pkgs; [ glibc.bin ];
 
