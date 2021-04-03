@@ -87,31 +87,40 @@ in {
         exec bundle exec puma -C config/puma.rb
       '';
 
+      postStart = ''
+        while ! ${pkgs.iproute}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.port}; do
+          sleep .2
+        done
+      '';
+
       sandbox = 2;
       serviceConfig = {
         StateDirectory = [ "bbb-greenlight/" "bbb-greenlight/tmp/" "bbb-greenlight/log/" "bbb-greenlight/home/" ];
         RuntimeDirectory = [ "bbb-greenlight/tmp" "bbb-greenlight/log" ];
         WorkingDirectory = pkgs.bbbPackages.greenlight;
         User = "greenlight";
+        Restart = "on-failure";
 
         PrivateNetwork = false;
         PrivateUsers = false;
         MemoryDenyWriteExecute = false;
         SystemCallFilter = "@system-service";
       };
-      apparmor.packages = path;
-      apparmor.extraConfig = ''
-        ${secretEnv} r,
-        @{PROC}@{pid}/task/@{pid}/comm rw,
-        deny /etc/passwd r,
+      apparmor = {
+        enable = true;
+        packages = path;
+        extraConfig = ''
+          ${secretEnv} r,
+          @{PROC}@{pid}/task/@{pid}/comm rw,
+          @{PROC}@{pid}/net/tcp r,
+          @{PROC}@{pid}/net/tcp6 r,
+          deny /etc/passwd r,
 
-        deny network netlink raw,
-        network unix stream,
-        network inet dgram,
-        network inet stream,
-        network inet6 dgram,
-        network inet6 stream,
-      '';
+          network udp,
+          network tcp,
+          network netlink raw,
+        '';
+      };
       requires = [ "postgresql.service" ];
       after = [ "postgresql.service" ];
       wantedBy = [ "bigbluebutton.target" ];
