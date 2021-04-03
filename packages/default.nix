@@ -1,31 +1,34 @@
-{ callPackage, libopusenc }: {
+{ callPackage, lib, newScope, libopusenc }:
+
+lib.makeScope newScope (self: {
   bbbPackages = {
-    akkaApps = callPackage ./bbb-akka-apps {};
-    akkaFsesl = callPackage ./bbb-akka-fsesl {};
-    blankSlides = callPackage ./bbb-blank-slides {};
-    etherpad-lite = callPackage ./bbb-etherpad-lite {};
-    freeswitchConfig = callPackage ./bbb-freeswitch-config {};
-    generateSecrets = callPackage ./bbb-generate-secrets {};
-    greenlight = callPackage ./bbb-greenlight {};
-    html5 = callPackage ./bbb-html5/wrapper.nix {};
-    html5-unwrapped = callPackage ./bbb-html5 {};
-    recordAndPlaybackPresentation = callPackage ./bbb-record-and-playback-presentation {};
-    web = callPackage ./bbb-web {};
-    webrtcSfu = callPackage ./bbb-webrtc-sfu {};
+    akkaApps = self.callPackage ./bbb-akka-apps {};
+    akkaFsesl = self.callPackage ./bbb-akka-fsesl {};
+    blankSlides = self.callPackage ./bbb-blank-slides {};
+    etherpad-lite = self.callPackage ./bbb-etherpad-lite {};
+    freeswitchConfig = self.callPackage ./bbb-freeswitch-config {};
+    generateSecrets = self.callPackage ./bbb-generate-secrets {};
+    greenlight = self.callPackage ./bbb-greenlight {};
+    greenlight-bundle = self.callPackage ./bbb-greenlight-bundle {};
+    html5 = self.callPackage ./bbb-html5/wrapper.nix {};
+    html5-unwrapped = self.callPackage ./bbb-html5 {};
+    recordAndPlaybackPresentation = self.callPackage ./bbb-record-and-playback-presentation {};
+    web = self.callPackage ./bbb-web {};
+    webrtcSfu = self.callPackage ./bbb-webrtc-sfu {};
   };
 
   kurentoPackages = {
-    kurento-media-server = callPackage ./kurento-media-server {};
-    kms-core = callPackage ./kms-core {};
-    kms-elements = callPackage ./kms-elements {};
-    kms-filters = callPackage ./kms-filters {};
-    gst_all_1 = callPackage ./kms-gst {};
+    kurento-media-server = self.callPackage ./kurento-media-server {};
+    kms-core = self.callPackage ./kms-core {};
+    kms-elements = self.callPackage ./kms-elements {};
+    kms-filters = self.callPackage ./kms-filters {};
+    gst_all_1 = self.callPackage ./kms-gst {};
   };
 
   freeswitchPackages = rec {
-    sofia_sip = callPackage ./sofia-sip {};
-    spandsp = callPackage ./spandsp {};
-    freeswitch = callPackage ./freeswitch {
+    sofia_sip = self.callPackage ./sofia-sip {};
+    spandsp = self.callPackage ./spandsp {};
+    freeswitch = self.callPackage ./freeswitch {
       inherit sofia_sip spandsp;
       libopusenc = libopusenc.overrideAttrs (oA: {
         postFixup = ''
@@ -34,4 +37,4 @@
       });
     };
   };
-}
+})
