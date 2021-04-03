@@ -1,15 +1,24 @@
 { config, lib, pkgs, ... }: with lib; let
   cfg = config.helsinki.cooler-redis;
-  mkConfig = name: config: pkgs.writeText "redis-${name}.conf" ''
-    daemonize yes
-    supervised systemd
-    syslog-enabled yes
-    dbfilename dump.rdb
-    pidfile /run/redis/${name}.pid
-    unixsocket /run/redis/${name}.sock
-    dir /var/lib/redis/${name}
-    ${config.extraConfig}
-  '';
+
+  mkValueString = value:
+    if value == true then "yes"
+    else if value == false then "no"
+    else generators.mkValueStringDefault {} value;
+
+  mkConfig = name: settings: pkgs.writeText "redis-${name}.conf" (generators.toKeyValue {
+    listsAsDuplicateKeys = true;
+    mkKeyValue = generators.mkKeyValueDefault { inherit mkValueString; } " ";
+  } ({
+    daemonize = false;
+    supervised = "systemd";
+    syslog-enabled = true;
+    dbfilename = "dump.rdb";
+    pidfile = "/run/redis/${name}.pid";
+    unixsocket = "/run/redis/${name}.sock";
+    dir = "/var/lib/redis/${name}";
+  } // settings));
+
 in {
   options.helsinki.cooler-redis = with types; {
     vmOverCommit = mkOption {
@@ -30,9 +39,9 @@ in {
       type = attrsOf (submodule ({ ... }: {
         options = {
           extraConfig = mkOption {
-            description = "redis.conf verbatim config";
-            type = lines;
-            default = "";
+            description = "redis.conf configuration";
+            type = attrsOf (oneOf [ bool int str (listOf str) ]);
+            default = {};
           };
         };
       }));
@@ -51,11 +60,11 @@ in {
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       stopIfChanged = false;
-      sandbox = 1;
+      sandbox = 2;
 
       serviceConfig = {
         Type = "notify";
-        ExecStart = "${pkgs.redis}/bin/redis-server ${mkConfig name config}";
+        ExecStart = "${pkgs.redis}/bin/redis-server ${mkConfig name config.extraConfig}";
         Restart = "always";
         # Increase limit
         LimitNOFILE = 10032;
@@ -67,22 +76,19 @@ in {
         User = "redis";
         Group = "redis";
 
-        SystemCallFilter = "@basic-io @file-system @io-event @network-io @sync @system-service @timer";
-        RestrictAddressFamilies = "AF_UNIX AF_INET AF_INET6";
+        SystemCallFilter = "@system-service";
       };
 
       apparmor = {
-        enable2 = true;
+        enable = true;
         extraConfig = ''
           @{PROC}@{pid}/stat r,
           @{PROC}@{pid}/smaps r,
+          @{PROC}@{pid}/oom_score_adj r,
+          @{PROC}/sys/net/core/somaxconn r,
           /sys/kernel/mm/transparent_hugepage/enabled r,
-          /proc/sys/net/core/somaxconn r,
 
-          network unix dgram,
-          network unix stream,
-          network inet tcp,
-          network inet6 tcp,
+          network tcp,
         '';
       };
     }) cfg.instances;
