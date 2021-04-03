@@ -112,6 +112,7 @@ in {
       description = "Kurento Media Server";
       wantedBy = [ "multi-user.target" ];
       restartTriggers = [ configDir ];
+      stopIfChanged = false;
 
       environment = {
         GST_REGISTRY = "/run/kurento";

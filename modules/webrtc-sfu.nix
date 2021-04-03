@@ -65,6 +65,7 @@ in {
       partOf = [ "bigbluebutton.target" ];
       wants = [ "freeswitch.service" "kurento-media-server.service" ];
       requires = [ "kurento-media-server.service" ];
+      stopIfChanged = false;
 
       environment = {
         NODE_ENV = "production";
