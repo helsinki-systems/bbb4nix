@@ -114,6 +114,7 @@ in {
     systemd.services.freeswitch = {
       reloadIfChanged = true;
       restartTriggers = [ config.environment.etc.freeswitch.source ];
+      stopIfChanged = false;
       sandbox = 2;
       serviceConfig = {
         # TOREM 20.09

@@ -22,6 +22,7 @@ in {
       description = "BigBlueButton soffice service ${toString n}";
       wantedBy = [ "bigbluebutton.target" ];
       partOf = [ "bigbluebutton.target" ];
+      stopIfChanged = false;
 
       environment = {
         HOME = "/tmp";

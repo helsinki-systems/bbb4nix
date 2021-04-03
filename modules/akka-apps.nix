@@ -97,6 +97,7 @@ in {
       wantedBy = [ "bigbluebutton.target" ];
       partOf = [ "bigbluebutton.target" ];
       wants = [ "freeswitch.service" ];
+      stopIfChanged = false;
 
       path = with pkgs; [ gawk openjdk8 ];
 
