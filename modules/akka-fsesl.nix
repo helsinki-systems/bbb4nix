@@ -73,22 +73,22 @@ in {
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
+        SystemCallFilter = "@system-service";
       };
 
       apparmor = {
+        enable = true;
         packages = path;
         extraConfig = ''
           @{PROC}/sys/net/core/somaxconn r,
           @{PROC}@{pid}/net/if_inet6 r,
           @{PROC}@{pid}/net/ipv6_route r,
-          deny @{PROC}/mountinfo r,
+          deny @{PROC}@{pid}/mountinfo r,
           deny @{PROC}@{pid}/task/@{pid}/comm r,
 
-          network unix stream,
-          network inet dgram,
-          network inet stream,
-          network inet6 dgram,
-          network inet6 stream,
+          network udp,
+          network tcp,
+          deny network netlink raw,
         '';
       };
     };

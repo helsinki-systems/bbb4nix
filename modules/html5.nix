@@ -50,14 +50,13 @@ in {
 
       sandbox = 2;
       apparmor = {
+        enable = true;
         extraConfig = ''
           /var/lib/bbb-etherpad-lite/APIKEY r,
+          @{PROC}@{pid}/fd/ r,
 
-          network inet dgram,
-          network inet stream,
-          network inet6 dgram,
-          network inet6 stream,
-          network unix stream,
+          network udp,
+          network tcp,
           deny network netlink raw,
         '';
       };
@@ -72,12 +71,14 @@ in {
         User = "bbb-html5";
         SupplementaryGroups = "bbb-etherpad-lite";
 
+        Restart = "on-failure";
         ExecStart = "${pkgs.bbbPackages.html5}/bin/bbb-html5";
 
         RuntimeDirectory = "bbb-html5";
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
+        SystemCallFilter = "@system-service";
       };
     };
 

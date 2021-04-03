@@ -52,11 +52,12 @@ in {
         Group = "bbb-soffice";
 
         PrivateNetwork = false;
+        SystemCallFilter = "@system-service";
       };
 
       apparmor = {
+        enable = true;
         packages = with pkgs; [ coreutils config.environment.etc.fonts.source ];
-
         extraConfig = ''
           deny / r,
           deny /proc/loadavg r,
@@ -64,9 +65,9 @@ in {
           deny /sys/** r,
           deny ${config.environment.etc."os-release".source} r,
 
-          network unix stream,
-          network inet stream,
-          network inet6 stream,
+          network tcp,
+          deny network udp,
+          deny network netlink raw,
         '';
       };
     }) (range 1 cfg.workers));
