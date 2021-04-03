@@ -110,43 +110,61 @@ in {
       '';
     });
 
-    systemd.services.freeswitch-config-reload.enable = false;
     systemd.services.freeswitch = {
-      reloadIfChanged = true;
-      restartTriggers = [ config.environment.etc.freeswitch.source ];
       stopIfChanged = false;
+
+      postStart = ''
+        while ! ${pkgs.iproute}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.wssPort}; do
+          sleep .2
+        done
+      '';
+
       sandbox = 2;
       serviceConfig = {
-        # TOREM 20.09
-        Restart = mkForce "on-failure";
-        CPUSchedulingPolicy = "fifo";
-
         # Required for the recording scripts
         DynamicUser = mkForce false;
         User = "freeswitch";
         UMask = "0027";
 
-        CapabilityBoundingSet = "CAP_SYS_NICE";
         AmbientCapabilities = "CAP_SYS_NICE";
 
         PrivateNetwork = false;
         SystemCallFilter = "@resources @system-service";
       };
+
       apparmor = {
+        enable = true;
         packages = [ config.environment.etc.freeswitch.source ];
         extraConfig = ''
           /dev/shm/core.db rwklm,
           /dev/shm/core.db-journal rwklm,
           @{PROC}@{pid}/net/route r,
+          @{PROC}@{pid}/net/tcp r,
+          @{PROC}@{pid}/net/tcp6 r,
 
           capability sys_nice,
 
+          network udp,
+          network tcp,
           network netlink raw,
-          network unix stream,
-          network inet dgram,
-          network inet stream,
-          network inet6 dgram,
-          network inet6 stream,
+        '';
+      };
+    };
+
+    systemd.services.freeswitch-config-reload = {
+      stopIfChanged = false;
+      sandbox = 2;
+      serviceConfig = {
+        # Upstream does this in an impure fashion
+        ExecStart = lib.mkForce "${pkgs.systemd}/bin/systemctl reload-or-restart --no-block freeswitch.service";
+        User = "freeswitch";
+        Group = "nogroup";
+        SystemCallFilter = "@system-service";
+      };
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          /run/dbus/system_bus_socket rw,
         '';
       };
     };
@@ -156,12 +174,20 @@ in {
       ''d /var/lib/freeswitch/meetings 2750 freeswitch nogroup 5d''
     ];
 
+    security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.systemd1.manage-units" &&
+          action.lookup("unit") == "freeswitch.service" &&
+          action.lookup("verb") == "reload-or-restart" &&
+          subject.user == "freeswitch") {
+            return polkit.Result.YES;
+        }
+      });
+    '';
+
     users.users.freeswitch = {
       isSystemUser = true;
       description = "FreeSWITCH service user";
     };
-
-    # TOREM 20.09
-    environment.systemPackages = with pkgs; [ config.services.freeswitch.package ]; # For fs_cli
   };
 }
