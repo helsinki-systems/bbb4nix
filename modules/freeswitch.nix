@@ -111,6 +111,8 @@ in {
     });
 
     systemd.services.freeswitch = {
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       stopIfChanged = false;
 
       postStart = ''
@@ -154,6 +156,8 @@ in {
     systemd.services.freeswitch-config-reload = {
       stopIfChanged = false;
       sandbox = 2;
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       serviceConfig = {
         # Upstream does this in an impure fashion
         ExecStart = lib.mkForce "${pkgs.systemd}/bin/systemctl reload-or-restart --no-block freeswitch.service";

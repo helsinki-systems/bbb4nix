@@ -139,19 +139,19 @@ in {
       };
 
       apparmor = {
+        enable = true;
         packages = [ configDir gstPluginDir ];
         extraConfig = ''
           @{PROC}@{pid}/fd/ r,
+          @{PROC}@{pid}/task/@{pid}/comm rw,
           deny /dev/ r,
           deny @{PROC}@{pid}/stat r,
+          deny /sys/bus/ r,
+          deny /sys/class/ r,
 
+          network udp,
+          network tcp,
           network netlink raw,
-          network unix dgram,
-          network unix stream,
-          network inet dgram,
-          network inet stream,
-          network inet6 dgram,
-          network inet6 stream,
         '';
       };
     };

@@ -22,26 +22,29 @@ in {
     };
 
     systemd.services.coturn = {
+      stopIfChanged = false;
       sandbox = 2;
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       serviceConfig = {
         Group = lib.mkForce "bbb-turn";
         SystemCallFilter = "@system-service";
         PrivateNetwork = false;
-        RestrictAddressFamilies = "AF_UNIX AF_INET AF_INET6";
         PrivateUsers = false;
       };
-      apparmor.extraConfig = ''
-        ${config.services.coturn.pkey} r,
-        ${config.services.coturn.cert} r,
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          ${config.services.coturn.pkey} r,
+          ${config.services.coturn.cert} r,
 
-        /var/lib/secrets/bigbluebutton/bbb-web-turn r,
+          /var/lib/secrets/bigbluebutton/bbb-web-turn r,
+          deny /var/tmp/** rw,
 
-        network unix dgram,
-        network inet dgram,
-        network inet stream,
-        network inet6 dgram,
-        network inet6 stream,
-      '';
+          network udp,
+          network tcp,
+        '';
+      };
     };
 
     helsinki.firewall.ports = {

@@ -60,21 +60,26 @@ in {
         User = "bbb-etherpad-lite";
         Group = "bbb-etherpad-lite";
 
+        Restart = "on-failure";
         ExecStart = "${cfg.package}/bin/etherpad-lite --sessionkey ${cfg.sessionKeyFile} --apikey ${cfg.apiKeyFile} --settings ${settingsFile}";
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
         UMask = "0027";
+        SystemCallFilter = "@system-service";
 
-        ReadWritePaths = [ "/var/lib/bbb-etherpad-lite" ];
+        ReadWritePaths = [ "/var/lib/bbb-etherpad-lite/" ];
       };
 
       sandbox = 2;
-      apparmor.extraConfig = ''
-        network inet stream,
-        network unix stream,
-        deny network inet dgram,
-      '';
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          network tcp,
+          deny network udp,
+          deny network netlink raw,
+        '';
+      };
 
       wantedBy = [ "bigbluebutton.target" ];
       partOf = [ "bigbluebutton.target" ];
