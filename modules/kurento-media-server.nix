@@ -18,6 +18,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    systemd.services.kurento-media-server = {
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
+    };
     services.kurento-media-server = {
       enable = true;
       mediaServerConfig = {

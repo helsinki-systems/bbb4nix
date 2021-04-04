@@ -20,8 +20,10 @@ in {
       vmOverCommit = true;
     };
 
-    systemd.services.redis-bigbluebutton.serviceConfig = {
-      PrivateNetwork = false;
+    systemd.services.redis-bigbluebutton = {
+      serviceConfig.PrivateNetwork = false;
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
     };
   };
 }

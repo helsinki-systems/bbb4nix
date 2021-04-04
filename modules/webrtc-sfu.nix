@@ -106,17 +106,18 @@ in {
         SystemCallFilter = "@system-service";
       };
 
-      apparmor.extraConfig = ''
-        /var/lib/secrets/bbb-webrtc-sfu.json r,
-        @{sys}fs/cgroup/memory/memory.limit_in_bytes r,
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          /var/lib/secrets/bbb-webrtc-sfu.json r,
+          @{PROC}@{pid}/fd/ r,
+          @{sys}fs/cgroup/memory/memory.limit_in_bytes r,
 
-        network unix stream,
-        network inet dgram,
-        network inet stream,
-        network inet6 dgram,
-        network inet6 stream,
-        deny network netlink raw,
-      '';
+          network udp,
+          network tcp,
+          deny network netlink raw,
+        '';
+      };
     };
 
     systemd.tmpfiles.rules = [

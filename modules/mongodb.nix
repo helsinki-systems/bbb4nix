@@ -33,26 +33,31 @@ in {
     systemd.services.mongodb = {
       stopIfChanged = false;
       sandbox = 2;
-      apparmor.extraConfig = ''
-        deny @{PROC}sys/kernel/osrelease r,
-        deny @{PROC}version r,
-        deny @{PROC}@{pid}/net/snmp r,
-        deny @{PROC}@{pid}/net/netstat r,
-        deny @{sys}block/ r,
-
-        ${config.environment.etc."os-release".source} r,
-        @{PROC}diskstats r,
-        @{PROC}@{pid}/stat r,
-        @{sys}kernel/mm/transparent_hugepage/** r,
-
-        network unix dgram,
-        network unix stream,
-        network inet stream,
-      '';
+      wantedBy = mkForce [ "bigbluebutton.target" ];
+      partOf = [ "bigbluebutton.target" ];
       serviceConfig = {
+        Restart = "on-failure";
         PrivateNetwork = false;
         PermissionsStartOnly = lib.mkForce false;
         RuntimeDirectory = "mongodb";
+        SystemCallFilter = "@system-service";
+      };
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          @{sys}block/ r,
+          deny @{PROC}sys/kernel/osrelease r,
+          deny @{PROC}version r,
+          deny @{PROC}@{pid}/net/snmp r,
+          deny @{PROC}@{pid}/net/netstat r,
+
+          ${config.environment.etc."os-release".source} r,
+          @{PROC}diskstats r,
+          @{PROC}@{pid}/stat r,
+          @{sys}kernel/mm/transparent_hugepage/** r,
+
+          network tcp,
+        '';
       };
     };
   };

@@ -176,7 +176,7 @@ in {
         ExecStart = "${pkg}/bin/bbb-web -Dserver.port=${toString cfg.port} -Dbbb-web.config.location=/run/bbb-web/bigbluebutton.properties -Dconfig.file=/run/bbb-web/application.conf ${escapeShellArgs cfg.extraArgs}";
         Restart = "on-failure";
 
-        ReadWritePaths = [ "/var/lib/bigbluebutton" "/var/lib/bigbluebutton-soffice" ];
+        ReadWritePaths = [ "/var/lib/bigbluebutton/" "/var/lib/bigbluebutton-soffice/" ];
         RuntimeDirectory = "bbb-web";
         RuntimeDirectoryMode = "0700";
 
@@ -186,23 +186,32 @@ in {
         PrivateNetwork = false;
         UMask = "0007";
         MemoryDenyWriteExecute = false;
+        SystemCallFilter = "@system-service";
       };
 
-      apparmor.extraConfig = ''
-        /var/lib/secrets/bigbluebutton/bbb-web-akka.conf r,
-        /var/lib/secrets/bigbluebutton/bbb-web.properties r,
-        /var/lib/secrets/bigbluebutton/bbb-web-turn r,
-        @{PROC}@{pid}/fd/ r,
-        deny @{PROC}@{pid}/mounts r,
-        deny @{PROC}@{pid}/mounts r,
-        deny @{PROC}/sys/net/core/somaxconn r,
+      apparmor = {
+        enable = true;
+        extraConfig = ''
+          /var/lib/secrets/bigbluebutton/bbb-web-akka.conf r,
+          /var/lib/secrets/bigbluebutton/bbb-web.properties r,
+          /var/lib/secrets/bigbluebutton/bbb-web-turn r,
+          @{PROC}@{pid}/fd/ r,
+          @{PROC}@{pid}/net/if_inet6 r,
+          @{PROC}@{pid}/net/ipv6_route r,
+          deny / r,
+          deny ${config.environment.etc.os-release.source} r,
+          deny @{PROC}/loadavg r,
+          deny @{PROC}/sys/net/core/somaxconn r,
+          deny @{PROC}@{pid}/mountinfo r,
+          deny @{PROC}@{pid}/mounts r,
 
-        network unix stream,
-        network inet dgram,
-        network inet stream,
-        network inet6 dgram,
-        network inet6 stream,
-      '';
+          network udp,
+          network tcp,
+          deny network netlink raw,
+
+          unix (create,shutdown) addr=none,
+        '';
+      };
     };
 
     services.bigbluebutton.web.config = {
