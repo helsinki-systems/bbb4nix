@@ -17,8 +17,8 @@ export GRADLE_USER_HOME="${PWD}/.gradle-home"
 echo 'org.gradle.daemon=false' >> "${GRADLE_USER_HOME}/gradle.properties"
 sed -i "s:mavenLocal():maven { url '${PWD}/.m2' }:g" build.gradle
 mkdir -p .m2/org/bigbluebutton
-ln -s "$(nix-build --no-out-link -E '(import <nixpkgs> {}).pkgs.callPackage ../../../bbb-common-message {}')/repository/org/bigbluebutton/"* .m2/org/bigbluebutton/
-ln -s "$(nix-build --no-out-link -E '(import <nixpkgs> {}).pkgs.callPackage ../../../bbb-common-web {}')/repository/org/bigbluebutton/"* .m2/org/bigbluebutton/
+ln -s "$(nix-build --no-out-link -E '(import <nixpkgs> {}).callPackage ../../../bbb-common-message {}')/repository/org/bigbluebutton/"* .m2/org/bigbluebutton/
+ln -s "$(nix-build --no-out-link -E '(import <nixpkgs> {}).callPackage ../../../bbb-common-web {}')/repository/org/bigbluebutton/"* .m2/org/bigbluebutton/
 chmod +x gradlew # Yeah who needs these executability flags anyway
 ./gradlew assemble
 

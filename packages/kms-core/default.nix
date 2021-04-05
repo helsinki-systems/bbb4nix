@@ -1,9 +1,9 @@
-{ gcc9Stdenv, lib, callPackage, cmake, pkg-config
+{ stdenv, lib, callPackage, cmake, pkg-config
 , boost, glib, glibmm, libsigcxx, libuuid, libvpx }: let
   src = callPackage ../sources/kms-core {};
   gst = callPackage ../kms-gst {};
 
-in gcc9Stdenv.mkDerivation {
+in stdenv.mkDerivation {
   pname = "kms-core";
   inherit (src) version;
 

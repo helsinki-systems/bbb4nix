@@ -24,12 +24,13 @@ prepareRawSource() {
 		echo "  repo = \"${3}\";"
 		echo "  rev = \"$(< "${1}/version")\";"
 		echo '  sha256 = "0000000000000000000000000000000000000000000000000000";'
+		[[ ${4:-} == "true" ]] && echo "  leaveDotGit = true;"
 		echo '}'
 	} > "${1}/raw-source.nix"
 
 	# Fix hash
 	set +e
-	out="$(nix-build --no-out-link --expr "(import <nixpkgs> {}).pkgs.callPackage ./${1}/raw-source.nix {}" 2>&1 | tee /dev/stderr)"
+	out="$(nix-build --no-out-link --expr "(import <nixpkgs> {}).callPackage ./${1}/raw-source.nix {}" 2>&1 | tee /dev/stderr)"
 	set -e
 	got="$(echo "${out}" | grep got: | awk '{ print $2 }')"
 	sed -i "s_\"0*\"_\"${got}\"_g" "${1}/raw-source.nix"
@@ -94,7 +95,7 @@ updateBranch() {
 	mkdir -pv "${dir}"
 	git ls-remote "https://github.com/${owner}/${repo}" "${4}" | awk '{print $1}' | tr -d '\n' > "${dir}/version"
 	if oneIsChanged "${dir}"/*; then
-		prepareRawSource "${dir}" "${owner}" "${repo}"
+		prepareRawSource "${dir}" "${owner}" "${repo}" "${5:-}"
 	fi
 }
 
@@ -142,7 +143,7 @@ doBbbRepo() {
 	done < bigbluebutton-repo/packages
 }
 
-updateBranch mvn2nix fzakaria mvn2nix HEAD
+updateBranch mvn2nix fzakaria mvn2nix HEAD true
 
 updateByTagWithoutV kms-cmake-utils Kurento kms-cmake-utils
 updateByTagWithoutV kmsjsoncpp Kurento jsoncpp
