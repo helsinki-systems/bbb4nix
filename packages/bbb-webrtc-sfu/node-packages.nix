@@ -648,13 +648,22 @@ let
         sha512 = "yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==";
       };
     };
-    "uuid-3.3.3" = {
+    "uuid-3.4.0" = {
       name = "uuid";
       packageName = "uuid";
-      version = "3.3.3";
+      version = "3.4.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/uuid/-/uuid-3.3.3.tgz";
-        sha512 = "pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==";
+        url = "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz";
+        sha512 = "HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==";
+      };
+    };
+    "uuid-8.3.1" = {
+      name = "uuid";
+      packageName = "uuid";
+      version = "8.3.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/uuid/-/uuid-8.3.1.tgz";
+        sha512 = "FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==";
       };
     };
     "websocket-stream-0.5.1" = {
@@ -733,7 +742,7 @@ let
   args = {
     name = "bbb-webrtc-sfu";
     packageName = "bbb-webrtc-sfu";
-    version = "2.4.24";
+    version = "2.4.28";
     src = ./.;
     dependencies = [
       sources."argparse-1.0.10"
@@ -781,7 +790,11 @@ let
         ];
       })
       sources."minimist-1.2.5"
-      sources."modesl-1.2.1"
+      (sources."modesl-1.2.1" // {
+        dependencies = [
+          sources."uuid-3.4.0"
+        ];
+      })
       sources."nan-1.0.0"
       sources."nanoid-1.3.4"
       sources."node-gyp-build-4.2.3"
@@ -814,7 +827,7 @@ let
       sources."through-2.3.8"
       sources."tinycolor-0.0.1"
       sources."util.promisify-1.0.0"
-      sources."uuid-3.3.3"
+      sources."uuid-8.3.1"
       (sources."websocket-stream-0.5.1" // {
         dependencies = [
           sources."ws-0.4.32"
