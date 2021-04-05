@@ -58,13 +58,13 @@ let
         sha1 = "ee7c7e38093f92e472859db635e7652454fc21ea";
       };
     };
-    "bufferutil-4.0.1" = {
+    "bufferutil-4.0.2" = {
       name = "bufferutil";
       packageName = "bufferutil";
-      version = "4.0.1";
+      version = "4.0.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/bufferutil/-/bufferutil-4.0.1.tgz";
-        sha512 = "xowrxvpxojqkagPcWRQVXZl0YXhRhAtBEIq3VoER1NH5Mw1n1o0ojdspp+GS2J//2gCVyrzQDApQ4unGF+QOoA==";
+        url = "https://registry.npmjs.org/bufferutil/-/bufferutil-4.0.2.tgz";
+        sha512 = "AtnG3W6M8B2n4xDQ5R+70EXvOpnXsFYg/AK2yTZd+HQ/oxAdz+GI+DvjmhBw3L0ole+LJ0ngqY4JMbDzkfNzhA==";
       };
     };
     "colors-1.0.3" = {
@@ -119,15 +119,6 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz";
         sha1 = "103d3527fd31528f40188130c841efdd78264e5c";
-      };
-    };
-    "error-tojson-0.0.1" = {
-      name = "error-tojson";
-      packageName = "error-tojson";
-      version = "0.0.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/error-tojson/-/error-tojson-0.0.1.tgz";
-        sha1 = "a7b1aa94ffc00e9078c2eba26e204bd87cf2cbb9";
       };
     };
     "es-abstract-1.15.0" = {
@@ -310,50 +301,50 @@ let
         sha1 = "054352e4c4c80c86c0923877d449de176a732c8d";
       };
     };
-    "kurento-client-core-6.14.0" = {
+    "kurento-client-core-6.15.0" = {
       name = "kurento-client-core";
       packageName = "kurento-client-core";
-      version = "6.14.0";
+      version = "6.15.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/kurento-client-core/-/kurento-client-core-6.14.0.tgz";
-        sha512 = "jXQEjqu8EsoK2Gpkv6IUsCB5BYC9WJPVmEHoC+vx4uzRx5Kzwn6h+n7+eRTczUJOfn374BONFdvuSvBG6UJ0Kw==";
+        url = "https://registry.npmjs.org/kurento-client-core/-/kurento-client-core-6.15.0.tgz";
+        sha512 = "EkBVOBgs9fYMKBONBt1HGKB797pTHNbQXLWe6T5nx0BDEGJHrpZqm/5s3yBEeIuTUiVtm12Cli1reKtxBI58Kw==";
       };
     };
-    "kurento-client-elements-6.14.0" = {
+    "kurento-client-elements-6.15.0" = {
       name = "kurento-client-elements";
       packageName = "kurento-client-elements";
-      version = "6.14.0";
+      version = "6.15.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/kurento-client-elements/-/kurento-client-elements-6.14.0.tgz";
-        sha512 = "DcJ1bXTS3kr36d/r7WVF98ahMrV/rsENTr/qg9g6iCCY3RtIUrllhtPj7UABSPIMiX7FYF0m8Hq52rTAh8TWuA==";
+        url = "https://registry.npmjs.org/kurento-client-elements/-/kurento-client-elements-6.15.0.tgz";
+        sha512 = "lAAYhpaKi7dzKOqcZ+ecJn+whQ95vy3EVjsAVWBXp9dzRZCWW/ZMYZlm294nDNRFS8VMhtyFXj7xXjsnKwnpWg==";
       };
     };
-    "kurento-client-filters-6.14.0" = {
+    "kurento-client-filters-6.15.0" = {
       name = "kurento-client-filters";
       packageName = "kurento-client-filters";
-      version = "6.14.0";
+      version = "6.15.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/kurento-client-filters/-/kurento-client-filters-6.14.0.tgz";
-        sha512 = "ch9/6dEBk+3zyf5ISax8Ep530Q3bKWwTZ+QMLM6ZGbTJLDTWYZHzFLCBBPvy53iUPO0aKFdZ0CHDfOkrQgyG8g==";
+        url = "https://registry.npmjs.org/kurento-client-filters/-/kurento-client-filters-6.15.0.tgz";
+        sha512 = "Lo35Zc6YxXZE67kTTT3H0vfAqg9hk4TfWVEMZFmb3PV5XtGIHTatlgrogTY0Vr5mVYmvakxK1kwXWvGEeH4UqA==";
       };
     };
-    "kurento-client-git+https://github.com/Kurento/kurento-client-js.git#7836dfc942f628390935d7fc0b331c53d16ade5c" = {
+    "kurento-client-git+https://github.com/Kurento/kurento-client-js.git#4a7ecb2e11d32a2e236388c9877fdb7a91adb655" = {
       name = "kurento-client";
       packageName = "kurento-client";
-      version = "6.14.0";
+      version = "6.15.0";
       src = fetchgit {
         url = "https://github.com/Kurento/kurento-client-js.git";
-        rev = "7836dfc942f628390935d7fc0b331c53d16ade5c";
-        sha256 = "d2635c677f031ff24ca6f057fdcfd9ef627b548e06ee8e25eeeb9b98c4b0f4b0";
+        rev = "4a7ecb2e11d32a2e236388c9877fdb7a91adb655";
+        sha256 = "abcc16f65f7880395037b059d4da29fa24c963b7d068aab5e94ec276628a5367";
       };
     };
-    "kurento-jsonrpc-6.14.0" = {
+    "kurento-jsonrpc-6.15.0" = {
       name = "kurento-jsonrpc";
       packageName = "kurento-jsonrpc";
-      version = "6.14.0";
+      version = "6.15.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/kurento-jsonrpc/-/kurento-jsonrpc-6.14.0.tgz";
-        sha512 = "gM7uu5KU57nPFkZbvwFY5tVP7X2sFkVflnBgipdk6zsxrKHvW6ZUfQIdESnxWylFFRj66wdes9mI3ro+DbpWZw==";
+        url = "https://registry.npmjs.org/kurento-jsonrpc/-/kurento-jsonrpc-6.15.0.tgz";
+        sha512 = "tGxQpbaENbHBy/XVpVrWDVNOdZ76WvIP93fvjyf8pmSWdL7fMNhCHCUBoILSnaXkcQYZ1ylANCv6IJ9DrNhCmQ==";
       };
     };
     "lodash-4.17.20" = {
@@ -411,13 +402,13 @@ let
         sha512 = "4ug4BsuHxiVHoRUe1ud6rUFT3WUMmjXt1W0quL0CviZQANdan7D8kqN5/maw53hmAApY/jfzMRkC57BNNs60ZQ==";
       };
     };
-    "node-gyp-build-3.7.0" = {
+    "node-gyp-build-4.2.3" = {
       name = "node-gyp-build";
       packageName = "node-gyp-build";
-      version = "3.7.0";
+      version = "4.2.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-3.7.0.tgz";
-        sha512 = "L/Eg02Epx6Si2NXmedx+Okg+4UHqmaf3TNcxd50SF9NQGcJaON3AtU++kax69XV7YWz4tUspqZSAsVofhFKG2w==";
+        url = "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.2.3.tgz";
+        sha512 = "MN6ZpzmfNCRM+3t57PTJHgHyw/h4OWnZ6mR8P5j/uZtqQr46RRuDE/P+g3n0YR/AiYXeWixZZzaip77gdICfRg==";
       };
     };
     "object-inspect-1.6.0" = {
@@ -657,13 +648,22 @@ let
         sha512 = "yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==";
       };
     };
-    "uuid-3.3.3" = {
+    "uuid-3.4.0" = {
       name = "uuid";
       packageName = "uuid";
-      version = "3.3.3";
+      version = "3.4.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/uuid/-/uuid-3.3.3.tgz";
-        sha512 = "pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==";
+        url = "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz";
+        sha512 = "HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==";
+      };
+    };
+    "uuid-8.3.1" = {
+      name = "uuid";
+      packageName = "uuid";
+      version = "8.3.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/uuid/-/uuid-8.3.1.tgz";
+        sha512 = "FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==";
       };
     };
     "websocket-stream-0.5.1" = {
@@ -742,7 +742,7 @@ let
   args = {
     name = "bbb-webrtc-sfu";
     packageName = "bbb-webrtc-sfu";
-    version = "2.4.23";
+    version = "2.4.28";
     src = ./.;
     dependencies = [
       sources."argparse-1.0.10"
@@ -750,14 +750,13 @@ let
       sources."async-2.6.3"
       sources."async-limiter-1.0.1"
       sources."backoff-2.3.0"
-      sources."bufferutil-4.0.1"
+      sources."bufferutil-4.0.2"
       sources."colors-1.0.3"
       sources."commander-2.1.0"
       sources."config-1.30.0"
       sources."cycle-1.0.3"
       sources."define-properties-1.1.3"
       sources."double-ended-queue-2.1.0-0"
-      sources."error-tojson-0.0.1"
       sources."es-abstract-1.15.0"
       sources."es-to-primitive-1.2.0"
       sources."es6-promise-4.2.8"
@@ -778,15 +777,11 @@ let
       sources."isstream-0.1.2"
       sources."js-yaml-3.13.1"
       sources."json5-0.4.0"
-      sources."kurento-client-git+https://github.com/Kurento/kurento-client-js.git#7836dfc942f628390935d7fc0b331c53d16ade5c"
-      sources."kurento-client-core-6.14.0"
-      sources."kurento-client-elements-6.14.0"
-      sources."kurento-client-filters-6.14.0"
-      (sources."kurento-jsonrpc-6.14.0" // {
-        dependencies = [
-          sources."ws-7.3.1"
-        ];
-      })
+      sources."kurento-client-git+https://github.com/Kurento/kurento-client-js.git#4a7ecb2e11d32a2e236388c9877fdb7a91adb655"
+      sources."kurento-client-core-6.15.0"
+      sources."kurento-client-elements-6.15.0"
+      sources."kurento-client-filters-6.15.0"
+      sources."kurento-jsonrpc-6.15.0"
       sources."lodash-4.17.20"
       (sources."mcs-js-git+https://github.com/mconftec/mcs-js.git#94292a211164704f850128e95602d6d99056bf55" // {
         dependencies = [
@@ -795,10 +790,14 @@ let
         ];
       })
       sources."minimist-1.2.5"
-      sources."modesl-1.2.1"
+      (sources."modesl-1.2.1" // {
+        dependencies = [
+          sources."uuid-3.4.0"
+        ];
+      })
       sources."nan-1.0.0"
       sources."nanoid-1.3.4"
-      sources."node-gyp-build-3.7.0"
+      sources."node-gyp-build-4.2.3"
       sources."object-inspect-1.6.0"
       sources."object-keys-1.1.1"
       sources."object.getownpropertydescriptors-2.0.3"
@@ -828,7 +827,7 @@ let
       sources."through-2.3.8"
       sources."tinycolor-0.0.1"
       sources."util.promisify-1.0.0"
-      sources."uuid-3.3.3"
+      sources."uuid-8.3.1"
       (sources."websocket-stream-0.5.1" // {
         dependencies = [
           sources."ws-0.4.32"

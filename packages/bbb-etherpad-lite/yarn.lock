@@ -1366,10 +1366,10 @@ env-paths@^1.0.0:
   resolved "https://registry.yarnpkg.com/env-paths/-/env-paths-1.0.0.tgz#4168133b42bb05c38a35b1ae4397c8298ab369e0"
   integrity sha1-QWgTO0K7BcOKNbGuQ5fIKYqzaeA=
 
-ep_better_pdf_export@^6.6.12:
-  version "6.6.12"
-  resolved "https://registry.yarnpkg.com/ep_better_pdf_export/-/ep_better_pdf_export-6.6.12.tgz#5e2395febc18c0ad1b95e8322716e647e97a676a"
-  integrity sha512-hbBDPT8uZK4dKrDYfApvYt5EJ8Db72lhtI0xOJxU6nDHn1dx+tuhRYk/dfildnNlJoGLInf6s5Kn+lmWfxSgGg==
+ep_better_pdf_export@^6.6.14:
+  version "6.6.14"
+  resolved "https://registry.yarnpkg.com/ep_better_pdf_export/-/ep_better_pdf_export-6.6.14.tgz#25224167f5a9d5b7687348477a821ba47d46efc5"
+  integrity sha512-B1tIFMT60t8eRFaEdDaNKYvXmFZZtB84eC4HJV16uU47LFL/0rd1IHouHqXubrWVoRq+0QP7Y3pBhNkNl8xbrQ==
   dependencies:
     html-pdf "2.2.0"
     request ">=2.67.0"
@@ -1381,7 +1381,7 @@ ep_delete_after_delay_lite@^0.0.5:
 
 "ep_redis_publisher@git+https://git@github.com/pedrobmarin/ep_redis_publisher.git":
   version "0.0.1"
-  resolved "git+https://git@github.com/pedrobmarin/ep_redis_publisher.git#bed1e66be28e2394eda46d9b7f6ecebca59e3605"
+  resolved "git+https://git@github.com/pedrobmarin/ep_redis_publisher.git#c12fb4511b00c398ff0c37248768c4fa2b01e1f1"
   dependencies:
     redis "2.8.0"
 
@@ -1933,9 +1933,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.3
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
 graceful-fs@^4.1.6, graceful-fs@^4.1.9:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
-  integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
+  integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
@@ -4392,12 +4392,12 @@ safe-buffer@5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
   integrity sha512-kKvNJn6Mm93gAczWVJg7wH+wGYWNrDHdWvpUmHyEsgCtIwwo3bqPtV4tR5tuPaUhTOo/kvhVwd8XwwOllGYkbg==
 
-safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2:
+safe-buffer@5.1.2, safe-buffer@^5.1.0, safe-buffer@^5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-safe-buffer@5.2.0, safe-buffer@^5.2.0:
+safe-buffer@5.2.0, safe-buffer@^5.0.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
   integrity sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==

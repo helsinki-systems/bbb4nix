@@ -18,5 +18,4 @@ pullOrClone() {
 	fi
 }
 
-pullOrClone sbtix https://gitlab.com/teozkr/Sbtix.git/ master
 pullOrClone gradle2nix https://github.com/tadfisher/gradle2nix lenient-configs
