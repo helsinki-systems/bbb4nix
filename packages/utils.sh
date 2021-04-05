@@ -16,7 +16,7 @@ oneIsChanged() {
 # Run a build of a project
 buildProject() {
 	defaultnix="$(dirname "${BASH_SOURCE[0]}")/${1}"
-	nix-build --no-out-link --expr "(import <nixpkgs> {}).pkgs.callPackage ${defaultnix} {}"
+	nix-build --no-out-link --expr "(import <nixpkgs> {}).callPackage ${defaultnix} {}"
 }
 
 
