@@ -29,7 +29,7 @@ prepareRawSource() {
 
 	# Fix hash
 	set +e
-	out="$(nix-build --no-out-link --expr "(import <nixpkgs> {}).pkgs.callPackage ./${1}/raw-source.nix {}" 2>&1 | tee /dev/stderr)"
+	out="$(nix-build --no-out-link --expr "(import <nixpkgs> {}).callPackage ./${1}/raw-source.nix {}" 2>&1 | tee /dev/stderr)"
 	set -e
 	got="$(echo "${out}" | grep got: | awk '{ print $2 }')"
 	sed -i "s:\"0*\":\"${got}\":g" "${1}/raw-source.nix"

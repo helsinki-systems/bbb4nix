@@ -8,13 +8,14 @@ cd "$(dirname "${0}")"
 
 checkout() {
 	rm -rf "${1}"
-	cp -r "$(nix-build --no-out-link --expr "(import <nixpkgs> {}).pkgs.callPackage ../sources/${1} {}")" "${1}"
+	cp -r "$(nix-build --no-out-link --expr "(import <unstable> {}).callPackage ../sources/${1} {}")" "${1}"
 	chmod -R +w "${1}"
 }
 
 checkout mvn2nix
 checkout kurento-module-creator
 
+checkout sbtix
 checkout bigbluebutton
 checkout bbb-webrtc-sfu
 checkout bbb-greenlight
