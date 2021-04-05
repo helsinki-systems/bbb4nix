@@ -1,6 +1,6 @@
 { fetchFromGitHub }: fetchFromGitHub {
   owner = "Kurento";
   repo = "kurento-media-server";
-  rev = "6.15.0";
-  sha256 = "sha256-zEy3jsFu0oRrU4q2mMB4MoliNhmTPrNlGo91yk2krmk=";
+  rev = "6.16.0";
+  sha256 = "sha256:0ybd2gypq60kf3wayhyqdni7s0ym9af3nrrjgbrq5djkjiybhry6";
 }
