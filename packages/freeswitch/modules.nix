@@ -3,6 +3,7 @@
 , libopusenc
 , libogg
 , libctb
+, libpng
 , gsmlib
 , lua
 , curl
@@ -166,7 +167,7 @@ in
     local_stream = mk "formats/mod_local_stream" [];
     native_file = mk "formats/mod_native_file" [];
     opusfile = mk "formats/mod_opusfile" [ libopus opusfile libopusenc libogg ];
-    png = mk "formats/mod_png" [];
+    png = mk "formats/mod_png" [ libpng ];
     portaudio_stream = mk "formats/mod_portaudio_stream" [];
     shell_stream = mk "formats/mod_shell_stream" [];
     shout = mk "formats/mod_shout" [];
