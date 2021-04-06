@@ -178,9 +178,10 @@ in {
 
         ReadWritePaths = [ "/var/lib/bigbluebutton/" "/var/lib/bigbluebutton-soffice/" ];
         RuntimeDirectory = "bbb-web";
-        RuntimeDirectoryMode = "0700";
+        RuntimeDirectoryMode = "0750";
 
         User = "bbb-web";
+        Group = "bbb-web";
         SupplementaryGroups = [ "bbb-soffice" "bbb-turn" ];
 
         PrivateNetwork = false;
@@ -295,7 +296,9 @@ in {
 
     users.users.bbb-web = {
       description = "BigBlueButton web user";
+      group = "bbb-web";
       isSystemUser = true;
     };
+    users.groups.bbb-web = {};
   };
 }

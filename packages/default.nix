@@ -37,4 +37,6 @@ lib.makeScope newScope (self: {
       });
     };
   };
+
+  b3scale = self.callPackage ./b3scale {};
 })
