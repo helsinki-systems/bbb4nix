@@ -38,6 +38,8 @@ in {
         '';
       };
 
+      stopIfChanged = false;
+
       serviceConfig = {
         User = "b3scale";
 
