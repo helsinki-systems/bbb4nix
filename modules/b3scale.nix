@@ -47,6 +47,7 @@ in {
         PrivateNetwork = false;
 
         Restart = "on-failure";
+        RestartSec = "2s";
       };
 
       wantedBy = [ "bigbluebutton.target" ];
