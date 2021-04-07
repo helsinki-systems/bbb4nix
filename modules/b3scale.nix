@@ -77,6 +77,8 @@ in {
               unix (create,getopt,getattr) addr=none,
               /etc/passwd r,
 
+              network udp,
+
               /run/postgresql/.s.PGSQL.${toString config.services.postgresql.port} rw,
             '';
           };
