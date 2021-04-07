@@ -89,6 +89,9 @@ in {
           apparmor.extraConfig = ''
             /run/bbb-web/bigbluebutton.properties r,
             /var/lib/secrets/b3scale/dbpass r,
+
+            deny network netlink raw,
+            deny network udp,
           '';
 
           environment = {
