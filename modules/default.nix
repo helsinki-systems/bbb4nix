@@ -19,6 +19,7 @@
     ./nginx.nix
     ./coturn.nix
     ./acme.nix
+    ./b3scale.nix
   ];
 
   systemd.targets.bigbluebutton = {
