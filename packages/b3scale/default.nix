@@ -7,7 +7,8 @@ buildGoModule rec {
   version = "0.10.1";
 
   src = fetchFromGitLab {
-    owner = "infra.run/public";
+    group = "infra.run";
+    owner = "public";
     repo = pname;
     rev = version;
     sha256 = "1khxsspw1r6ci24lcixdqsbp6hmhly0lggzwmjl278jpi1sp6x43";
