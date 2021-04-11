@@ -116,7 +116,7 @@ in {
       stopIfChanged = false;
 
       postStart = ''
-        while ! ${pkgs.iproute}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.wssPort}; do
+        while ! ${pkgs.iproute2}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.wssPort}; do
           sleep .2
         done
       '';
