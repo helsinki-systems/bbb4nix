@@ -88,7 +88,7 @@ in {
       '';
 
       postStart = ''
-        while ! ${pkgs.iproute}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.port}; do
+        while ! ${pkgs.iproute2}/bin/ss -tln | ${pkgs.gnugrep}/bin/grep -q :${toString cfg.port}; do
           sleep .2
         done
       '';
