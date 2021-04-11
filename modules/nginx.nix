@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }: with lib;
+{ options, config, lib, pkgs, ... }: with lib;
 let
   cfg = config.services.bigbluebutton.nginx;
+  opts = options.services.bigbluebutton.nginx;
+  definedAndNotNull = opt: opts."${opt}".isDefined && cfg."${opt}" != null;
 in {
   options.services.bigbluebutton.nginx = with types; let
     mkUrlOpt = name: mkOption {
@@ -55,7 +57,7 @@ in {
     services.nginx.appendHttpConfig = let
       v4 = filter (x: !(hasInfix ":" x)) cfg.freeswitchWs.ips;
       v6 = filter (hasInfix ":") cfg.freeswitchWs.ips;
-    in ''
+    in mkIf opts.freeswitchWs.ips.isDefined ''
       map $remote_addr $freeswitch_addr {
         "~:"    [${head v6}];
         default ${head v4};
@@ -65,19 +67,19 @@ in {
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
       serverName = cfg.domain;
 
-      locations."~ ^/default.pdf$".alias = cfg.defaultPDF;
+      locations."~ ^/default.pdf$".alias = mkIf (definedAndNotNull "defaultPDF") cfg.defaultPDF;
 
       # bbb-html5.nginx
-      locations."/html5client" = {
+      locations."/html5client" = mkIf (definedAndNotNull "html5Url") {
         proxyPass = cfg.html5Url;
         proxyWebsockets = true;
       };
-      locations."/_timesync" = {
+      locations."/_timesync" = mkIf (definedAndNotNull "html5Url") {
         proxyPass = cfg.html5Url;
       };
 
       # notes.nginx
-      locations."~ \"^\\/pad\\/p\\/(\\w+)$\"" = {
+      locations."~ \"^\\/pad\\/p\\/(\\w+)$\"" = mkIf (definedAndNotNull "etherpadUrl") {
         proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /pad/(.*) /$1 break;
@@ -90,7 +92,7 @@ in {
           auth_request_set $auth_status $upstream_status;
         '';
       };
-      locations."/pad" = {
+      locations."/pad" = mkIf (definedAndNotNull "etherpadUrl") {
         proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /pad/(.*) /$1 break;
@@ -100,7 +102,7 @@ in {
           proxy_buffering off;
         '';
       };
-      locations."/pad/socket.io" = {
+      locations."/pad/socket.io" = mkIf (definedAndNotNull "etherpadUrl") {
         proxyPass = cfg.etherpadUrl;
         proxyWebsockets = true;
         extraConfig = ''
@@ -109,7 +111,7 @@ in {
           proxy_buffering off;
         '';
       };
-      locations."/static" = {
+      locations."/static" = mkIf (definedAndNotNull "etherpadUrl") {
         proxyPass = cfg.etherpadUrl;
         extraConfig = ''
           rewrite /static/(.*) /static/$1 break;
@@ -157,7 +159,7 @@ in {
       };
 
       # verto.nginx
-      locations."/verto" = {
+      locations."/verto" = mkIf (definedAndNotNull "freeswitchVertoUrl") {
         proxyPass = cfg.freeswitchVertoUrl;
         proxyWebsockets = true;
         extraConfig = ''
@@ -169,14 +171,14 @@ in {
       };
 
       # web.nginx
-      locations."/bigbluebutton" = {
+      locations."/bigbluebutton" = mkIf (definedAndNotNull "webUrl") {
         proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
           add_header P3P 'CP="No P3P policy available"';
         '';
       };
-      locations."~ \"^\\/bigbluebutton\\/presentation\\/(?<prestoken>[a-zA-Z0-9_-]+)/upload$\"" = {
+      locations."~ \"^\\/bigbluebutton\\/presentation\\/(?<prestoken>[a-zA-Z0-9_-]+)/upload$\"" = mkIf (definedAndNotNull "webUrl") {
         proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
@@ -195,7 +197,7 @@ in {
           auth_request /bigbluebutton/presentation/checkPresentation;
         '';
       };
-      locations."/bigbluebutton/presentation/checkPresentation" = {
+      locations."/bigbluebutton/presentation/checkPresentation" = mkIf (definedAndNotNull "webUrl") {
         proxyPass = cfg.webUrl;
         extraConfig = ''
           proxy_redirect default;
@@ -211,7 +213,7 @@ in {
           proxy_request_buffering off;
         '';
       };
-      locations."/bigbluebutton/connection/checkAuthorization" = {
+      locations."/bigbluebutton/connection/checkAuthorization" = mkIf (definedAndNotNull "webUrl") {
         proxyPass = cfg.webUrl;
         extraConfig = ''
           internal;
@@ -223,7 +225,7 @@ in {
       };
 
       # webrtc-sfu.nginx
-      locations."/bbb-webrtc-sfu" = {
+      locations."/bbb-webrtc-sfu" = mkIf (definedAndNotNull "webrtcSfuUrl") {
         proxyPass = cfg.webrtcSfuUrl;
         proxyWebsockets = true;
         extraConfig = ''
@@ -235,11 +237,11 @@ in {
       };
 
       # greenlight
-      locations."/b" = {
+      locations."/b" = mkIf (definedAndNotNull "greenlightUrl") {
         proxyPass = cfg.greenlightUrl;
       };
 
-      locations."/b/cable" = {
+      locations."/b/cable" = mkIf (definedAndNotNull "greenlightUrl") {
         proxyPass = cfg.greenlightUrl;
         proxyWebsockets = true;
         extraConfig = ''
@@ -250,10 +252,10 @@ in {
         '';
       };
 
-      locations."= /".extraConfig = ''
+      locations."= /".extraConfig = mkIf (definedAndNotNull "greenlightUrl") ''
         return 307 /b/signin;
       '';
-      locations."= /b".extraConfig = ''
+      locations."= /b".extraConfig = mkIf (definedAndNotNull "greenlightUrl") ''
         if ($request_method = GET) {
           return 307 /b/signin;
         }
@@ -261,7 +263,7 @@ in {
           proxy_pass ${cfg.greenlightUrl};
         }
       '';
-      locations."= /b/".extraConfig = ''
+      locations."= /b/".extraConfig = mkIf (definedAndNotNull "greenlightUrl") ''
         if ($request_method = GET) {
           return 307 /b/signin;
         }
