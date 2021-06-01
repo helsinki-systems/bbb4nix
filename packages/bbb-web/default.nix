@@ -1,4 +1,4 @@
-{ callPackage, unzip, jre_headless, turnStunServers ? "turn-stun-servers.xml" }: let
+{ callPackage, unzip, jre8_headless, turnStunServers ? "turn-stun-servers.xml" }: let
   buildGradle = callPackage ../x2nix/gradle-env.nix {};
   src = callPackage ../sources/bigbluebutton {};
 
@@ -32,7 +32,7 @@ in buildGradle {
     #!/bin/sh
     set -e
     cd "${placeholder "out"}/share/bbb-web"
-    exec ${jre_headless}/bin/java \
+    exec ${jre8_headless}/bin/java \
       -Dgrails.env=prod \
       -Dserver.address=127.0.0.1 \
       -Dserver.port=8090 \
