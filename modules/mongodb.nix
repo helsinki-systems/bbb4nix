@@ -40,7 +40,7 @@ in {
         PrivateNetwork = false;
         PermissionsStartOnly = lib.mkForce false;
         RuntimeDirectory = "mongodb";
-        SystemCallFilter = "@system-service";
+        SystemCallFilter = "@system-service mincore";
       };
       apparmor = {
         enable = true;
