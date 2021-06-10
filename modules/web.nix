@@ -192,6 +192,7 @@ in {
 
       apparmor = {
         enable = true;
+        packages = [ config.environment.etc.fonts.source ];
         extraConfig = ''
           /var/lib/secrets/bigbluebutton/bbb-web-akka.conf r,
           /var/lib/secrets/bigbluebutton/bbb-web.properties r,
@@ -200,11 +201,13 @@ in {
           @{PROC}@{pid}/net/if_inet6 r,
           @{PROC}@{pid}/net/ipv6_route r,
           deny / r,
+          deny /var/bigbluebutton/** r,
           deny ${config.environment.etc.os-release.source} r,
           deny @{PROC}/loadavg r,
           deny @{PROC}/sys/net/core/somaxconn r,
           deny @{PROC}@{pid}/mountinfo r,
           deny @{PROC}@{pid}/mounts r,
+          @{sys}/devices/system/node/ r,
 
           network udp,
           network tcp,
