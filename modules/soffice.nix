@@ -59,6 +59,7 @@ in {
         enable = true;
         packages = with pkgs; [ coreutils config.environment.etc.fonts.source ];
         extraConfig = ''
+          @{PROC}@{pid}/fd/ r,
           deny / r,
           deny /proc/loadavg r,
           deny @{PROC}@{pid}/mountinfo r,
