@@ -201,6 +201,7 @@ in {
           @{PROC}@{pid}/net/if_inet6 r,
           @{PROC}@{pid}/net/ipv6_route r,
           deny / r,
+          deny /etc/passwd r,
           deny /var/bigbluebutton/** r,
           deny ${config.environment.etc.os-release.source} r,
           deny @{PROC}/loadavg r,
