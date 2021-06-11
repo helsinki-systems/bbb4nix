@@ -140,7 +140,7 @@ in {
 
       apparmor = {
         enable = true;
-        packages = [ configDir gstPluginDir ];
+        packages = [ configDir gstPluginDir config.environment.etc.fonts.source ];
         extraConfig = ''
           @{PROC}@{pid}/fd/ r,
           @{PROC}@{pid}/task/@{pid}/comm rw,
@@ -148,6 +148,7 @@ in {
           deny @{PROC}@{pid}/stat r,
           deny /sys/bus/ r,
           deny /sys/class/ r,
+          deny /sys/devices/system/node/ r,
 
           network udp,
           network tcp,
