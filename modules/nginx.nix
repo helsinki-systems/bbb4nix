@@ -7,7 +7,7 @@ in {
   options.services.bigbluebutton.nginx = with types; let
     mkUrlOpt = name: mkOption {
       description = "URL for BigBlueButton ${name} upstream";
-      type = str;
+      type = nullOr str;
     };
   in {
     enable = mkEnableOption "the nginx webserver config for BigBlueButton";
