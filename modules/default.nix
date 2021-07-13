@@ -13,7 +13,6 @@
     # Third-party components
     ./freeswitch.nix
     ./kurento-media-server.nix
-    ./soffice.nix
     ./mongodb.nix
     ./redis.nix
     ./nginx.nix
