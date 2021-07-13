@@ -18,13 +18,7 @@ stdenvNoCC.mkDerivation {
     ./bbb-web-grails-upgrade.patch # Upgrade Grails, Gradle, and GORM
     ./bbb-web-flexible-turn.patch # Read TURN/STUN servers from non-default locations
     ./bbb-web-in-memory-db.patch # Switch the h2 database to a in-memory database
-    ./office-conversion-improvements.patch # Use external soffice processes
-    ./bbb-web-flexible-soffice.patch # Make the previous patch usable
-    (fetchurl { # Load config from a system property
-      url = "https://patch-diff.githubusercontent.com/raw/bigbluebutton/bigbluebutton/pull/9842.patch";
-      name = "9842.patch";
-      sha256 = "sha256-EFEHAvZ/ZzoIJ+68w+jLdsV/MsCAEEfDO8ThCcN/TZo=";
-    })
+    ./bbb-web-config-from-property.patch # Load config from a system property
   ];
 
   installPhase = ''

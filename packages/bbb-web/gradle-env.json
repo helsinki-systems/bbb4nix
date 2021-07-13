@@ -3536,22 +3536,6 @@
           "id": {
             "group": "io.netty",
             "name": "netty-bom",
-            "version": "4.1.31.Final",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "netty-bom-4.1.31.Final.pom",
-          "path": "io/netty/netty-bom/4.1.31.Final",
-          "urls": [
-            "https://jcenter.bintray.com/io/netty/netty-bom/4.1.31.Final/netty-bom-4.1.31.Final.pom",
-            "https://repo.grails.org/grails/core/io/netty/netty-bom/4.1.31.Final/netty-bom-4.1.31.Final.pom"
-          ],
-          "sha256": "082d9095d16243f05456a922c4b9165dd933efc4a9ba26edf0526bfd7b4cfab7"
-        },
-        {
-          "id": {
-            "group": "io.netty",
-            "name": "netty-bom",
             "version": "4.1.34.Final",
             "type": "pom",
             "extension": "pom"
@@ -3595,6 +3579,22 @@
             "https://repo.grails.org/grails/core/io/netty/netty-bom/4.1.43.Final/netty-bom-4.1.43.Final.pom"
           ],
           "sha256": "452a7413fb4c70e80c761c35411f3d9c5160c5362156e8c96c324f57081cb114"
+        },
+        {
+          "id": {
+            "group": "io.netty",
+            "name": "netty-bom",
+            "version": "4.1.31.Final",
+            "type": "pom",
+            "extension": "pom"
+          },
+          "name": "netty-bom-4.1.31.Final.pom",
+          "path": "io/netty/netty-bom/4.1.31.Final",
+          "urls": [
+            "https://jcenter.bintray.com/io/netty/netty-bom/4.1.31.Final/netty-bom-4.1.31.Final.pom",
+            "https://repo.grails.org/grails/core/io/netty/netty-bom/4.1.31.Final/netty-bom-4.1.31.Final.pom"
+          ],
+          "sha256": "082d9095d16243f05456a922c4b9165dd933efc4a9ba26edf0526bfd7b4cfab7"
         },
         {
           "id": {
@@ -4059,22 +4059,6 @@
             "https://repo.grails.org/grails/core/io/projectreactor/reactor-bom/Californium-SR13/reactor-bom-Californium-SR13.pom"
           ],
           "sha256": "22a175f4ac66ee8387abfc83252d7ff2caaa3fcd54b1a190a51d59440213ee1d"
-        },
-        {
-          "id": {
-            "group": "io.projectreactor",
-            "name": "reactor-bom",
-            "version": "Dysprosium-SR4",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "reactor-bom-Dysprosium-SR4.pom",
-          "path": "io/projectreactor/reactor-bom/Dysprosium-SR4",
-          "urls": [
-            "https://jcenter.bintray.com/io/projectreactor/reactor-bom/Dysprosium-SR4/reactor-bom-Dysprosium-SR4.pom",
-            "https://repo.grails.org/grails/core/io/projectreactor/reactor-bom/Dysprosium-SR4/reactor-bom-Dysprosium-SR4.pom"
-          ],
-          "sha256": "de044002dbfeee77cefea4f7a92d37895342c3dad010e5b0853f7e44002b7c5e"
         },
         {
           "id": {
@@ -14537,102 +14521,6 @@
         },
         {
           "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-core",
-            "version": "4.3.0",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "jodconverter-core-4.3.0.jar",
-          "path": "org/jodconverter/jodconverter-core/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.jar",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.jar"
-          ],
-          "sha256": "4f65701470d191273e2673f7e698c7fa97ab34357ca9c4ad9eb28be41e9b38d9"
-        },
-        {
-          "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-core",
-            "version": "4.3.0",
-            "type": "module",
-            "extension": "module"
-          },
-          "name": "jodconverter-core-4.3.0.module",
-          "path": "org/jodconverter/jodconverter-core/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.module",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.module"
-          ],
-          "sha256": "5ee27097b5782b907e7926c71f691fcf9900ed338493cd6e76976b04f70eebd4"
-        },
-        {
-          "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-core",
-            "version": "4.3.0",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "jodconverter-core-4.3.0.pom",
-          "path": "org/jodconverter/jodconverter-core/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.pom",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-core/4.3.0/jodconverter-core-4.3.0.pom"
-          ],
-          "sha256": "47b7e4f224fdb3c17c7346d3f5ef89c77b19c391b325e895e9dde5c904630fae"
-        },
-        {
-          "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-local",
-            "version": "4.3.0",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "jodconverter-local-4.3.0.jar",
-          "path": "org/jodconverter/jodconverter-local/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.jar",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.jar"
-          ],
-          "sha256": "7c5759258b1167bc75edfb1aa3806adf9daf5af43297114b5232805ddc3c39f6"
-        },
-        {
-          "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-local",
-            "version": "4.3.0",
-            "type": "module",
-            "extension": "module"
-          },
-          "name": "jodconverter-local-4.3.0.module",
-          "path": "org/jodconverter/jodconverter-local/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.module",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.module"
-          ],
-          "sha256": "8b1e4d3aebb47254def8982cae274a425587c9e1a179543e151a906501757d83"
-        },
-        {
-          "id": {
-            "group": "org.jodconverter",
-            "name": "jodconverter-local",
-            "version": "4.3.0",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "jodconverter-local-4.3.0.pom",
-          "path": "org/jodconverter/jodconverter-local/4.3.0",
-          "urls": [
-            "https://jcenter.bintray.com/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.pom",
-            "https://repo.grails.org/grails/core/org/jodconverter/jodconverter-local/4.3.0/jodconverter-local-4.3.0.pom"
-          ],
-          "sha256": "0ee44bce0de0f6632793c2182f2713626a0766400b1843510f6fdc7eea2f07e8"
-        },
-        {
-          "id": {
             "group": "org.json",
             "name": "json",
             "version": "20180813",
@@ -14854,134 +14742,6 @@
             "https://repo.grails.org/grails/core/org/multiverse/multiverse-core/0.7.0/multiverse-core-0.7.0.pom"
           ],
           "sha256": "a7b82e800ac5a2bb9a3c53c87f7dbc2cf704e395cc3273510ba38077d3eb5114"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "juh",
-            "version": "4.1.2",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "juh-4.1.2.jar",
-          "path": "org/openoffice/juh/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/juh/4.1.2/juh-4.1.2.jar",
-            "https://repo.grails.org/grails/core/org/openoffice/juh/4.1.2/juh-4.1.2.jar"
-          ],
-          "sha256": "56ca66a75bf9715a3f138f4c24978dec65f6bed92de4a75cddc6b36079da3b86"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "juh",
-            "version": "4.1.2",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "juh-4.1.2.pom",
-          "path": "org/openoffice/juh/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/juh/4.1.2/juh-4.1.2.pom",
-            "https://repo.grails.org/grails/core/org/openoffice/juh/4.1.2/juh-4.1.2.pom"
-          ],
-          "sha256": "42f3df1fbf992d20735978c5359f09c64e026b168521dd418c5e8187c5432013"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "jurt",
-            "version": "4.1.2",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "jurt-4.1.2.jar",
-          "path": "org/openoffice/jurt/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/jurt/4.1.2/jurt-4.1.2.jar",
-            "https://repo.grails.org/grails/core/org/openoffice/jurt/4.1.2/jurt-4.1.2.jar"
-          ],
-          "sha256": "6970e12b58dc0f38f69cf72d0a61c17214e4a2468e1b202e24f13f2e96dad9b1"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "jurt",
-            "version": "4.1.2",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "jurt-4.1.2.pom",
-          "path": "org/openoffice/jurt/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/jurt/4.1.2/jurt-4.1.2.pom",
-            "https://repo.grails.org/grails/core/org/openoffice/jurt/4.1.2/jurt-4.1.2.pom"
-          ],
-          "sha256": "ac286bbe4ca857aa601e15ce0d70fb56c55509fba13aa1fe77e98eefa28e75ab"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "ridl",
-            "version": "4.1.2",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "ridl-4.1.2.jar",
-          "path": "org/openoffice/ridl/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/ridl/4.1.2/ridl-4.1.2.jar",
-            "https://repo.grails.org/grails/core/org/openoffice/ridl/4.1.2/ridl-4.1.2.jar"
-          ],
-          "sha256": "d800f5361a1969bf09363a7610ab35e60ac9b9f7a35bb40e63b00289da45bad2"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "ridl",
-            "version": "4.1.2",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "ridl-4.1.2.pom",
-          "path": "org/openoffice/ridl/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/ridl/4.1.2/ridl-4.1.2.pom",
-            "https://repo.grails.org/grails/core/org/openoffice/ridl/4.1.2/ridl-4.1.2.pom"
-          ],
-          "sha256": "19f22e5554edd25cc57a55d9c35b1efe1a6e1532abe9b1a0806446706e77ba19"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "unoil",
-            "version": "4.1.2",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "unoil-4.1.2.jar",
-          "path": "org/openoffice/unoil/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/unoil/4.1.2/unoil-4.1.2.jar",
-            "https://repo.grails.org/grails/core/org/openoffice/unoil/4.1.2/unoil-4.1.2.jar"
-          ],
-          "sha256": "6116360fde3fc13ddc70cf3bc712ecb1a2b389a6b8bd62819a8f50fd79206e12"
-        },
-        {
-          "id": {
-            "group": "org.openoffice",
-            "name": "unoil",
-            "version": "4.1.2",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "unoil-4.1.2.pom",
-          "path": "org/openoffice/unoil/4.1.2",
-          "urls": [
-            "https://jcenter.bintray.com/org/openoffice/unoil/4.1.2/unoil-4.1.2.pom",
-            "https://repo.grails.org/grails/core/org/openoffice/unoil/4.1.2/unoil-4.1.2.pom"
-          ],
-          "sha256": "97657ff586a11122bea3929edb83fcdda710f3d8dd66e6a2f3212951c762b55b"
         },
         {
           "id": {
@@ -17132,22 +16892,6 @@
           "id": {
             "group": "org.springframework",
             "name": "spring-tx",
-            "version": "5.2.3.RELEASE",
-            "type": "jar",
-            "extension": "jar"
-          },
-          "name": "spring-tx-5.2.3.RELEASE.jar",
-          "path": "org/springframework/spring-tx/5.2.3.RELEASE",
-          "urls": [
-            "https://jcenter.bintray.com/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar",
-            "https://repo.grails.org/grails/core/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar"
-          ],
-          "sha256": "ecaad16431f612082f1b8724e45294ed4eee24346acd1a33fb3939018aff60b7"
-        },
-        {
-          "id": {
-            "group": "org.springframework",
-            "name": "spring-tx",
             "version": "4.3.18.RELEASE",
             "type": "jar",
             "extension": "jar"
@@ -17159,6 +16903,22 @@
             "https://repo.grails.org/grails/core/org/springframework/spring-tx/4.3.18.RELEASE/spring-tx-4.3.18.RELEASE.jar"
           ],
           "sha256": "6e9b11b0a321e59120b51e4f9a998a58746788c9c598728bc11ee8008daffa52"
+        },
+        {
+          "id": {
+            "group": "org.springframework",
+            "name": "spring-tx",
+            "version": "5.2.3.RELEASE",
+            "type": "jar",
+            "extension": "jar"
+          },
+          "name": "spring-tx-5.2.3.RELEASE.jar",
+          "path": "org/springframework/spring-tx/5.2.3.RELEASE",
+          "urls": [
+            "https://jcenter.bintray.com/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar",
+            "https://repo.grails.org/grails/core/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar"
+          ],
+          "sha256": "ecaad16431f612082f1b8724e45294ed4eee24346acd1a33fb3939018aff60b7"
         },
         {
           "id": {
@@ -17196,22 +16956,6 @@
           "id": {
             "group": "org.springframework",
             "name": "spring-tx",
-            "version": "5.2.3.RELEASE",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "spring-tx-5.2.3.RELEASE.pom",
-          "path": "org/springframework/spring-tx/5.2.3.RELEASE",
-          "urls": [
-            "https://jcenter.bintray.com/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.pom",
-            "https://repo.grails.org/grails/core/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.pom"
-          ],
-          "sha256": "613aaa4b58b29c6857a9460fb53bf6e794c6c8da71ad81a373ca530666d1da93"
-        },
-        {
-          "id": {
-            "group": "org.springframework",
-            "name": "spring-tx",
             "version": "4.3.18.RELEASE",
             "type": "pom",
             "extension": "pom"
@@ -17223,6 +16967,22 @@
             "https://repo.grails.org/grails/core/org/springframework/spring-tx/4.3.18.RELEASE/spring-tx-4.3.18.RELEASE.pom"
           ],
           "sha256": "6ba6890fc7db34635b2c98c38d77ee91cccfdbec2e0aa23874bd1d7ce41f5dd5"
+        },
+        {
+          "id": {
+            "group": "org.springframework",
+            "name": "spring-tx",
+            "version": "5.2.3.RELEASE",
+            "type": "pom",
+            "extension": "pom"
+          },
+          "name": "spring-tx-5.2.3.RELEASE.pom",
+          "path": "org/springframework/spring-tx/5.2.3.RELEASE",
+          "urls": [
+            "https://jcenter.bintray.com/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.pom",
+            "https://repo.grails.org/grails/core/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.pom"
+          ],
+          "sha256": "613aaa4b58b29c6857a9460fb53bf6e794c6c8da71ad81a373ca530666d1da93"
         },
         {
           "id": {
@@ -17767,22 +17527,6 @@
             "https://repo.grails.org/grails/core/org/springframework/boot/spring-boot-dependencies/2.1.4.RELEASE/spring-boot-dependencies-2.1.4.RELEASE.pom"
           ],
           "sha256": "e7e04e10f6dd68407738cfa03785b835126699404d8479b804d85c09170d22d0"
-        },
-        {
-          "id": {
-            "group": "org.springframework.boot",
-            "name": "spring-boot-dependencies",
-            "version": "2.2.4.RELEASE",
-            "type": "pom",
-            "extension": "pom"
-          },
-          "name": "spring-boot-dependencies-2.2.4.RELEASE.pom",
-          "path": "org/springframework/boot/spring-boot-dependencies/2.2.4.RELEASE",
-          "urls": [
-            "https://jcenter.bintray.com/org/springframework/boot/spring-boot-dependencies/2.2.4.RELEASE/spring-boot-dependencies-2.2.4.RELEASE.pom",
-            "https://repo.grails.org/grails/core/org/springframework/boot/spring-boot-dependencies/2.2.4.RELEASE/spring-boot-dependencies-2.2.4.RELEASE.pom"
-          ],
-          "sha256": "82d4952146fe91dfb6c0885ef33c7444b06e0f0483d370cc38e8359134cbbc4d"
         },
         {
           "id": {
