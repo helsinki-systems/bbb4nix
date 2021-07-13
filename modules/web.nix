@@ -229,9 +229,7 @@ in {
       unpublishedDir = "/var/lib/bigbluebutton/unpublished";
       captionsDir = "/var/lib/bigbluebutton/captions";
       # soffice
-      sofficeWorkingDirBase = "/var/lib/bigbluebutton-soffice/";
-      sofficePortBase = config.services.bigbluebutton.soffice.portBase;
-      sofficeManagers = config.services.bigbluebutton.soffice.workers;
+      presOfficeConversionExec = pkg.convert;
       # Blank files
       BLANK_PRESENTATION = "${pkgs.bbbPackages.blankSlides}/blank-presentation.pdf";
       BLANK_THUMBNAIL = "${pkgs.bbbPackages.blankSlides}/blank-thumb.png";
