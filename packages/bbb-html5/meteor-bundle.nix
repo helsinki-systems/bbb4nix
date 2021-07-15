@@ -1,4 +1,4 @@
-{ stdenv, callPackage, python2 }: let
+{ stdenv, callPackage }: let
   meteor = callPackage ../sources/meteor {};
   src = callPackage ../sources/bigbluebutton {};
 in stdenv.mkDerivation {
@@ -6,7 +6,7 @@ in stdenv.mkDerivation {
   pname = "bbb-html5-meteor-bundle";
   src = "${src}/bigbluebutton-html5";
 
-  nativeBuildInputs = [ meteor python2 ];
+  nativeBuildInputs = [ meteor ];
 
   configurePhase = ''
     export HOME=$PWD/../home
@@ -25,5 +25,5 @@ in stdenv.mkDerivation {
   '';
 
   outputHashMode = "recursive";
-  outputHash = "sha256:13vv50cgb7mxfs3szk54brvqy6mp0rr28mf0nrca21vjwx6x4fxz";
+  outputHash = "sha256:1fhdk7dcsvwf1w5dmb77qzjpvzrqc6775yn6dnkr66kpvmigayl7";
 }
