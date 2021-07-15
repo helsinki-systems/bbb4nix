@@ -1,7 +1,7 @@
 { fetchFromGitHub }: fetchFromGitHub {
   owner = "fzakaria";
   repo = "mvn2nix";
-  rev = "3af3a7e02bce9cccc77c582a589d742e4fb8540e";
-  sha256 = "1gq4sc0cwlhkka89nzshb2gvk9k9jbf3slrz56lbhgcv3xhk1x6c";
+  rev = "23b078b7fd0bedda9e7d8541877f255a54794100";
+  sha256 = "sha256:09gx8yr4gq665fwjb96drkdccyw1w7h76fwfdcn48lf49yp877f5";
   leaveDotGit = true;
 }
