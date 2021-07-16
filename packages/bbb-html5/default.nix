@@ -12,7 +12,6 @@ in stdenv.mkDerivation { # this is *not* stdenvNoCC, because of fibers and stuff
     export HOME=$PWD/../home
     pushd programs/server
     meteor npm install
-    sed -i 's:YAML_FILE_PATH = .*;$:YAML_FILE_PATH = "/run/bbb-html5/settings.json";:' app/app.js
     popd
   '';
 
