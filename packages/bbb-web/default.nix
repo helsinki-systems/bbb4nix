@@ -1,4 +1,5 @@
-{ callPackage, unzip, jre8_headless, turnStunServers ? "turn-stun-servers.xml" }: let
+{ callPackage, unzip, jre8_headless, turnStunServers ? "turn-stun-servers.xml",
+ runCommand, curl, runtimeShell }: let
   buildGradle = callPackage ../x2nix/gradle-env.nix {};
   src = callPackage ../sources/bigbluebutton {};
 
@@ -45,5 +46,10 @@ in buildGradle {
     chmod +x $out/bin/bbb-web
 
     runHook postInstall
+  '';
+
+  passthru.convert = runCommand "bbb-web-soffice-convert" { inherit curl runtimeShell; } ''
+    substituteAll ${./convert} $out
+    chmod +x $out
   '';
 }

@@ -19,6 +19,7 @@
     ./coturn.nix
     ./acme.nix
     ./b3scale.nix
+    ./soffice-conversion-server.nix
   ];
 
   systemd.targets.bigbluebutton = {

@@ -10,6 +10,7 @@ stdenvNoCC.mkDerivation {
     # Libraries
     ./bbb-common-jackson-version.patch # Update Jackson to our Scala version
     ./bbb-common-nopdfmark-path.patch # Remove path to pdfmark (WHY BOTHER LOADING IT FROM CLASSPATH???)
+    ./bbb-common-web-no-bin-sh.patch # just execute the conversion script, don't /bin/sh -c it
     # AKKA
     ./bbb-akka-apps-no-logfile.patch # Only log to stdout
     ./bbb-akka-fsesl-no-logfile.patch # Only log to stdout

@@ -1,0 +1,23 @@
+#!@runtimeShell@
+set -eu
+
+# This script receives three params
+# Param 1: Input office file path (e.g. "/tmp/test.odt")
+# Param 2: Output pdf file path (e.g. "/tmp/test.pdf")
+# Param 3: Destination Format (pdf default)
+
+if (( $# == 0 )); then
+	echo "Missing parameter 1 (Input office file path)";
+	exit 1
+elif (( $# == 1 )); then
+	echo "Missing parameter 2 (Output pdf file path)";
+	exit 1
+fi
+
+src="$1"
+dst="$2"
+
+# If output format is missing, assume PDF
+convertTo="${3:-pdf}"
+
+@curl@/bin/curl -F type="$convertTo" -F file=@"$src" --unix-socket /run/bbb-soffice-conversion-server/sock http://e/ > "$dst"

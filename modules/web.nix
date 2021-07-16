@@ -174,7 +174,7 @@ in {
         ExecStart = "${pkg}/bin/bbb-web -Dserver.port=${toString cfg.port} -Dbbb-web.config.location=/run/bbb-web/bigbluebutton.properties -Dconfig.file=/run/bbb-web/application.conf ${escapeShellArgs cfg.extraArgs}";
         Restart = "on-failure";
 
-        ReadWritePaths = [ "/var/lib/bigbluebutton/" "/var/lib/bigbluebutton-soffice/" ];
+        ReadWritePaths = [ "/var/lib/bigbluebutton/" ];
         RuntimeDirectory = "bbb-web";
         RuntimeDirectoryMode = "0750";
 
@@ -213,6 +213,8 @@ in {
           deny network netlink raw,
 
           unix (create,shutdown) addr=none,
+
+          /run/bbb-soffice-conversion-server/sock rw,
         '';
       };
     };
@@ -227,7 +229,7 @@ in {
       unpublishedDir = "/var/lib/bigbluebutton/unpublished";
       captionsDir = "/var/lib/bigbluebutton/captions";
       # soffice
-      presOfficeConversionExec = pkg.convert;
+      presOfficeConversionExec = toString pkg.passthru.convert;
       # Blank files
       BLANK_PRESENTATION = "${pkgs.bbbPackages.blankSlides}/blank-presentation.pdf";
       BLANK_THUMBNAIL = "${pkgs.bbbPackages.blankSlides}/blank-thumb.png";
@@ -287,8 +289,6 @@ in {
       "d /var/lib/bigbluebutton/recording/status 0700 bbb-web nogroup -"
       "d /var/lib/bigbluebutton/recording/status/recorded 0700 bbb-web nogroup -"
     ];
-
-    services.bigbluebutton.soffice.enable = true;
 
     users.users.bbb-web = {
       description = "BigBlueButton web user";
