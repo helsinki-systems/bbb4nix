@@ -64,6 +64,7 @@ in {
       }
     '';
 
+    services.nginx.proxyResolveWhileRunning = lib.mkForce false; # conflicts with "proxy_redirect default"
     services.nginx.virtualHosts."${cfg.virtualHost}" = {
       serverName = cfg.domain;
 
