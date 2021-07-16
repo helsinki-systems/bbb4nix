@@ -39,4 +39,5 @@ lib.makeScope newScope (self: {
   };
 
   b3scale = self.callPackage ./b3scale {};
+  bbb-soffice-conversion-server = self.callPackage ./bbb-soffice-conversion-server {};
 })

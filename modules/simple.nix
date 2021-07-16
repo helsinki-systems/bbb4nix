@@ -88,6 +88,7 @@ in {
         enable = true;
       };
       acme.enable = true;
+      soffice-conversion-server.enable = true;
     };
 
     services.coturn = {
