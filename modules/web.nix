@@ -138,8 +138,8 @@ in {
         # for each line in our properties, check if it exists in the defaults and if it does, replace it. if it doesn't, just append it
         cat ${pkg}/share/bbb-web/WEB-INF/classes/bigbluebutton.properties > /run/bbb-web/bigbluebutton.properties
         cat ${bbbProperties} /var/lib/secrets/bigbluebutton/bbb-web.properties | while read -r l; do
-          name=$(cut -d= -f1 <<< "$l")
-          value=$(cut -d= -f2- <<< "$l")
+          name=$(echo "$l" | cut -d= -f1)
+          value=$(echo "$l" | cut -d= -f2-)
           existing=$(grep "^''${name}=" /run/bbb-web/bigbluebutton.properties)
           if [[ "$existing" != "" ]]; then
             sed -i "s|^$name=.*$|$l|" /run/bbb-web/bigbluebutton.properties
@@ -167,8 +167,6 @@ in {
           -e "s/@REDIS_PW@/$(get redisPassword)/g" \
           -e "s/@REDIS_EXPIRY@/$(get redisExpiry)/g" \
           ${applicationConf} > /run/bbb-web/application.conf
-
-        mkdir -p /tmp/empty
       '';
 
       sandbox = 2;
@@ -235,10 +233,6 @@ in {
       BLANK_THUMBNAIL = "${pkgs.bbbPackages.blankSlides}/blank-thumb.png";
       BLANK_PNG = "${pkgs.bbbPackages.blankSlides}/blank-png.png";
       BLANK_SVG = "${pkgs.bbbPackages.blankSlides}/blank-svg.svg";
-      # Disable Flash
-      configDir = "/tmp/empty"; # Configs for the Flash client
-      attendeesJoinViaHTML5Client = true;
-      moderatorsJoinViaHTML5Client = true;
     };
 
     services.bigbluebutton.web.akkaConfig = {
