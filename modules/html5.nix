@@ -69,6 +69,7 @@ in {
 
       serviceConfig = {
         User = "bbb-html5";
+        Group = "bbb-html5";
         SupplementaryGroups = "bbb-etherpad-lite";
 
         Restart = "on-failure";
@@ -85,6 +86,8 @@ in {
     users.users.bbb-html5 = {
       description = "BigBlueButton html5 user";
       isSystemUser = true;
+      group = "bbb-html5";
     };
+    users.groups.bbb-html5 = {};
   };
 }

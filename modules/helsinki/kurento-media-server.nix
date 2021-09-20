@@ -130,6 +130,7 @@ in {
         Restart = "on-failure";
 
         User = "kurento";
+        Group = "kurento";
         PrivateNetwork = false;
         PrivateUsers = false;
         RuntimeDirectory = "kurento";
@@ -160,7 +161,9 @@ in {
     users.users.kurento = {
       isSystemUser = true;
       description = "Kurento media server service user";
+      group = "kurento";
     };
+    users.groups.kurento = {};
 
     services.kurento-media-server.iniModuleConfigs.UriEndpoint.defaultPath = mkDefault "file:///var/lib/kurento/";
 

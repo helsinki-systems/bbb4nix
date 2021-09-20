@@ -93,6 +93,7 @@ in {
     users.users.bbb-etherpad-lite = {
       description = "BigBlueButton Etherpad Lite user";
       isSystemUser = true;
+      group = "bbb-etherpad-lite";
     };
     users.groups.bbb-etherpad-lite = {};
   };

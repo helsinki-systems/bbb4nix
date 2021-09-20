@@ -100,6 +100,7 @@ in {
         RuntimeDirectory = "bbb-webrtc-sfu";
 
         User = "bbb-webrtc-sfu";
+        Group = "bbb-webrtc-sfu";
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
@@ -127,6 +128,8 @@ in {
     users.users.bbb-webrtc-sfu = {
       description = "BigBlueButton WebRTC SFU user";
       isSystemUser = true;
+      group = "bbb-webrtc-sfu";
     };
+    users.groups.bbb-webrtc-sfu = {};
   };
 }

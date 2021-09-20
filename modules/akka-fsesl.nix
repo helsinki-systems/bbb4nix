@@ -70,6 +70,7 @@ in {
 
         ReadOnlyPaths = [ "/var/lib/secrets/bigbluebutton/bbb-akka-fsesl.conf" ];
         User = "bbb-akka-fsesl";
+        Group = "bbb-akka-fsesl";
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
@@ -100,6 +101,8 @@ in {
     users.users.bbb-akka-fsesl = {
       description = "BigBlueButton AKKA FSESL user";
       isSystemUser = true;
+      group = "bbb-akka-fsesl";
     };
+    users.groups.bbb-akka-fsesl = {};
   };
 }

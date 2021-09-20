@@ -109,6 +109,7 @@ in {
 
         ReadOnlyPaths = [ "/var/lib/secrets/bigbluebutton/bbb-akka-apps.conf" ];
         User = "bbb-akka-apps";
+        Group = "bbb-akka-apps";
 
         PrivateNetwork = false;
         MemoryDenyWriteExecute = false;
@@ -139,6 +140,8 @@ in {
     users.users.bbb-akka-apps = {
       description = "BigBlueButton AKKA Apps user";
       isSystemUser = true;
+      group = "bbb-akka-apps";
     };
+    users.groups.bbb-akka-apps = {};
   };
 }
