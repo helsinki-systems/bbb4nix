@@ -78,6 +78,7 @@ in {
     users.users.bbb-soffice = {
       description = "BigBlueButton soffice user";
       isSystemUser = true;
+      group = "bbb-soffice";
     };
     users.groups.bbb-soffice = {};
   };

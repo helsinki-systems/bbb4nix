@@ -99,6 +99,7 @@ in {
         RuntimeDirectory = [ "bbb-greenlight/tmp" "bbb-greenlight/log" ];
         WorkingDirectory = pkgs.bbbPackages.greenlight;
         User = "greenlight";
+        Group = "greenlight";
         Restart = "on-failure";
 
         PrivateNetwork = false;
@@ -133,7 +134,12 @@ in {
       "f ${secretEnv} 0640 greenlight root -"
     ];
 
-    users.users."greenlight".isSystemUser = true;
+    users.users."greenlight" = {
+      description = "Greenlight service user";
+      isSystemUser = true;
+      group = "greenlight";
+    };
+    users.groups.greenlight = {};
 
     environment.systemPackages = [ pkgs.bbbPackages.greenlight-bundle ];
 

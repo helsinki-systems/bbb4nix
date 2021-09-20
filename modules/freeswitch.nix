@@ -126,6 +126,7 @@ in {
         # Required for the recording scripts
         DynamicUser = mkForce false;
         User = "freeswitch";
+        Group = "freeswitch";
         UMask = "0027";
 
         AmbientCapabilities = "CAP_SYS_NICE";
@@ -162,7 +163,7 @@ in {
         # Upstream does this in an impure fashion
         ExecStart = lib.mkForce "${pkgs.systemd}/bin/systemctl reload-or-restart --no-block freeswitch.service";
         User = "freeswitch";
-        Group = "nogroup";
+        Group = "freeswitch";
         SystemCallFilter = "@system-service";
       };
       apparmor = {
@@ -192,6 +193,8 @@ in {
     users.users.freeswitch = {
       isSystemUser = true;
       description = "FreeSWITCH service user";
+      group = "freeswitch";
     };
+    users.groups.freeswitch = {};
   };
 }

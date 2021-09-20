@@ -42,6 +42,7 @@ in {
 
       serviceConfig = {
         User = "b3scale";
+        Group = "b3scale";
 
         PrivateUsers = false;
         PrivateNetwork = false;
@@ -118,6 +119,7 @@ in {
     users.users.b3scale = {
       description = "b3scale user";
       isSystemUser = true;
+      group = "b3scale";
     };
     users.groups.b3scale = {};
 
