@@ -229,7 +229,7 @@ let
     gradleGen.gradleGen {
       inherit (gradleSpec) nativeVersion;
 
-      name = "gradle-${gradleSpec.version}-${gradleSpec.type}";
+      inherit (gradleSpec) version;
 
       src = fetchurl {
         inherit (gradleSpec) url sha256;
