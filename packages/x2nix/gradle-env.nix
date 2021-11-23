@@ -229,11 +229,7 @@ let
     gradleGen.gradleGen {
       inherit (gradleSpec) nativeVersion;
 
-      inherit (gradleSpec) version;
-
-      src = fetchurl {
-        inherit (gradleSpec) url sha256;
-      };
+      inherit (gradleSpec) version sha256;
     };
 
   mkProjectEnv = projectSpec: {
