@@ -24,7 +24,7 @@
 #         '';
 #       }
 
-{ stdenv, lib, buildEnv, fetchurl, gradleGen, writeText, writeTextDir }:
+{ stdenv, lib, buildEnv, fetchurl, callPackage, gradleGen, writeText, writeTextDir }:
 
 { envSpec
 , pname ? null
@@ -226,11 +226,9 @@ let
       '';
 
   mkGradle = gradleSpec:
-    gradleGen.gradleGen {
-      inherit (gradleSpec) nativeVersion;
-
-      inherit (gradleSpec) version sha256;
-    };
+    callPackage (gradleGen {
+      inherit (gradleSpec) nativeVersion version sha256;
+    }) {};
 
   mkProjectEnv = projectSpec: {
     inherit (projectSpec) name version;
