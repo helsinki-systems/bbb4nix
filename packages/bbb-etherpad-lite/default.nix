@@ -1,4 +1,5 @@
-{ mkYarnPackage, callPackage, fetchurl, phantomjs2 }:
+{ mkYarnPackage, callPackage, fetchurl, phantomjs2
+, runCommand, runtimeShell, web, gnused }:
 let
   src = callPackage ../sources/bbb-etherpad-lite {};
 
@@ -39,5 +40,10 @@ in mkYarnPackage {
     popd
 
     cp ${settingsJson} $out/libexec/ep_etherpad-lite/deps/ep_etherpad-lite/settings.json
+  '';
+
+  passthru.export = runCommand "bbb-etherpad-lite-export" { inherit (web.passthru) convert; inherit runtimeShell gnused; } ''
+    substituteAll ${./export} $out
+    chmod +x $out
   '';
 }

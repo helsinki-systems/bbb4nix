@@ -39,7 +39,7 @@
     "ejs": "2.6.1",
     "ep_better_pdf_export": "^6.6.14",
     "ep_delete_after_delay_lite": "^0.0.5",
-    "ep_redis_publisher": "git+https://git@github.com/pedrobmarin/ep_redis_publisher.git",
+    "ep_pad_ttl": "git+https://github.com/mconf/ep_pad_ttl.git#main",
     "etherpad-require-kernel": "1.0.9",
     "etherpad-yajsml": "0.0.2",
     "express": "4.17.1",
