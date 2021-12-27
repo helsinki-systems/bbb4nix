@@ -92,7 +92,6 @@ in {
         b3scalenoded = {
           apparmor.extraConfig = ''
             /run/bbb-web/bigbluebutton.properties r,
-            /var/lib/secrets/b3scale/dbpass r,
             deny /etc/passwd r,
 
             deny network netlink raw,
@@ -105,7 +104,7 @@ in {
 
           script = ''
             set -eu
-            export B3SCALE_DB_URL="user=b3scale host=${cfg.master}.wg dbname=b3scale password=$(cat /var/lib/secrets/b3scale/dbpass)"
+            export B3SCALE_DB_URL="user=b3scale host=${cfg.master}.wg dbname=b3scale password=$(cat /run/secrets/b3scale/dbpass)"
             exec ${pkgs.b3scale}/bin/b3scalenoded -register
           '';
 
@@ -126,9 +125,7 @@ in {
     helsinki.cooler-postgresql = lib.mkIf (isMaster && cfg.configureDB) {
       enable = true;
 
-      ensureRoles.b3scale = {
-        passwordFile = "/var/lib/secrets/b3scale/dbpass";
-      };
+      ensureRoles.b3scale.passwordFile = "/run/secrets/b3scale/dbpass";
 
       ensureDatabases.b3scale = {
         extensions = [ "uuid-ossp" ];
@@ -152,9 +149,5 @@ in {
     }];
 
     environment.systemPackages = [ pkgs.b3scale ];
-
-    systemd.tmpfiles.rules = lib.mkIf (!isMaster) [
-      "Z /var/lib/secrets/b3scale/ 0500 b3scale b3scale -"
-    ];
   });
 }
