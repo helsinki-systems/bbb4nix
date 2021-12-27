@@ -99,10 +99,6 @@ in {
       pkey = "/var/lib/acme/${cfg.domain}/key.pem";
     };
 
-    environment.systemPackages = with pkgs; with bbbPackages; [
-      generateSecrets
-    ];
-
     networking.hosts = listToAttrs (map (ip: { name = ip; value = [ cfg.domain ]; }) cfg.ips);
   };
 }

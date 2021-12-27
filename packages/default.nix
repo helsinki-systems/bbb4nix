@@ -7,7 +7,6 @@ lib.makeScope newScope (self: {
     blankSlides = self.callPackage ./bbb-blank-slides {};
     etherpad-lite = self.callPackage ./bbb-etherpad-lite { inherit web; };
     freeswitchConfig = self.callPackage ./bbb-freeswitch-config {};
-    generateSecrets = self.callPackage ./bbb-generate-secrets {};
     greenlight = self.callPackage ./bbb-greenlight {};
     greenlight-bundle = self.callPackage ./bbb-greenlight-bundle {};
     html5 = self.callPackage ./bbb-html5/wrapper.nix {};
