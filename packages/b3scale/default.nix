@@ -11,7 +11,7 @@ buildGoModule rec {
     owner = "public";
     repo = pname;
     rev = version;
-    sha256 = "07kyz1h6jgin16nwswiydmbcvrvf9lxf68spv5g7mpmpzj45rj5n";
+    sha256 = "1cydaqar36mianxf6an3gmf3da53wgb10crm9wv7ff4hw608xcll";
   };
 
   nativeBuildInputs = [ makeWrapper ];
