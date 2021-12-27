@@ -45,6 +45,7 @@ in {
       apparmor = {
         enable = true;
         extraConfig = ''
+          /etc/passwd r,
           @{PROC}/sys/vm/zone_reclaim_mode r,
           @{sys}block/ r,
           deny @{PROC}sys/kernel/osrelease r,

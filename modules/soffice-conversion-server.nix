@@ -14,6 +14,8 @@ in {
         extraConfig = ''
           @{PROC}/sys/net/core/somaxconn r,
           @{PROC}@{pid}/fd/ r,
+
+          /etc/passwd r,
         '';
       };
 

@@ -99,7 +99,7 @@ in {
       wants = [ "freeswitch.service" ];
       stopIfChanged = false;
 
-      path = with pkgs; [ gawk openjdk8 ];
+      path = with pkgs; [ gawk openjdk8_headless ];
 
       sandbox = 2;
       serviceConfig = {
