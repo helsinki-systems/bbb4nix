@@ -41,7 +41,10 @@ in {
       wantedBy = [ "bigbluebutton.target" ];
     };
 
-    users.users.bbb-soffice.isSystemUser = true;
+    users.users.bbb-soffice = {
+      isSystemUser = true;
+      group = "bbb-soffice";
+    };
     users.groups.bbb-soffice = {};
   };
 }
