@@ -1,0 +1,3 @@
+#!@runtimeShell@
+# This script is used to enable Etherpad to export to PDF/ODT
+@convert@ "$8" "$(echo $8 | @gnused@/bin/sed -E -e 's/html|odt/'$7'/')" $7
