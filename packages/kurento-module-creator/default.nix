@@ -1,5 +1,5 @@
-{ stdenvNoCC, lib, callPackage, cmake, jdk, maven, makeWrapper, pkgs, system }: let
-  mvn2nix = import (callPackage ../sources/mvn2nix { }) { nixpkgs = pkgs.path; inherit system; };
+{ stdenvNoCC, lib, callPackage, cmake, jdk, maven, makeWrapper, pkgs }: let
+  mvn2nix = import (callPackage ../sources/mvn2nix { }) { nixpkgs = pkgs.path; };
   mavenRepository = mvn2nix.buildMavenRepositoryFromLockFile { file = ./dependencies.nix; };
 
   src = callPackage ../sources/kurento-module-creator {};
