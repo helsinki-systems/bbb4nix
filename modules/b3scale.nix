@@ -62,14 +62,15 @@ in {
       lib.mkMerge [ { b3scaled = commonService; }
         {
           b3scaled = {
-            script = ''
+            serviceConfig = {
+              ExecStart = "${pkgs.b3scale}/bin/b3scaled";
+            };
+
+            preStart = ''
               export ON_ERROR_STOP=on
               if [ $(${config.helsinki.cooler-postgresql.package}/bin/psql -c '\dt'|wc -l) -lt 10 ]; then
                 ${config.helsinki.cooler-postgresql.package}/bin/psql < ${pkgs.b3scale.src}/db/schema/0001_initial_tables.sql
               fi
-              export B3SCALE_API_JWT_SECRET="$(< /run/secrets/b3scale/api_secret)"
-
-              exec ${pkgs.b3scale}/bin/b3scaled
             '';
 
             requires = [ "postgresql.service" ];
@@ -118,8 +119,6 @@ in {
       description = "b3scale user";
       isSystemUser = true;
       group = "b3scale";
-      home = "/var/lib/b3scale";
-      createHome = true;
     };
     users.groups.b3scale = {};
 
