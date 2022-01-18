@@ -4,14 +4,14 @@
 }:
 buildGoModule rec {
   pname = "b3scale";
-  version = "0.10.1";
+  version = "0.12.0";
 
   src = fetchFromGitLab {
     group = "infra.run";
     owner = "public";
     repo = pname;
     rev = version;
-    sha256 = "1khxsspw1r6ci24lcixdqsbp6hmhly0lggzwmjl278jpi1sp6x43";
+    sha256 = "010dqiqym18m3rmrm4jvzr8dyldzpkqdh2in9m7jjmygkymj1dmk";
   };
 
   nativeBuildInputs = [ makeWrapper ];
@@ -32,5 +32,5 @@ buildGoModule rec {
   # tries to connect to a database and stuff
   doCheck = false;
 
-  vendorSha256 = "1z15vw3l015wc9kaga4svy2j5lfr99pndz3lgqsd0b23nhsbazik";
+  vendorSha256 = "16s1j7k7399lg9rw24gy0rwa8f9jbkr9p2j3i390hmma9vc98mv4";
 }
