@@ -65,6 +65,7 @@ in {
         MONGO_URL = cfg.mongoUrl;
         ROOT_URL = cfg.rootUrl;
         PORT = toString cfg.port;
+        BBB_HTML5_SETTINGS = "/run/bbb-html5/settings.json";
       };
 
       serviceConfig = {

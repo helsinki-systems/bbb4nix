@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p jdk
+#!nix-shell -i bash -p openjdk11_headless
 
 set -euo pipefail
 cd "$(dirname "${0}")"

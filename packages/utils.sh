@@ -22,7 +22,7 @@ buildProject() {
 
 # Add sbtix into $PATH
 sbtixLoad() {
-	PATH="$(nix-build --no-out-link "$(dirname "${BASH_SOURCE[0]}")/checkouts/sbtix")/bin:${PATH}"
+	PATH="$(nix-build -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-20.09.tar.gz" --no-out-link "$(dirname "${BASH_SOURCE[0]}")/checkouts/sbtix")/bin:${PATH}"
 	export PATH
 }
 

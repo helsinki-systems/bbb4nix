@@ -1,13 +1,12 @@
 { callPackage, lib, newScope, libopusenc }:
 
 lib.makeScope newScope (self: {
-  bbbPackages = {
+  bbbPackages = rec {
     akkaApps = self.callPackage ./bbb-akka-apps {};
     akkaFsesl = self.callPackage ./bbb-akka-fsesl {};
     blankSlides = self.callPackage ./bbb-blank-slides {};
-    etherpad-lite = self.callPackage ./bbb-etherpad-lite {};
+    etherpad-lite = self.callPackage ./bbb-etherpad-lite { inherit web; };
     freeswitchConfig = self.callPackage ./bbb-freeswitch-config {};
-    generateSecrets = self.callPackage ./bbb-generate-secrets {};
     greenlight = self.callPackage ./bbb-greenlight {};
     greenlight-bundle = self.callPackage ./bbb-greenlight-bundle {};
     html5 = self.callPackage ./bbb-html5/wrapper.nix {};
@@ -39,4 +38,5 @@ lib.makeScope newScope (self: {
   };
 
   b3scale = self.callPackage ./b3scale {};
+  bbb-soffice-conversion-server = self.callPackage ./bbb-soffice-conversion-server {};
 })

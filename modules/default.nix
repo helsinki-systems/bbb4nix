@@ -13,13 +13,13 @@
     # Third-party components
     ./freeswitch.nix
     ./kurento-media-server.nix
-    ./soffice.nix
     ./mongodb.nix
     ./redis.nix
     ./nginx.nix
     ./coturn.nix
     ./acme.nix
     ./b3scale.nix
+    ./soffice-conversion-server.nix
   ];
 
   systemd.targets.bigbluebutton = {

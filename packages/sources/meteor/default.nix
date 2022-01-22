@@ -1,7 +1,7 @@
-{ stdenv, lib, fetchurl, zlib, patchelf, runtimeShell, coreutils }:
+{ stdenv, lib, fetchurl, zlib, patchelf, runtimeShell, coreutils, nodejs-12_x, makeWrapper }:
 
 let
-  version = "1.8.1";
+  version = "1.10.2";
 in
 
 stdenv.mkDerivation {
@@ -9,12 +9,12 @@ stdenv.mkDerivation {
   pname = "meteor";
   src = fetchurl {
     url = "https://static-meteor.netdna-ssl.com/packages-bootstrap/${version}/meteor-bootstrap-os.linux.x86_64.tar.gz";
-    sha256 = "sha256-hpGBbxV/l/EOpwcPcvqj1fVeb/5GJXbk/RDf0IREheI=";
+    sha256 = "17s1n92nznasaaprvxg289a1fcizq2nj51xqw7akgw5f77q19vmw";
   };
 
-  #dontStrip = true;
-
   sourceRoot = ".meteor";
+
+  nativeBuildInputs = [ makeWrapper ];
 
   postPatch = ''
     sed -i "s:'uname':'${coreutils}/bin/uname':g" packages/meteor-tool/*/*/tools/utils/archinfo.js
@@ -46,12 +46,14 @@ stdenv.mkDerivation {
       --replace "@RPATH@" "${lib.makeLibraryPath [ stdenv.cc.cc zlib ]}" \
       --replace "@PATCHELF@" "${patchelf}/bin/patchelf"
 
+    # sed -i 's_files.pathJoin(nodeModulesDir, ".temp_files.pathJoin("/tmp", ".temp_' $(find $out -name meteor-npm.js)
+    sed -i 's_const dirsToRebuild = \[\]_return_' $(find $out -name meteor-npm.js)
+
     # Patch node.
     node=$devBundle/bin/node
-    patchelf \
-      --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) \
-      --set-rpath "$(patchelf --print-rpath $node):${stdenv.cc.cc.lib}/lib" \
-      $node
+    rm $node
+    ln -s ${nodejs-12_x}/bin/node $node
+    wrapProgram $_ --add-flags "--no-wasm-code-gc"
 
     # Patch mongo.
     for p in $devBundle/mongodb/bin/mongo{,d}; do
@@ -87,7 +89,7 @@ stdenv.mkDerivation {
 
     patchShebangs $out
     find $out -name '*.js' -print0 | while read -r -d "" js; do
-      sed -i "s|/usr/bin/env node|"$node"|g" "$js"
+      sed -i "s|/usr/bin/env node|${nodejs-12_x}/bin/node|g" "$js"
     done
   '';
 

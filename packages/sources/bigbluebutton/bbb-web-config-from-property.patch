@@ -1,0 +1,17 @@
+diff --git a/bigbluebutton-web/grails-app/conf/application.groovy b/bigbluebutton-web/grails-app/conf/application.groovy
+index 38a90ecdf8..7041ed06c3 100755
+--- a/bigbluebutton-web/grails-app/conf/application.groovy
++++ b/bigbluebutton-web/grails-app/conf/application.groovy
+@@ -10,9 +10,9 @@
+ // if (System.properties["${appName}.config.location"]) {
+ //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+ // }
+-grails.config.locations = [ "classpath:bigbluebutton.properties"]
+-if (new File("/etc/bigbluebutton/bbb-web.properties").canRead()) {
+-    grails.config.locations << "file:/etc/bigbluebutton/bbb-web.properties"
++grails.config.locations = [ "classpath:bigbluebutton.properties" ]
++if (System.properties["bbb-web.config.location"]) {
++    grails.config.locations << "file:" + System.properties["bbb-web.config.location"]
+ }
+ 
+ grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination

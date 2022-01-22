@@ -1,11 +1,11 @@
-diff --git a/bigbluebutton-web/grails-app/conf/spring/resources.xml b/bigbluebutton-web/grails-app/conf/spring/resources.xml
-index df4684abf7..6f42894e2d 100755
---- a/bigbluebutton-web/grails-app/conf/spring/resources.xml
-+++ b/bigbluebutton-web/grails-app/conf/spring/resources.xml
-@@ -162,5 +162,5 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+--- a/bigbluebutton-web/grails-app/conf/spring/resources.groovy
++++ b/bigbluebutton-web/grails-app/conf/spring/resources.groovy
+@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
+ Logger logger = LoggerFactory.getLogger("org.bigbluebutton.web.services.turn.StunTurnService")
  
-     <import resource="doc-conversion.xml"/>
-     <import resource="bbb-redis-messaging.xml"/>
--    <import resource="turn-stun-servers.xml"/>
-+    <import resource="@TURN_STUN_SERVERS@"/>
- </beans>
+ beans = {
+-  def turnConfigFilePath = "/etc/bigbluebutton/turn-stun-servers.xml"
++  def turnConfigFilePath = "@TURN_STUN_SERVERS@"
+   def turnConfigFile = new File(turnConfigFilePath)
+   if (turnConfigFile.canRead()) {
+     logger.info("Reading stun/turn server config from overlay config file " + turnConfigFilePath)

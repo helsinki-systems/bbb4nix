@@ -38,10 +38,10 @@ in {
       type = bbbLib.jsonType;
       description = "Extra settings to merge into the default settings.json";
       default = {
-        soffice = "${pkgs.libreoffice}/bin/soffice";
+        soffice = "${cfg.package.passthru.export}";
       };
       defaultText = ''{
-        soffice = "''${pkgs.libreoffice}/bin/soffice";
+        soffice = "''${cfg.package.passthru.export}";
       }'';
     };
   };

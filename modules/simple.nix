@@ -31,7 +31,6 @@ in {
           clientLocation = ''''${bigbluebutton.web.serverURL}/html5client'';
         in {
           "bigbluebutton.web.serverURL" = "https://${cfg.domain}";
-          "defaultClientUrl" = "${clientLocation}/BigBlueButton.html";
           "defaultGuestWaitURL" = "${clientLocation}/guest-wait.html";
           "defaultAvatarURL" = "${clientLocation}/avatar.png";
           "defaultConfigURL" = "${clientLocation}/conf/config.xml";
@@ -89,6 +88,7 @@ in {
         enable = true;
       };
       acme.enable = true;
+      soffice-conversion-server.enable = true;
     };
 
     services.coturn = {
@@ -98,10 +98,6 @@ in {
       cert = "/var/lib/acme/${cfg.domain}/fullchain.pem";
       pkey = "/var/lib/acme/${cfg.domain}/key.pem";
     };
-
-    environment.systemPackages = with pkgs; with bbbPackages; [
-      generateSecrets
-    ];
 
     networking.hosts = listToAttrs (map (ip: { name = ip; value = [ cfg.domain ]; }) cfg.ips);
   };
