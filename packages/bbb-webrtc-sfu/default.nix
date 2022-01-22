@@ -1,11 +1,11 @@
 { stdenv, lib, callPackage, makeWrapper, nodePackages, nix-gitignore
-, python, util-linux, runCommand, writeTextFile, nodejs, darwin
+, python2, util-linux, runCommand, writeTextFile, nodejs, darwin
 , fetchurl, fetchgit }:
 let
   src = callPackage ../sources/bbb-webrtc-sfu {};
 
   nodeEnv = import ../x2nix/node-env.nix {
-    inherit stdenv lib nodejs python util-linux runCommand writeTextFile;
+    inherit stdenv lib nodejs python2 util-linux runCommand writeTextFile;
     libtool = if stdenv.isDarwin then darwin.cctools else null;
   };
 
