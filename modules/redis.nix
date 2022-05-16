@@ -7,17 +7,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    helsinki.cooler-redis = {
-      instances.bigbluebutton.extraConfig = {
-        tcp-keepalive = 0;
+    services.redis = {
+      vmOverCommit = true;
+      servers.bigbluebutton = {
+        enable = true;
+        settings.tcp-keepalive = 0;
         save = [
-          "900 1"
-          "300 10"
-          "60 10000"
+          [ 900 1 ]
+          [ 300 10 ]
+          [ 60 10000 ]
         ];
       };
-      disableHugepages = true;
-      vmOverCommit = true;
     };
 
     systemd.services.redis-bigbluebutton = {

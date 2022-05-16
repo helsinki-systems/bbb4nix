@@ -5,7 +5,6 @@
     ./apparmor-confinement.nix
     ./coturn.nix
     ./cooler-postgresql.nix
-    ./cooler-redis.nix
     ./kurento-media-server.nix
     ./systemd-sandbox.nix
   ];
